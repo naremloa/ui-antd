@@ -1,0 +1,42 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    "type": "whole-line",
+    "fontWeight": "600",
+    "foreground": "#0B132B",
+  },
+  "todo-tree.highlights.customHighlight": {
+      "TODO": {
+          "icon": "alert",
+          "iconColour": "#FBB02D",
+          "background": "#FBB02D",
+      },
+      "FIXME": {
+          "iconColour": "#FB6107",
+          "background": "#FB6107",
+          "gutterIcon": true
+      },
+      "NOTE": {
+        "icon": "eye",
+        "iconColour": "#5BC0BE",
+        "background": "#5BC0BE",
+      }
+  },
+  "todo-tree.general.tags": [
+    "FIXME",
+    "TODO",
+    "NOTE",
+  ],
+  "i18n-ally.localesPaths": "src/locales",
+  "files.eol": "\n",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.packageManager": "yarn",
+}

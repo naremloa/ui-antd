@@ -1,0 +1,78 @@
+{
+  "name": "backstage-ui-antd",
+  "version": "1.0.3",
+  "description": "> TODO: description",
+  "author": "naremloa <narem.lu@silkrode.com.tw>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/backstage-ui.min.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.silkrode.com.tw:team_web/backstage-ui-antd.git"
+  },
+  "scripts": {
+    "clean": "rm -rf ./lib && echo success",
+    "dev": "webpack-dev-server --config build/webpack.dev.js --watch",
+    "build:prod": "webpack --config build/webpack.prod.js",
+    "test": "echo \"Error: run tests from root\" && exi`t 1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "antd-dayjs-webpack-plugin": "^1.0.1",
+    "autoprefixer": "8.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.1",
+    "babel-plugin-import": "^1.13.3",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-webpack": "^0.13.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.1.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "happypack": "^5.0.1",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
+    "mini-css-extract-plugin": "^1.3.1",
+    "nodemon": "^2.0.6",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "pnp-webpack-plugin": "^1.6.4",
+    "postcss-loader": "^4.0.4",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.0.5",
+    "shelljs": "^0.8.4",
+    "style-loader": "^2.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.0",
+    "terser-webpack-plugin": "^4",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.5",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.2",
+    "webpack-bundle-analyzer": "^4.1.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^5.3.0"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.2",
+    "dayjs": "^1.9.6",
+    "lodash": "^4.17.20",
+    "vue-i18n": "^8.22.1"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.12"
+  }
+}
