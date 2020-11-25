@@ -1,11 +1,17 @@
-# `backstage-ui`
+# `backstage-ui-antd`
 
-> TODO: description
+> UI library, based on ant-design-vue
+
+
+## 基本資訊
+TODO: link to dashboard
 
 ## Usage
 
 ```
-const backstageUi = require('backstage-ui');
+...
+import backstageUi from 'backstage-ui';
+...
 
-// TODO: DEMONSTRATE API
+Vue.use(backstageUi);
 ```
