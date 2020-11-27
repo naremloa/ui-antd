@@ -1,9 +1,27 @@
 <template>
   <div class="app">
-    <div>{{ title }}</div>
-    <fe-button @click="handleClick">
-      測試
-    </fe-button>
+    <fe-layout>
+      <fe-layout-header>
+        Header
+        <fe-button>按鈕</fe-button>
+      </fe-layout-header>
+      <fe-layout>
+        <fe-layout-sider>
+          <fe-menu
+            :child="[
+              { label: 'sub路由1', child:
+                [{label: '路由1'}, { label: '路由2', child: [{ label: 'sub路由3' }] }] },
+              { label: '路由2' },
+              { label: '路由3' },
+            ]" />
+        </fe-layout-sider>
+        <fe-layout-content>
+          <div class="page">
+            Page
+          </div>
+        </fe-layout-content>
+      </fe-layout>
+    </fe-layout>
   </div>
 </template>
 <script>
@@ -25,8 +43,12 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .app
-  div
+  display flex
+  min-height 100vh
+  .fe-menu
     color red
-  button
-    color yellow
+  .page
+    color black
+    background-color  yellow
+    min-height 2000px
 </style>

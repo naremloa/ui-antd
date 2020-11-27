@@ -2,7 +2,7 @@ import {
   keys, isObject, has, isArray, isEmpty,
 } from './lodash';
 
-const outputHeadName = 'Vu';
+const outputHeadName = 'Fe';
 const localHeadName = 'My';
 
 const handleClassName = (name) => name

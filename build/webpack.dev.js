@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+
 const { merge } = require('webpack-merge');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -11,6 +12,7 @@ const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const modifyVars = require('../src/styles/modifyVars');
 const webpackCommonConfig = require('./webpack.common.js');
 
 process.env.NODE_ENV = 'development';
@@ -90,7 +92,16 @@ module.exports = {
           'style-loader',
           { loader: 'css-loader', options: { sourceMap: true } },
           { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'less-loader', options: { sourceMap: true, lessOptions: { javascriptEnabled: true } } },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true,
+              lessOptions: {
+                javascriptEnabled: true,
+                modifyVars,
+              },
+            },
+          },
         ],
       },
     ],
