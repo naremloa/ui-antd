@@ -124,6 +124,8 @@ module.exports = {
     new ProgressBarPlugin(),
     new webpack.NamedModulesPlugin(),
     // new BundleAnalyzerPlugin(),
-    new AntdDayjsWebpackPlugin(),
+    new AntdDayjsWebpackPlugin({
+      preset: 'antdv3',
+    }),
   ],
 };
