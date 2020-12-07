@@ -1,20 +1,36 @@
 import 'ant-design-vue/dist/antd.css';
-import FeButton from './components/Button';
-import FeLayout from './components/Layout';
-import FeLayoutHeader from './components/LayoutHeader';
-import FeLayoutContent from './components/LayoutContent';
-import FeLayoutSider from './components/LayoutSider';
-import FeLayoutFooter from './components/LayoutFooter';
-import FeMenu from './components/Menu';
+import * as Button from './components/Button';
+import * as Layout from './components/Layout';
+import * as Menu from './components/Menu';
+import * as Icon from './components/Icon';
+import * as Row from './components/Row';
+import * as Col from './components/Col';
+import * as Breadcrumb from './components/Breadcrumb';
+import * as SearchGroup from './components/SearchGroup';
+import * as Card from './components/Card';
+import * as Radio from './components/Radio';
+import * as DatePicker from './components/DatePicker';
+import * as Input from './components/Input';
+import * as Form from './components/Form';
+import * as Select from './components/Select';
+import * as Checkbox from './components/Checkbox';
 
 const components = {
-  FeButton,
-  FeLayout,
-  FeLayoutContent,
-  FeLayoutFooter,
-  FeLayoutHeader,
-  FeLayoutSider,
-  FeMenu,
+  ...Button,
+  ...Layout,
+  ...Menu,
+  ...Icon,
+  ...Row,
+  ...Col,
+  ...Breadcrumb,
+  ...SearchGroup,
+  ...Card,
+  ...Radio,
+  ...DatePicker,
+  ...Input,
+  ...Form,
+  ...Select,
+  ...Checkbox,
 };
 
 const install = (Vue) => {

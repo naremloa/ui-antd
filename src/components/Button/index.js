@@ -1,3 +1,3 @@
-import Button from './src/index.vue';
+import FeButton from './src/index.vue';
 
-export default Button;
+export { FeButton };

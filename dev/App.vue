@@ -2,8 +2,8 @@
   <div class="app">
     <fe-layout>
       <fe-layout-header>
-        Header
-        <fe-button>按鈕</fe-button>
+        管理後台
+        <fe-button>按鈕<fe-icon type="down" /></fe-button>
       </fe-layout-header>
       <fe-layout>
         <fe-layout-sider>
@@ -16,17 +16,21 @@
             ]" />
         </fe-layout-sider>
         <fe-layout-content>
-          <div class="page">
-            Page
-          </div>
+          <fe-breadcrumb />
+          <Page />
         </fe-layout-content>
       </fe-layout>
     </fe-layout>
   </div>
 </template>
 <script>
+import Page from './Page.vue';
+
 export default {
   name: 'App',
+  components: {
+    Page,
+  },
   data() {
     return {
       input: 'test',
@@ -45,10 +49,10 @@ export default {
 .app
   display flex
   min-height 100vh
-  .fe-menu
-    color red
+  .ant-layout-content {
+    padding: 15px 10px;
+  }
   .page
-    color black
-    background-color  yellow
     min-height 2000px
+
 </style>

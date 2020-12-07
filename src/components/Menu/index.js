@@ -1,3 +1,3 @@
-import Menu from './src/index.vue';
+import FeMenu from './src/index.vue';
 
-export default Menu;
+export { FeMenu };

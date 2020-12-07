@@ -1,13 +1,40 @@
 <template>
-  <a-button v-on="$listeners">
+  <a-button
+    ref="Button"
+    v-bind="$attrs"
+    :loading="loading"
+    class="fe-button"
+    @click="handleClick">
     <slot />
   </a-button>
 </template>
 <script>
+import { isFunction } from '@/plugins/lodash';
 import { Button as AButton } from 'ant-design-vue';
 
 export default {
-  name: 'Button',
+  name: 'FeButton',
   components: { AButton },
+  props: {
+    hasLoading: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      loading: false,
+    };
+  },
+  methods: {
+    async handleClick(...params) {
+      const { hasLoading } = this;
+      if (!isFunction(this.$listeners.click)) return;
+      if (hasLoading) this.loading = true;
+      await Promise.resolve(this.$listeners.click(...params));
+      this.loading = false;
+      if (hasLoading) this.$refs.Button?.$el.blur();
+    },
+  },
 };
 </script>

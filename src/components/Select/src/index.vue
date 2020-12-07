@@ -1,0 +1,62 @@
+<script>
+import { Select } from 'ant-design-vue';
+
+const { Option } = Select;
+
+export default {
+  name: 'FeSelect',
+  components: { Select, Option },
+  model: { prop: 'value', event: 'select' },
+  props: {
+    options: {
+      type: Array,
+      default: () => [],
+    },
+    value: {
+      type: [Array, String, Number],
+      default: '',
+    },
+  },
+  render(h) {
+    return h(
+      'Select',
+      {
+        class: 'fe-select',
+        props: {
+          ...this.$attrs,
+          value: this.value,
+        },
+        on: {
+          ...this.$listeners,
+          select: (value, option) => {
+            this.$emit('select', value, option);
+          },
+        },
+      },
+      this.options.map(({
+        value,
+        label,
+        disabled,
+        class: className,
+      }) => h(
+        'Option',
+        {
+          props: {
+            key: value,
+            value,
+            disabled,
+            title: label,
+            class: className,
+          },
+        },
+        label,
+      )),
+    );
+  },
+};
+</script>
+<style lang="scss" scoped>
+.fe-select {
+  width: 171px
+}
+</style>
