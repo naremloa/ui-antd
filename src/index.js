@@ -14,6 +14,10 @@ import * as Input from './components/Input';
 import * as Form from './components/Form';
 import * as Select from './components/Select';
 import * as Checkbox from './components/Checkbox';
+import * as Table from './components/Table';
+import * as Tag from './components/Tag';
+import Modal from './components/Modal';
+// import * as Modal from './components/Modal';
 
 const components = {
   ...Button,
@@ -31,6 +35,9 @@ const components = {
   ...Form,
   ...Select,
   ...Checkbox,
+  ...Table,
+  ...Tag,
+  ...Modal,
 };
 
 const install = (Vue) => {
@@ -38,6 +45,7 @@ const install = (Vue) => {
     console.log('install', key);
     Vue.component(key, components[key]);
   });
+  Vue.use(Modal);
 };
 const backstageUiAntd = () => {};
 

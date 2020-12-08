@@ -15,7 +15,7 @@
               { label: '路由3' },
             ]" />
         </fe-layout-sider>
-        <fe-layout-content>
+        <fe-layout-content style="max-width: calc(100vw - 200px)">
           <fe-breadcrumb />
           <Page />
         </fe-layout-content>

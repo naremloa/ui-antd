@@ -89,7 +89,7 @@ export default {
       },
       checkboxOptions: [
         { label: 'Apple', value: 'Apple' },
-        // { label: 'Pear', value: 'Pear' },
+        { label: 'Pear', value: 'Pear' },
         // { label: 'Orange', value: 'Orange' },
       ],
     };
@@ -108,3 +108,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.fe-search-group {
+  margin-top: 10px;
+}
+</style>
