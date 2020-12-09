@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { isFunction } from '@/plugins/lodash';
+import { isFunction } from '@/utils/lodash';
 
 export default {
   name: 'FeColumnText',

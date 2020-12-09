@@ -1,6 +1,6 @@
 <script>
 import { Menu } from 'ant-design-vue';
-import { isArray } from '@/plugins/lodash';
+import { isArray } from '@/utils/lodash';
 
 export default {
   name: 'FeMenu',

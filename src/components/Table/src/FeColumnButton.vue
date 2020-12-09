@@ -8,7 +8,7 @@
   </fe-button>
 </template>
 <script>
-import { isFunction } from '@/plugins/lodash';
+import { isFunction } from '@/utils/lodash';
 import { FeButton } from '@/components/Button';
 
 export default {

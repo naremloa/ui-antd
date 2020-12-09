@@ -6,3 +6,4 @@ export { default as Right } from '@ant-design/icons/lib/outline/RightOutline';
 export { default as Left } from '@ant-design/icons/lib/outline/LeftOutline';
 export { default as Home } from '@ant-design/icons/lib/outline/HomeOutline';
 export { default as Loading } from '@ant-design/icons/lib/outline/LoadingOutline';
+export { default as CloseCircle } from '@ant-design/icons/lib/outline/CloseCircleOutline';

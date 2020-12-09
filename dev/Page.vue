@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <fe-search-group />
+    <fe-search-group
+      :form-list="formList" />
     <fe-table
       :columns="columns"
       :data-source="dataSource"
@@ -65,6 +66,22 @@ export default {
       ],
       visible: false,
       modalTemplate: ModalTemplate,
+      formList: [
+        {
+          label: '測試',
+          dataKey: 'inputValue',
+          prop: 'inputValue',
+          rules: [{ required: true, message: '必填 ', trigger: 'change' }],
+          formType: 'input',
+        },
+        {
+          label: '測試',
+          dataKey: 'inputValue',
+          prop: 'inputValue',
+          rules: [{ required: true, message: '必填 ', trigger: 'change' }],
+          formType: 'input',
+        },
+      ],
     };
   },
   methods: {

@@ -9,7 +9,7 @@
   </a-button>
 </template>
 <script>
-import { isFunction } from '@/plugins/lodash';
+import { isFunction } from '@/utils/lodash';
 import { Button as AButton } from 'ant-design-vue';
 
 export default {
