@@ -23,7 +23,7 @@ module.exports = merge(webpackCommonConfig, {
   output: {
     path: resolve('../lib'),
     publicPath: '/dist/',
-    filename: 'backstage-ui.min.js',
+    filename: 'ui-antd.min.js',
     // filename: '[name].js',
     library: 'backstage',
     libraryTarget: 'umd',
@@ -58,7 +58,7 @@ module.exports = merge(webpackCommonConfig, {
       'process.env.NODE_ENV': `"${mode}"`,
     }),
     new MiniCssExtractPlugin({
-      filename: 'backstage-ui.min.css',
+      filename: 'ui-antd.min.css',
     }),
   ],
 });

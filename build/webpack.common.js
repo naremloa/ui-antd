@@ -16,6 +16,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const modifyVars = require('../src/styles/modifyVars');
 
 function resolve(dir) { return path.join(__dirname, '..', dir); }
 
@@ -42,7 +43,16 @@ const lessLoader = [
   MiniCssExtractPlugin.loader,
   { loader: 'css-loader', options: { sourceMap: true } },
   { loader: 'postcss-loader', options: { sourceMap: true } },
-  { loader: 'less-loader', options: { sourceMap: true, lessOptions: { javascriptEnabled: true } } },
+  {
+    loader: 'less-loader',
+    options: {
+      sourceMap: true,
+      lessOptions: {
+        javascriptEnabled: true,
+        modifyVars,
+      },
+    },
+  },
 ];
 
 module.exports = {
@@ -107,6 +117,8 @@ module.exports = {
       loaders: ['babel-loader'],
     }),
     // new BundleAnalyzerPlugin(),
-    new AntdDayjsWebpackPlugin(),
+    new AntdDayjsWebpackPlugin({
+      preset: 'antdv3',
+    }),
   ],
 };

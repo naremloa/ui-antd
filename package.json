@@ -5,7 +5,7 @@
   "author": "naremloa <narem.lu@silkrode.com.tw>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/backstage-ui.min.js",
+  "main": "lib/ui-antd.min.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
