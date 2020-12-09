@@ -10,64 +10,40 @@
             <fe-row type="flex">
               <fe-col :flex="1">
                 <fe-radio-group
-                  v-model="radioValue"
+                  v-model="dateShortcutValue"
                   button-style="solid">
-                  <fe-radio-button :value="1">
-                    當日
-                  </fe-radio-button>
-                  <fe-radio-button :value="7">
-                    前七天
-                  </fe-radio-button>
-                  <fe-radio-button :value="30">
-                    前三十天
+                  <fe-radio-button
+                    v-for="item in dateShortcutSetting.options"
+                    :key="item.value"
+                    :value="item.value">
+                    {{ item.label }}
                   </fe-radio-button>
                 </fe-radio-group>
               </fe-col>
               <fe-col :flex="2">
                 <fe-range-picker
-                  v-model="datePickerValue"
+                  v-model="dateShortcutTime"
                   separator="到"
                   :show-tiem="{ format: 'HH:mm:ss' }"
                   format="YYYY-MM-DD HH:mm:ss"
                   :placeholder="['開始時間', '結束時間']"
-                  value-format="YYYY-MM-DD HH:mm:ss"
-                  @change="onChange"
-                  @ok="onOk" />
+                  value-format="YYYY-MM-DD HH:mm:ss" />
               </fe-col>
             </fe-row>
           </template>
           <fe-row>
             <fe-form-item
               v-for="(item, iIdx) in localFormList"
-              :key="`${item.dataKey || 0} - ${iIdx}`"
+              :key="`${item.prop || 0} - ${iIdx}`"
               :label="item.label"
               :prop="item.prop"
               :rules="item.rules">
               <component
                 :is="`fe-${item.formType}`"
-                v-model="form[item.dataKey]" />
+                v-model="form[item.prop]"
+                v-bind="item" />
             </fe-form-item>
-            <!-- <fe-form-item
-              label="測試"
-              prop="inputValue"
-              :rules="rules">
-              <fe-input v-model="form.inputValue" />
-            </fe-form-item>
-            <fe-form-item label="測試">
-              <fe-input v-model="form.inputValue" />
-            </fe-form-item>
-            <fe-form-item label="測試">
-              <fe-input v-model="form.inputValue" />
-            </fe-form-item>
-            <fe-form-item label="測試">
-              <fe-input v-model="form.inputValue" />
-            </fe-form-item>
-            <fe-form-item label="測試select">
-              <fe-select
-                v-model="form.selectValue"
-                :options="selectOptions" />
-            </fe-form-item>
-            <fe-form-item label="測試 checkbox">
+            <!-- <fe-form-item label="測試 checkbox">
               <fe-checkbox-group
                 v-model="form.checkboxValue"
                 :options="checkboxOptions" />
@@ -76,7 +52,11 @@
           <fe-row
             type="flex"
             justify="end">
-            <fe-col><fe-button>清除條件</fe-button></fe-col>
+            <fe-col>
+              <fe-button @click="handleReset">
+                清除條件
+              </fe-button>
+            </fe-col>
             <fe-col>
               <fe-button
                 type="primary"
@@ -95,7 +75,10 @@
 import { FeCard } from '@/components/Card';
 import { FeForm } from '@/components/Form';
 import { FeRadioButton, FeRadioGroup } from '@/components/Radio';
-import { isArray, cloneDeep } from '@/utils/lodash';
+import {
+  isArray, cloneDeep, has, isNil, forOwn, isFunction,
+} from '@/utils/lodash';
+import { getLatestDayTimeByNow } from '@/utils/tool';
 import { notification } from 'ant-design-vue';
 
 export default {
@@ -104,32 +87,52 @@ export default {
     FeCard, FeRadioButton, FeRadioGroup, FeForm,
   },
   props: {
-    dateShortcut: {
-      type: String,
-      default: '',
+    search: {
+      type: Function,
+      default: null,
     },
     formList: {
       type: [Array, Promise],
       default: () => [],
     },
+    formInit: {
+      type: Object,
+      default: () => ({}),
+    },
+    dateShortcut: {
+      type: String,
+      default: '',
+    },
+    dateShortcutDefault: {
+      type: Number,
+      default: 6,
+      validator(val) {
+        return [0, 6, 29].includes(val);
+      },
+    },
+    formatOutput: {
+      type: Function,
+      default: null,
+    },
   },
   data() {
     return {
       localFormList: [],
-      radioValue: 1,
-      datePickerValue: [],
-      rules: [{ required: true, message: '必填 ', trigger: 'change' }],
-      form: {
-        inputValue: '',
-        selectValue: '',
-        checkboxValue: [],
+      form: {},
+      // checkboxOptions: [
+      //   { label: 'Apple', value: 'Apple' },
+      //   { label: 'Pear', value: 'Pear' },
+      //   { label: 'Orange', value: 'Orange' },
+      // ],
+      dateShortcutTime: getLatestDayTimeByNow(this.dateShortcutDefault),
+      dateShortcutValue: this.dateShortcutDefault,
+      dateShortcutSetting: {
+        options: [
+          { value: 0, label: '当日' },
+          { value: 6, label: '前 7 天' },
+          { value: 29, label: '前 30 天' },
+        ],
       },
-      checkboxOptions: [
-        { label: 'Apple', value: 'Apple' },
-        { label: 'Pear', value: 'Pear' },
-        // { label: 'Orange', value: 'Orange' },
-      ],
-      selectOptions: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2', disabled: true }],
     };
   },
   watch: {
@@ -141,23 +144,65 @@ export default {
             return;
           }
           this.localFormList = cloneDeep(list);
+          this.form = this.handleFormInit(cloneDeep(this.form), list);
         });
       },
       immediate: true,
     },
+    dateShortcutValue: {
+      handler(newVal) {
+        if (!isNil(newVal) && this.dateShortcut) {
+          this.dateShortcutTime = getLatestDayTimeByNow(newVal);
+        }
+      },
+    },
   },
   methods: {
-    onChange(value, dateString) {
-      console.log('Selected Time: ', value);
-      console.log('Formatted Selected Time: ', dateString);
+    handleFormInit(form, formList) {
+      formList.forEach((item) => {
+        if (item?.prop) {
+          const { prop, default: defaultValue = null } = item;
+          if (!has(form, prop)) {
+            form[prop] = has(this.formInit, prop)
+              ? this.formInit[prop]
+              : defaultValue;
+          }
+        }
+      });
+      if (has(form, this.dateShortcut) && !has(this.formInitValue, this.dateShortcut)) {
+        this.dateShortcutTime = getLatestDayTimeByNow(this.dateShortcutValue);
+      }
+      return form;
     },
-    onOk(value) {
-      console.log('onOk: ', value);
+    handleReset() {
+      forOwn(this.form, (value, key) => {
+        if (isArray(this.form[key])) {
+          this.form[key] = [];
+        } else this.form[key] = null;
+        this.$refs.Form.clearValidate();
+      });
+      // 处理 日期热键的初始化问题
+      if (this.dateShortcutDefault) {
+        this.dateShortcutValue = this.dateShortcutDefault;
+        this.dateShortcutTime = getLatestDayTimeByNow(this.dateShortcutDefault);
+      }
+      this.$emit('reset');
+    },
+    handleFormOutput(form) {
+      const outputForm = cloneDeep(form);
+      if (isFunction(this.formatOutput)) return this.formatOutput(outputForm);
+      forOwn(outputForm, (value, key) => {
+        if (value === '' || value === -1) outputForm[key] = null;
+      });
+      console.log('check form', form);
+      // 將日期混入搜索 params 中
+      if (this.dateShortcut) outputForm[this.dateShortcut] = this.dateShortcutTime;
+      return outputForm;
     },
     async validate() {
       try {
         await this.$refs.Form.validate();
-        this.search();
+        this.handleSearch();
       } catch (err) {
         notification.error({
           message: '標題',
@@ -165,8 +210,24 @@ export default {
         });
       }
     },
-    async search() {
-      console.log('serach');
+    async handleSearch() {
+      // 保證 search 正常可用
+      if (!isFunction(this.search)) {
+        return this.$notify({ type: 'error', message: 'do not have search function' });
+      }
+      this.$emit('search-start');
+      const params = this.handleFormOutput(this.form);
+      await this.search(params);
+      this.$emit('search-end');
+      return null;
+    },
+    async handleResearch() {
+      return new Promise((res) => {
+        setTimeout(async () => {
+          await this.validate();
+          res();
+        }, 200);
+      });
     },
   },
 };

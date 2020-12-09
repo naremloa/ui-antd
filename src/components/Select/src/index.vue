@@ -6,7 +6,7 @@ const { Option } = Select;
 export default {
   name: 'FeSelect',
   components: { Select, Option },
-  model: { prop: 'value', event: 'select' },
+  model: { prop: 'value', event: 'change' },
   props: {
     options: {
       type: Array,
@@ -28,8 +28,8 @@ export default {
         },
         on: {
           ...this.$listeners,
-          select: (value, option) => {
-            this.$emit('select', value, option);
+          change: (value, option) => {
+            this.$emit('change', value, option);
           },
         },
       },

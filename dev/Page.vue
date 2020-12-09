@@ -1,7 +1,9 @@
 <template>
   <div class="page">
     <fe-search-group
-      :form-list="formList" />
+      :form-list="formList"
+      :search="handleSearch"
+      :date-shortcut="'date'" />
     <fe-table
       :columns="columns"
       :data-source="dataSource"
@@ -66,20 +68,21 @@ export default {
       ],
       visible: false,
       modalTemplate: ModalTemplate,
+      selectOptions: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
       formList: [
         {
-          label: '測試',
-          dataKey: 'inputValue',
           prop: 'inputValue',
+          label: '測試 input',
           rules: [{ required: true, message: '必填 ', trigger: 'change' }],
           formType: 'input',
         },
         {
-          label: '測試',
-          dataKey: 'inputValue',
-          prop: 'inputValue',
+          prop: 'selectValue',
+          label: '測試 select',
           rules: [{ required: true, message: '必填 ', trigger: 'change' }],
-          formType: 'input',
+          formType: 'select',
+          options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
+          allowClear: true,
         },
       ],
     };
@@ -90,6 +93,9 @@ export default {
     },
     handleModal() {
       this.visible = true;
+    },
+    async handleSearch(...params) {
+      console.log('handleSearch', params);
     },
   },
 };
