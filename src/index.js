@@ -1,5 +1,5 @@
 import 'ant-design-vue/dist/antd.css';
-import * as Button from './components/Button';
+import Button from './components/Button';
 import * as Layout from './components/Layout';
 import * as Menu from './components/Menu';
 import * as Icon from './components/Icon';
@@ -20,7 +20,6 @@ import Modal from './components/Modal';
 // import * as Modal from './components/Modal';
 
 const components = {
-  ...Button,
   ...Layout,
   ...Menu,
   ...Icon,
@@ -37,7 +36,6 @@ const components = {
   ...Checkbox,
   ...Table,
   ...Tag,
-  ...Modal,
 };
 
 const install = (Vue) => {
@@ -45,6 +43,7 @@ const install = (Vue) => {
     console.log('install', key);
     Vue.component(key, components[key]);
   });
+  Vue.use(Button);
   Vue.use(Modal);
 };
 const backstageUiAntd = () => {};

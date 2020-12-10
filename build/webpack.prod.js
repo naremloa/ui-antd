@@ -18,14 +18,15 @@ module.exports = merge(webpackCommonConfig, {
   devtool: 'source-map',
   mode,
   entry: {
-    main: resolve('../src/index.js'),
+    'ui-antd': resolve('../src/index.js'),
+    // Breadcrumb: resolve('../src/components/Breadcrumb/index.js'),
+    // Button: resolve('../src/components/Button/index.js'),
   },
   output: {
     path: resolve('../lib'),
     publicPath: '/dist/',
-    filename: 'ui-antd.min.js',
-    // filename: '[name].js',
-    library: 'backstage',
+    filename: '[name].js',
+    library: 'FeBackstageUiAntd',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
@@ -58,7 +59,7 @@ module.exports = merge(webpackCommonConfig, {
       'process.env.NODE_ENV': `"${mode}"`,
     }),
     new MiniCssExtractPlugin({
-      filename: 'ui-antd.min.css',
+      filename: '/theme/[name].css',
     }),
   ],
 });

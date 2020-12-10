@@ -16,6 +16,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const modifyVars = require('../src/styles/modifyVars');
 
 function resolve(dir) { return path.join(__dirname, '..', dir); }
@@ -114,11 +115,17 @@ module.exports = {
     new HappyPack({
       id: 'babel',
       threadPool: happyThreadPool,
-      loaders: ['babel-loader'],
+      loaders: [{
+        loader: 'babel-loader',
+        options: {
+          plugins: ['lodash'],
+        },
+      }],
     }),
     // new BundleAnalyzerPlugin(),
     new AntdDayjsWebpackPlugin({
       preset: 'antdv3',
     }),
+    new LodashModuleReplacementPlugin(),
   ],
 };
