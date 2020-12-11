@@ -26,6 +26,19 @@ export const fText = ({
   columnType: 'text',
 });
 
+export const fTextarea = ({
+  defaultValue,
+  autoSize,
+  placeholder,
+  ...rest
+} = {}) => ({
+  defaultValue,
+  autoSize,
+  placeholder,
+  ...rest,
+  columnType: 'textarea',
+});
+
 export const fButton = ({
   // Boolean
   hasLoading = true,
@@ -44,6 +57,40 @@ export const fButton = ({
   type,
   ...rest,
   columnType: 'button',
+});
+
+export const fSelect = ({
+  disabled,
+  showArrow,
+  value,
+  options,
+  change,
+  ...rest
+} = {}) => ({
+  ...rest,
+  disabled,
+  showArrow,
+  value,
+  options,
+  change,
+  columnType: 'select',
+});
+
+export const fSwitch = ({
+  disabled,
+  change,
+  hasLoading,
+  checkedChildren,
+  unCheckedChildren,
+  ...rest
+} = {}) => ({
+  ...rest,
+  disabled,
+  change,
+  hasLoading,
+  checkedChildren,
+  unCheckedChildren,
+  columnType: 'switch',
 });
 
 export const fColumn = ({

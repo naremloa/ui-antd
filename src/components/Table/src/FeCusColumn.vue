@@ -2,6 +2,9 @@
 import FeColumnText from './FeColumnText.vue';
 import FeColumnTag from './FeColumnTag.vue';
 import FeColumnButton from './FeColumnButton.vue';
+import FeColumnSelect from './FeColumnSelect.vue';
+import FeColumnSwitch from './FeColumnSwitch.vue';
+import FeColumnTextarea from './FeColumnTextarea.vue';
 
 export default {
   name: 'FeCusColumn',
@@ -9,6 +12,9 @@ export default {
     FeColumnText,
     FeColumnTag,
     FeColumnButton,
+    FeColumnSelect,
+    FeColumnSwitch,
+    FeColumnTextarea,
   },
   inheritAttrs: false,
   props: {

@@ -1,0 +1,60 @@
+<template>
+  <fe-select
+    v-model="value"
+    class="fe-column-select"
+    :disabled="disabled"
+    :show-arrow="showArrow"
+    :options="options"
+    v-bind="$attrs"
+    @change="handleChange(rowData)" />
+</template>
+<script>
+import { isFunction } from '@/utils/lodash';
+import { FeSelect } from '@/components/Select';
+
+export default {
+  name: 'FeColumnSelect',
+  components: { FeSelect },
+  props: {
+    rowData: {
+      type: Object,
+      default: () => ({}),
+    },
+    options: {
+      type: Array,
+      default: () => [],
+    },
+    defaultValue: {
+      type: [Array, String, Number],
+      default: '',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    showArrow: {
+      type: Boolean,
+      default: true,
+    },
+    change: {
+      type: Function,
+      default: null,
+    },
+  },
+  data() {
+    return {
+      value: {},
+    };
+  },
+  created() {
+    this.value = this.defaultValue;
+  },
+  methods: {
+    async handleChange(rowData = {}) {
+      if (isFunction(this.change)) {
+        await this.change(rowData);
+      }
+    },
+  },
+};
+</script>
