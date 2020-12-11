@@ -1,0 +1,1 @@
+export { FeUpload } from './src';

@@ -1,1 +1,3 @@
-export { FeInput } from './src';
+export {
+  FeInput, FeInputPassword, FeTextarea,
+} from './src';

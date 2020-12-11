@@ -1,0 +1,1 @@
+export { FeInputNumber } from './src';

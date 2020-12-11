@@ -1,6 +1,5 @@
 import 'ant-design-vue/dist/antd.css';
 import Button from './components/Button';
-import * as Switch from './components/Switch';
 import * as Avatar from './components/Avatar';
 import * as Tooltip from './components/Tooltip';
 import * as Dropdown from './components/Dropdown';
@@ -17,19 +16,24 @@ import * as Card from './components/Card';
 import * as Radio from './components/Radio';
 import * as DatePicker from './components/DatePicker';
 import * as Input from './components/Input';
+import * as InputList from './components/InputList';
+import * as InputNumber from './components/InputNumber';
 import * as Textarea from './components/Textarea';
 import * as Form from './components/Form';
 import * as Select from './components/Select';
 import * as Checkbox from './components/Checkbox';
 import * as Table from './components/Table';
 import * as Tag from './components/Tag';
+import * as Switch from './components/Switch';
+import * as Collapse from './components/Collapse';
 import Modal from './components/Modal';
+import * as UploadButton from './components/UploadButton';
+import * as Upload from './components/Upload';
 // import * as Modal from './components/Modal';
 import format from './format';
 
 const components = {
   ...Layout,
-  ...Switch,
   ...Avatar,
   ...Dropdown,
   ...Menu,
@@ -42,12 +46,19 @@ const components = {
   ...Radio,
   ...DatePicker,
   ...Input,
+  ...InputList,
+  ...InputNumber,
   ...Textarea,
   ...Form,
   ...Select,
   ...Checkbox,
   ...Table,
   ...Tag,
+  ...Modal,
+  ...Switch,
+  ...Collapse,
+  ...UploadButton,
+  ...Upload,
   ...Tabs,
   ...Tooltip,
   ...ExportDataBtn,
