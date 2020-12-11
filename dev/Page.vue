@@ -76,22 +76,26 @@
         {label:'B',clickFunc:clickFuncA},
         {label:'C',clickFunc:clickFuncA}
       ]" />
+    <div>
+      <fe-tooltip
+        :placement="'bottom'"
+        :title="'TOOLTIP'"
+        :content="'CONTENT'" />
 
-    <fe-tooltip
-      :placement="'bottom'"
-      :title="'TOOLTIP'"
-      :content="'CONTENT'" />
-
-    <fe-tooltip
-      :placement="'left'"
-      :content="'挖slot給你 自己塞icon跟標題'">
-      <template #tooltipSlot>
-        TOOLTIP2
-      </template>
-    </fe-tooltip>
+      <fe-tooltip
+        :placement="'left'"
+        :content="'挖slot給你 自己塞icon跟標題'">
+        <template #tooltipSlot>
+          TOOLTIP2
+        </template>
+      </fe-tooltip>
+    </div>
 
     <fe-export-data-btn
       :btn-text="'導出excel數據'" />
+    <hr>
+    <h3>Form 全套系列</h3>
+    <FormTemplate />
   </div>
 </template>
 <script>
@@ -101,10 +105,11 @@ import {
 } from './format';
 import { dataSource, dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
+import FormTemplate from './FormTemplate.vue';
 
 export default {
   name: 'Page',
-  components: { ATable },
+  components: { FormTemplate, ATable },
   data() {
     return {
       dataSource,
