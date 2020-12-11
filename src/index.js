@@ -54,7 +54,6 @@ const components = {
   ...Checkbox,
   ...Table,
   ...Tag,
-  ...Modal,
   ...Switch,
   ...Collapse,
   ...UploadButton,
