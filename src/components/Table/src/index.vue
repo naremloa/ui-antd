@@ -14,6 +14,10 @@ export default {
     FeCard,
   },
   props: {
+    tableError: {
+      type: Boolean,
+      default: false,
+    },
     columns: {
       type: Array,
       default: () => [],
@@ -53,6 +57,9 @@ export default {
               ...this.pagination,
             },
             bordered: true,
+            locale: {
+              emptyText: this.tableError ? '资料载入失败，请重新尝试' : '无符合条件之资料',
+            },
           },
           on: this.$listeners,
           scopedSlots: this.$scopedSlots,

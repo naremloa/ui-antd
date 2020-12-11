@@ -1,5 +1,11 @@
 import 'ant-design-vue/dist/antd.css';
 import Button from './components/Button';
+import * as Switch from './components/Switch';
+import * as Avatar from './components/Avatar';
+import * as Tooltip from './components/Tooltip';
+import * as Dropdown from './components/Dropdown';
+import * as ExportDataBtn from './components/ExportDataBtn';
+import * as Tabs from './components/Tabs';
 import * as Layout from './components/Layout';
 import * as Menu from './components/Menu';
 import * as Icon from './components/Icon';
@@ -11,6 +17,7 @@ import * as Card from './components/Card';
 import * as Radio from './components/Radio';
 import * as DatePicker from './components/DatePicker';
 import * as Input from './components/Input';
+import * as Textarea from './components/Textarea';
 import * as Form from './components/Form';
 import * as Select from './components/Select';
 import * as Checkbox from './components/Checkbox';
@@ -22,6 +29,9 @@ import format from './format';
 
 const components = {
   ...Layout,
+  ...Switch,
+  ...Avatar,
+  ...Dropdown,
   ...Menu,
   ...Icon,
   ...Row,
@@ -32,11 +42,15 @@ const components = {
   ...Radio,
   ...DatePicker,
   ...Input,
+  ...Textarea,
   ...Form,
   ...Select,
   ...Checkbox,
   ...Table,
   ...Tag,
+  ...Tabs,
+  ...Tooltip,
+  ...ExportDataBtn,
 };
 
 const install = (Vue) => {

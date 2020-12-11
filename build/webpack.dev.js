@@ -112,7 +112,7 @@ module.exports = {
     host: 'localhost',
     port: '8181',
     hot: true,
-
+    open: true,
   },
   plugins: [
     new VueLoaderPlugin(),

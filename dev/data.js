@@ -28,3 +28,11 @@ export const dataSource = [
     tags: ['cool', 'teacher'],
   },
 ];
+
+export const dataSource2 = [
+  {
+    A: 'A1',
+    B: 'B1',
+    C: 'C1',
+  },
+];
