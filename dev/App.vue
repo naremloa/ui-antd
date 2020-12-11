@@ -8,12 +8,7 @@
       <fe-layout>
         <fe-layout-sider>
           <fe-menu
-            :child="[
-              { label: 'sub路由1', child:
-                [{label: '路由1'}, { label: '路由2', child: [{ label: 'sub路由3' }] }] },
-              { label: '路由2' },
-              { label: '路由3' },
-            ]" />
+            :children="children" />
         </fe-layout-sider>
         <fe-layout-content style="max-width: calc(100vw - 200px)">
           <fe-breadcrumb />
@@ -35,6 +30,10 @@ export default {
     return {
       input: 'test',
       title: '標題',
+      children: [
+        { label: 'Home', key: 'Home', eventKey: 'Home' },
+        { label: 'AccountList', key: 'AccountList', eventKey: 'AccountList' },
+      ],
     };
   },
   methods: {

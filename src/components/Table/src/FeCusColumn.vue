@@ -22,13 +22,16 @@ export default {
     },
   },
   render(h) {
+    const displayCusColumns = () => (this.cusColumns.length > 0
+      ? this.cusColumns.map(({ columnType, ...rest }) => h(
+        `fe-column-${columnType}`,
+        { props: { ...this.$attrs, ...rest }, attrs: rest },
+      ))
+      : '-');
     return h(
       'div',
       { style: this.columnsStyle, class: 'fe-cus-column' },
-      this.cusColumns.map(({ columnType, ...rest }) => h(
-        `fe-column-${columnType}`,
-        { props: { ...this.$attrs, ...rest }, attrs: rest },
-      )),
+      displayCusColumns(),
     );
   },
 };

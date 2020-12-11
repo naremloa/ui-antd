@@ -42,7 +42,7 @@ export default {
       const { text, format } = this;
       const waitingFormat = text || data;
       const displayText = isFunction(format) ? format(waitingFormat, rowData) : waitingFormat;
-      return displayText;
+      return displayText || '-';
     },
   },
 };

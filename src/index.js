@@ -18,6 +18,7 @@ import * as Table from './components/Table';
 import * as Tag from './components/Tag';
 import Modal from './components/Modal';
 // import * as Modal from './components/Modal';
+import format from './format';
 
 const components = {
   ...Layout,
@@ -45,6 +46,7 @@ const install = (Vue) => {
   });
   Vue.use(Button);
   Vue.use(Modal);
+  Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};
 

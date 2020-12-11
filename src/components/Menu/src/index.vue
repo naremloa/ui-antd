@@ -11,30 +11,36 @@ export default {
   },
   inheritAttrs: false,
   props: {
-    child: {
+    children: {
       type: Array,
       default: () => [],
     },
   },
   render(h) {
     const handleNode = (nodes = []) => nodes.map((node) => {
-      const { child: childNode = [], label } = node;
+      const {
+        children: childNode = [],
+        label = '',
+        disabled = false,
+        key = '',
+      } = node;
       if (isArray(childNode) && childNode.length) {
         return h(
           'a-sub-menu',
-          { props: { title: label } },
+          { props: { title: label, key, disabled } },
           handleNode(childNode),
         );
       }
-      return h('a-menu-item', label);
+      return h('a-menu-item', { props: { disabled }, key }, label);
     });
     return h(
       'a-menu',
       {
         class: 'fe-menu',
-        props: { mode: 'inline' },
+        props: { ...this.$attrs, mode: 'inline' },
+        on: this.$listeners,
       },
-      handleNode(this.child),
+      handleNode(this.children),
     );
   },
 };
