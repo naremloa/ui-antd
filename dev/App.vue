@@ -12,20 +12,16 @@
         </fe-layout-sider>
         <fe-layout-content style="max-width: calc(100vw - 200px)">
           <fe-breadcrumb />
-          <Page />
+          <router-view />
         </fe-layout-content>
       </fe-layout>
     </fe-layout>
   </div>
 </template>
 <script>
-import Page from './Page.vue';
 
 export default {
   name: 'App',
-  components: {
-    Page,
-  },
   data() {
     return {
       input: 'test',
