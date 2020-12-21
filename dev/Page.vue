@@ -100,9 +100,9 @@
 </template>
 <script>
 import { Table as ATable } from 'ant-design-vue';
-import {
-  fColumn, fText, fButton, fPagination, fSelect, fSwitch, fTextarea,
-} from './format';
+// import {
+//   ftColumn, ftText, ftButton, fPagination, ftSelect, ftSwitch, ftTextarea,
+// } from './format';
 import { dataSource, dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
 import FormTemplate from './FormTemplate.vue';
@@ -111,67 +111,71 @@ export default {
   name: 'Page',
   components: { FormTemplate, ATable },
   data() {
+    const {
+      ftColumn, ftText, ftButton, ftPagination, ftSelect, ftSwitch, ftTextarea,
+    } = this.$format;
+
     return {
       dataSource,
       dataSource2,
-      pagination: fPagination({ total: 500 }),
+      pagination: ftPagination({ total: 500 }),
       columns: [
-        fColumn({
+        ftColumn({
           dataIndex: 'age',
           title: 'Age',
           // width: 80,
-        })(fText({ text: 'aaage' })),
-        fColumn({
+        })(ftText({ text: 'aaage' })),
+        ftColumn({
           dataIndex: 'address',
           title: 'Address',
           // width: 300,
         })(),
-        fColumn({
+        ftColumn({
           dataIndex: 'firstName',
           title: 'FirstName',
           // width: 100,
         })(),
-        fColumn({
+        ftColumn({
           dataIndex: 'lastName',
           title: 'LastName',
           // width: 100,
         })(),
-        fColumn({
+        ftColumn({
           dataIndex: 'tags',
           title: 'Tags',
           // width: 100,
         })({ columnType: 'tag' }),
-        fColumn({
+        ftColumn({
           dataIndex: 'action',
           title: 'Action',
           // width: 200,
           columnsStyle: { display: 'flex', justifyContent: 'space-around' },
-        })(fButton({ text: '按鈕' }), fButton({ text: '按鈕2' })),
-        fColumn({
+        })(ftButton({ text: '按鈕' }), ftButton({ text: '按鈕2' })),
+        ftColumn({
           dataIndex: 'switch',
           title: 'Switch',
-        })(fSwitch({
+        })(ftSwitch({
           checkedChildren: 'OK',
           unCheckedChildren: 'NO',
           change: (data, row) => {
             console.log('row---', row);
           },
         })),
-        fColumn({
+        ftColumn({
           dataIndex: 'select',
           title: 'Select',
           width: 200,
-        })(fSelect({
+        })(ftSelect({
           defaultValue: { value: 1, label: 'A1' }.label,
           options: [{ value: 1, label: 'A1' }, { value: 2, label: 'A2' }],
           change: (row) => {
             console.log('YO', row);
           },
         })),
-        fColumn({
+        ftColumn({
           dataIndex: 'textarea',
           title: 'Textarea',
-        })(fTextarea({
+        })(ftTextarea({
           placeholder: 'HI',
           defaultValue: 'DEFAULT',
         })),
@@ -187,7 +191,7 @@ export default {
           key: 'B',
           slots: { title: 'customTitle2' },
         },
-        fColumn({
+        ftColumn({
           dataIndex: 'C',
           title: 'C',
           width: 180,
