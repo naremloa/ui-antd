@@ -1,8 +1,10 @@
 <template>
-  <router-view />
+  <div class="table">
+    table
+  </div>
 </template>
 <script>
 export default {
-  name: 'Layout',
+  name: 'Table',
 };
 </script>
