@@ -4,7 +4,7 @@ export const ftPagination = ({
   current = 1,
   pageSize = 10,
   total = 0,
-}) => ({
+} = {}) => ({
   current,
   pageSize,
   total,
@@ -79,7 +79,7 @@ export const fPagination = ({
   current = 1,
   pageSize = 10,
   total = 0,
-}) => ({
+} = {}) => ({
   current,
   pageSize,
   total,

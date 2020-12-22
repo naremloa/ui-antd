@@ -4,6 +4,7 @@ import { FormModel } from 'ant-design-vue';
 export default {
   name: 'FeForm',
   components: { FormModel },
+  inheritAttrs: false,
   props: {
     labelCol: {
       type: Object,

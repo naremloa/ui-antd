@@ -5,6 +5,7 @@ const { Item } = FormModel;
 export default {
   name: 'FeFormItemSetting',
   components: { FeFormItem: Item },
+  inheritAttrs: false,
   model: { prop: 'value', event: 'input' },
   props: {
     value: {

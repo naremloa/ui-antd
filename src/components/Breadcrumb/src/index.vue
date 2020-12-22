@@ -1,10 +1,3 @@
-<template>
-  <a-breadcrumb>
-    <a-breadcrumb-item><fe-icon type="home" /></a-breadcrumb-item>
-    <a-breadcrumb-item>報表管理</a-breadcrumb-item>
-    <a-breadcrumb-item>日報表管理</a-breadcrumb-item>
-  </a-breadcrumb>
-</template>
 <script>
 import { Breadcrumb } from 'ant-design-vue';
 import { FeIcon } from '@/components/Icon';
@@ -21,6 +14,18 @@ export default {
       default: () => [],
       type: Array,
     },
+  },
+  render(h) {
+    return h(
+      'a-breadcrumb',
+      this.items.map(({ title, icon }) => h(
+        'a-breadcrumb-item',
+        [
+          icon && h('fe-icon', { props: { type: icon } }),
+          title,
+        ],
+      )),
+    );
   },
 };
 </script>

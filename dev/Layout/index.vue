@@ -8,7 +8,7 @@
         <layout-menu />
       </fe-layout-sider>
       <fe-layout-content style="max-width: calc(100vw - 200px)">
-        <fe-breadcrumb />
+        <fe-breadcrumb :items="breadcrumb" />
         <router-view />
       </fe-layout-content>
     </fe-layout>
@@ -25,6 +25,12 @@ export default {
   data() {
     return {
     };
+  },
+  computed: {
+    breadcrumb() {
+      return this.$route.matched
+        .map(({ meta: { title, icon } = {} }) => ({ title, icon }));
+    },
   },
 };
 </script>
