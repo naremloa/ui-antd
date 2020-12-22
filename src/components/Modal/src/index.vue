@@ -24,6 +24,10 @@ export default {
       type: [Object, String],
       required: true,
     },
+    data: {
+      type: [Object, Array, Boolean, String, Number],
+      default: null,
+    },
   },
   computed: {
     modalWidth() {
@@ -46,6 +50,7 @@ export default {
           ...this.$attrs,
           width: this.modalWidth,
           visible: this.visible,
+          footer: null,
         },
         on: {
           ...this.$listeners,
@@ -58,6 +63,7 @@ export default {
             {
               props: {
                 visible: this.visible,
+                data: this.data,
               },
             },
           )
