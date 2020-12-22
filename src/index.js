@@ -19,7 +19,7 @@ import * as Input from './components/Input';
 import * as InputList from './components/InputList';
 import * as InputNumber from './components/InputNumber';
 import * as Textarea from './components/Textarea';
-import * as Form from './components/Form';
+import Form from './components/Form';
 import * as Select from './components/Select';
 import * as Checkbox from './components/Checkbox';
 import * as Table from './components/Table';
@@ -49,7 +49,6 @@ const components = {
   ...InputList,
   ...InputNumber,
   ...Textarea,
-  ...Form,
   ...Select,
   ...Checkbox,
   ...Table,
@@ -70,6 +69,7 @@ const install = (Vue) => {
   });
   Vue.use(Button);
   Vue.use(Modal);
+  Vue.use(Form);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

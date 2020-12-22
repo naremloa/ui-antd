@@ -161,6 +161,11 @@
           Reset
         </fe-button>
       </fe-form-item>
+      <fe-form-item-setting
+        v-for="(setting, idx) in formItemSetting"
+        :key="setting.prop || `setting-${idx}`"
+        v-model="form[setting.prop]"
+        v-bind="setting" />
     </fe-form>
   </div>
 </template>
@@ -168,6 +173,7 @@
 export default {
   name: 'Form',
   data() {
+    const { ffInput, ffInputPassword } = this.$format;
     return {
       other: '',
       form: {
@@ -185,9 +191,9 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: 'Please input Activity name', trigger: 'blur' },
+          { required: true, message: 'Please input Activity name', trigger: 'change' },
           {
-            min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur',
+            min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'change',
           },
         ],
         password: [{ required: true, message: 'Please input password', trigger: 'change' }],
@@ -208,6 +214,19 @@ export default {
         desc: [{ required: true, message: 'Please input activity form', trigger: 'change' }],
         IPlist: [{ required: true, message: 'Please Input IP list', trigger: 'change' }],
       },
+      formItemSetting: [
+        ffInput({
+          prop: 'name',
+          label: 'fe-input',
+        }),
+        ffInputPassword({
+          prop: 'password',
+          label: 'fe-input-password',
+          formTypeProps: {
+            placeholder: 'Number',
+          },
+        }),
+      ],
     };
   },
   methods: {
