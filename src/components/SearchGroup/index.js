@@ -1,3 +1,9 @@
 import FeSearchGroup from './src/index.vue';
+import FeForm from '../Form';
 
-export { FeSearchGroup };
+const install = (Vue) => {
+  Vue.use(FeForm);
+  Vue.component('FeSearchGroup', FeSearchGroup);
+};
+
+export default install;

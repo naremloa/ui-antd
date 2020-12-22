@@ -11,7 +11,7 @@ import * as Icon from './components/Icon';
 import * as Row from './components/Row';
 import * as Col from './components/Col';
 import * as Breadcrumb from './components/Breadcrumb';
-import * as SearchGroup from './components/SearchGroup';
+import SearchGroup from './components/SearchGroup';
 import * as Card from './components/Card';
 import * as Radio from './components/Radio';
 import * as DatePicker from './components/DatePicker';
@@ -41,7 +41,6 @@ const components = {
   ...Row,
   ...Col,
   ...Breadcrumb,
-  ...SearchGroup,
   ...Card,
   ...Radio,
   ...DatePicker,
@@ -70,6 +69,7 @@ const install = (Vue) => {
   Vue.use(Button);
   Vue.use(Modal);
   Vue.use(Form);
+  Vue.use(SearchGroup);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};
