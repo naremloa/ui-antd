@@ -41,6 +41,14 @@ export default [
             component: () => import('../Playground/Table.vue'),
           },
           {
+            path: 'form',
+            name: 'Form',
+            meta: {
+              title: '表單展示頁',
+            },
+            component: () => import('../Playground/Form.vue'),
+          },
+          {
             path: 'page',
             name: 'Page',
             meta: {

@@ -1,9 +1,5 @@
 <template>
   <div class="page">
-    <fe-search-group
-      :form-list="formList"
-      :search="handleSearch"
-      :date-shortcut="'date'" />
     <fe-table
       :table-error="true"
       :columns="columns"
@@ -93,9 +89,6 @@
 
     <fe-export-data-btn
       :btn-text="'導出excel數據'" />
-    <hr>
-    <h3>Form 全套系列</h3>
-    <FormTemplate />
   </div>
 </template>
 <script>
@@ -105,11 +98,10 @@ import { Table as ATable } from 'ant-design-vue';
 // } from './format';
 import { dataSource, dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
-import FormTemplate from './FormTemplate.vue';
 
 export default {
   name: 'Page',
-  components: { FormTemplate, ATable },
+  components: { ATable },
   data() {
     const {
       ftColumn, ftText, ftButton, ftPagination, ftSelect, ftSwitch, ftTextarea,
@@ -201,22 +193,7 @@ export default {
       visible: false,
       modalTemplate: ModalTemplate,
       selectOptions: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
-      formList: [
-        {
-          prop: 'inputValue',
-          label: '測試 input',
-          rules: [{ required: true, message: '必填 ', trigger: 'change' }],
-          formType: 'input',
-        },
-        {
-          prop: 'selectValue',
-          label: '測試 select',
-          rules: [{ required: true, message: '必填 ', trigger: 'change' }],
-          formType: 'select',
-          options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
-          allowClear: true,
-        },
-      ],
+
     };
   },
   methods: {
@@ -226,9 +203,7 @@ export default {
     handleModal() {
       this.visible = true;
     },
-    async handleSearch(...params) {
-      console.log('handleSearch', params);
-    },
+
     switchChange(e) {
       console.log('e--', e);
     },

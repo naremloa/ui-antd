@@ -1,11 +1,11 @@
 import { FormModel } from 'ant-design-vue';
+import FeForm from './Form.vue';
 
 const {
   Item: FeFormItem,
 } = FormModel;
 
-export const FeForm = FormModel;
-
 export {
+  FeForm,
   FeFormItem,
 };
