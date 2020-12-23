@@ -173,15 +173,20 @@
 export default {
   name: 'Form',
   data() {
-    const { ffInput, ffInputPassword } = this.$format;
+    const {
+      ffInput,
+      ffInputPassword,
+      ffSelect,
+      ffSwitch,
+    } = this.$format;
     return {
       other: '',
       form: {
         name: '',
         region: '',
-        regions: [],
+        regions: [2],
         date1: undefined,
-        delivery: false,
+        delivery: true,
         type: [],
         resource: '',
         desc: '',
@@ -226,6 +231,19 @@ export default {
             placeholder: 'Number',
           },
         }),
+        ffSelect({
+          prop: 'regions',
+          label: 'fe-select',
+          options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
+          formTypeProps: {
+            placeholder: 'Number',
+          },
+        }),
+        ffSwitch({
+          prop: 'delivery',
+          label: 'fe-switch',
+          // change: (row, e) => { this.form.delivery = row; },
+        }),
       ],
     };
   },
@@ -243,6 +261,9 @@ export default {
     resetForm() {
       this.$refs.ruleForm.resetFields();
       console.log('resetForm');
+    },
+    handle(data, rowData) {
+      console.log(data, rowData);
     },
   },
 };
