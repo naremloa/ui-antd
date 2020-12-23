@@ -1,12 +1,5 @@
 <template>
   <div class="page">
-    <fe-table
-      :table-error="true"
-      :columns="columns"
-      :data-source="dataSource"
-      :pagination="pagination"
-      :scroll="{ x: 400 }"
-      @change="handleChange" />
     <fe-button
       @click="handleModal">
       彈窗
@@ -95,7 +88,7 @@ import { Table as ATable } from 'ant-design-vue';
 // import {
 //   ftColumn, ftText, ftButton, fPagination, ftSelect, ftSwitch, ftTextarea,
 // } from './format';
-import { dataSource, dataSource2 } from './data';
+import { dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
 
 export default {
@@ -103,77 +96,13 @@ export default {
   components: { ATable },
   data() {
     const {
-      ftColumn, ftText, ftButton, ftPagination, ftSelect, ftSwitch, ftTextarea,
+      ftColumn, ftPagination,
     } = this.$format;
 
     return {
-      dataSource,
       dataSource2,
       pagination: ftPagination({ total: 500 }),
-      columns: [
-        ftColumn({
-          dataIndex: 'age',
-          title: 'Age',
-          // width: 80,
-        })(ftText({ text: 'aaage' })),
-        ftColumn({
-          dataIndex: 'address',
-          title: 'Address',
-          // width: 300,
-        })(),
-        ftColumn({
-          dataIndex: 'firstName',
-          title: 'FirstName',
-          // width: 100,
-        })(),
-        ftColumn({
-          dataIndex: 'lastName',
-          title: 'LastName',
-          // width: 100,
-        })(),
-        ftColumn({
-          dataIndex: 'tags',
-          title: 'Tags',
-          // width: 100,
-        })({ columnType: 'tag' }),
-        ftColumn({
-          dataIndex: 'action',
-          title: 'Action',
-          // width: 200,
-          columnsStyle: { display: 'flex', justifyContent: 'space-around' },
-        })(ftButton({ text: '按鈕' }), ftButton({ text: '按鈕2' })),
-        ftColumn({
-          dataIndex: 'switch',
-          title: 'Switch',
-        })(ftSwitch({
-          checkedChildren: 'OK',
-          unCheckedChildren: 'NO',
-          change: (data, rowData) => {
-            // FIXME 被觸發兩次 change，rowData 第一次是 e, 第二次是 rowData, 這裡需要拿到 rowData
-            console.log('??', data, rowData);
-            // const idx = this.dataSource.indexOf(row);
-            // this.dataSource[idx].switch = !data
-          },
-        })),
-        ftColumn({
-          dataIndex: 'select',
-          title: 'Select',
-          width: 200,
-        })(ftSelect({
-          defaultValue: { value: 1, label: 'A1' }.label,
-          options: [{ value: 1, label: 'A1' }, { value: 2, label: 'A2' }],
-          change: (row) => {
-            console.log('YO', row);
-          },
-        })),
-        ftColumn({
-          dataIndex: 'textarea',
-          title: 'Textarea',
-        })(ftTextarea({
-          placeholder: 'HI',
-          defaultValue: 'DEFAULT',
-        })),
-      ],
+
       columns2: [
         {
           dataIndex: 'A',

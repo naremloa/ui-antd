@@ -1,6 +1,7 @@
 <script>
 import { Table as ATable } from 'ant-design-vue';
 import { FeCard } from '@/components/Card';
+import { isObject, isFunction } from '@/utils/lodash';
 import FeCusColumn from './FeCusColumn.vue';
 
 const { Column: ATableColumn } = ATable;
@@ -38,6 +39,14 @@ export default {
     },
   },
   render(h) {
+    function displayHeader(node) {
+      // render func
+      if (isFunction(node)) return node.apply(this, [h]);
+      // component
+      if (isObject(node)) return h(node);
+      // text node
+      return node;
+    }
     return h(
       'fe-card',
       {
@@ -73,6 +82,7 @@ export default {
         this.columns.map(({
           dataIndex,
           title,
+          header = null,
           cusColumns = [],
           columnsStyle = {},
           ...rest
@@ -81,10 +91,10 @@ export default {
           {
             props: {
               ...rest,
-              key: dataIndex,
               dataIndex,
-              title,
+              ...(header ? {} : { title }),
             },
+            key: dataIndex,
             scopedSlots: {
               default: (
                 data,
@@ -100,6 +110,11 @@ export default {
               ),
             },
           },
+          [header && h(
+            'div',
+            { slot: 'title' },
+            [displayHeader(header)],
+          )],
         )),
       )],
     );

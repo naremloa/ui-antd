@@ -55,12 +55,15 @@ export const ftColumn = ({
   // String, required
   dataIndex = '',
   title = '',
+  // String, Object, Function
+  header = null,
   ...rest
 } = {}) => (...cusColumns) => {
   if (cusColumns.length === 0) cusColumns = [ftText()];
   return ({
     dataIndex,
     title,
+    header,
     ...rest,
     cusColumns,
   });

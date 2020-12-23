@@ -1,28 +1,38 @@
 <template>
   <div class="table">
-    table
     <fe-table
+      :table-error="true"
       :columns="columns"
-      :data-source="[{}]" />
+      :data-source="dataSource"
+      :pagination="pagination"
+      :scroll="{ x: 400 }"
+      @change="handleChange" />
   </div>
 </template>
 <script>
+import { dataSource } from '../data';
+import TableHeader from './TableHeader.vue';
+
 export default {
   name: 'Table',
   data() {
     const {
-      ftColumn, ftText, ftTextarea, ftButton, ftSwitch, ftSelect,
+      ftColumn, ftText, ftTextarea, ftButton, ftSwitch, ftSelect, ftPagination,
     } = this.$format;
     return {
+      pagination: ftPagination({ total: 500 }),
+      dataSource,
       columns: [
         ftColumn({
           dataIndex: 'age',
           title: 'Age',
+          header: (h) => h('div', 'Age Header'),
           // width: 80,
         })(ftText({ text: 'aaage' })),
         ftColumn({
           dataIndex: 'address',
           title: 'Address',
+          header: TableHeader,
           // width: 300,
         })(),
         ftColumn({
@@ -52,11 +62,10 @@ export default {
         })(ftSwitch({
           checkedChildren: 'OK',
           unCheckedChildren: 'NO',
-          beforeChange: (value, { data, rowData }) => new Promise((res) => {
-            setTimeout(() => {
-              res(true);
-            }, 5000);
-          }),
+          beforeChange: (data, rowData) => true
+          // const idx = this.dataSource.indexOf(row);
+          // this.dataSource[idx].switch = !data
+          ,
         })),
         ftColumn({
           dataIndex: 'select',
@@ -78,6 +87,15 @@ export default {
         })),
       ],
     };
+  },
+  methods: {
+    handleChange({ current, pageSize }) {
+      this.pagination = {
+        ...this.pagination,
+        current,
+        pageSize,
+      };
+    },
   },
 };
 </script>
