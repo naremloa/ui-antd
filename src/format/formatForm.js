@@ -7,7 +7,7 @@ export const ffInput = ({
   prop,
   label,
   formType: 'fe-input',
-  formTypeEvent: 'change',
+  formTypeEvent: 'change.value',
 });
 
 export const ffInputPassword = ({

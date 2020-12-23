@@ -42,7 +42,7 @@ export default {
           [this.formTypeProp]: this.value,
         },
         on: {
-          [this.formTypeEvent]: (e) => this.$emit('input', e.target.value),
+          [this.formTypeEvent]: (value) => this.$emit('input', value),
         },
       },
     );
