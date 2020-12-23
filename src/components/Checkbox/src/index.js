@@ -1,9 +1,11 @@
 import { Checkbox } from 'ant-design-vue';
 
-const { Group: FeCheckboxGroup } = Checkbox;
+import FeCheckboxGroup from './CheckboxGroup.vue';
+import FeCheckboxAll from './CheckboxAll.vue';
 
 export const FeCheckbox = Checkbox;
 
 export {
   FeCheckboxGroup,
+  FeCheckboxAll,
 };

@@ -21,7 +21,7 @@ import * as InputNumber from './components/InputNumber';
 import * as Textarea from './components/Textarea';
 import Form from './components/Form';
 import * as Select from './components/Select';
-import * as Checkbox from './components/Checkbox';
+import Checkbox from './components/Checkbox';
 import * as Table from './components/Table';
 import * as Tag from './components/Tag';
 import * as Switch from './components/Switch';
@@ -49,7 +49,6 @@ const components = {
   ...InputNumber,
   ...Textarea,
   ...Select,
-  ...Checkbox,
   ...Table,
   ...Tag,
   ...Switch,
@@ -70,6 +69,7 @@ const install = (Vue) => {
   Vue.use(Modal);
   Vue.use(Form);
   Vue.use(SearchGroup);
+  Vue.use(Checkbox);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

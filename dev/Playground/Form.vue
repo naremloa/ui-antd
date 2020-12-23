@@ -87,23 +87,28 @@
       <fe-form-item
         label="fe-checkbox-group"
         prop="type">
-        <fe-checkbox-group v-model="form.type">
-          <fe-checkbox
-            value="1"
-            name="type">
-            Online
-          </fe-checkbox>
-          <fe-checkbox
-            value="2"
-            name="type">
-            Promotion
-          </fe-checkbox>
-          <fe-checkbox
-            value="3"
-            name="type">
-            Offline
-          </fe-checkbox>
-        </fe-checkbox-group>
+        <div>
+          <div>
+            <fe-checkbox-all
+              :value="form.type"
+              :options="[
+                { value: 1, label: 'OnlineNew' },
+                { value: 2, label: 'PromotionNew' },
+                { value: 3, label: 'OfflineNew' },
+              ]"
+              @change="(val) => form.type = val" />
+          </div>
+          <div>
+            <fe-checkbox-group
+              v-model="form.type"
+              name="type"
+              :options="[
+                { value: 1, label: 'OnlineNew' },
+                { value: 2, label: 'PromotionNew' },
+                { value: 3, label: 'OfflineNew' },
+              ]" />
+          </div>
+        </div>
       </fe-form-item>
       <fe-form-item
         label="fe-radio"

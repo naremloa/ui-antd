@@ -4,7 +4,9 @@
       <fe-form
         ref="Form"
         :model="form"
-        layout="inline">
+        layout="inline"
+        :label-col="{ span: '10' }"
+        :wrapper-col="{ span: '14' }">
         <fe-row>
           <template v-if="dateShortcut">
             <fe-row type="flex">

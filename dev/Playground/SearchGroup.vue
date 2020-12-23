@@ -15,8 +15,8 @@ export default {
       formList: [
         fsInput({
           prop: 'inputValue',
-          label: '測試 inputasdfasdfsadf',
-          rules: [{ required: true, message: '必填 ', trigger: 'change' }],
+          label: '測試',
+          // rules: [{ required: true, message: '必填 ', trigger: 'change' }],
         }),
         fsSelect({
           prop: 'selectValue',
