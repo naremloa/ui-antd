@@ -12,7 +12,6 @@
       彈窗
     </fe-button>
     <fe-switch
-      :default-checked="true"
       :checked-children="`ON`"
       :un-checked-children="`OFF`"
       @change="switchChange" />
@@ -149,8 +148,11 @@ export default {
         })(ftSwitch({
           checkedChildren: 'OK',
           unCheckedChildren: 'NO',
-          change: (data, row) => {
-            console.log('row---', row);
+          change: (data, rowData) => {
+            // FIXME 被觸發兩次 change，rowData 第一次是 e, 第二次是 rowData, 這裡需要拿到 rowData
+            console.log('??', data, rowData);
+            // const idx = this.dataSource.indexOf(row);
+            // this.dataSource[idx].switch = !data
           },
         })),
         ftColumn({

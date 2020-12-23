@@ -1,12 +1,11 @@
 <template>
   <fe-switch
     class="fe-column-switch"
-    :has-loading="hasLoading"
     v-bind="$attrs"
+    :value="value"
     :disabled="disabled"
-    :checked-children="checkedChildren"
-    :un-checked-children="unCheckedChildren"
-    @change="handleChange(data, rowData)" />
+    :before-change="handleBeforeChange"
+    @change="handleValue" />
 </template>
 <script>
 import { isFunction } from '@/utils/lodash';
@@ -17,8 +16,8 @@ export default {
   components: { FeSwitch },
   props: {
     data: {
-      type: [String, Number],
-      default: '',
+      type: [Number, Boolean],
+      default: false,
     },
     rowData: {
       type: Object,
@@ -28,26 +27,33 @@ export default {
       type: Boolean,
       default: false,
     },
-    hasLoading: {
-      type: Boolean,
-      default: false,
-    },
-    change: {
+    beforeChange: {
       type: Function,
       default: null,
     },
-    checkedChildren: {
-      type: String,
-      default: '',
-    },
-    unCheckedChildren: {
-      type: String,
-      default: '',
-    },
+  },
+  data() {
+    return {
+      value: !!this.data,
+    };
+  },
+  watch: {
+    data(newVal) { if (this.value !== newVal) this.value = !!newVal; },
   },
   methods: {
-    async handleChange(...params) {
-      if (isFunction(this.change)) await this.change(...params);
+    handleValue(value) { this.value = value; },
+    async handleBeforeChange(value) {
+      const { data, rowData, beforeChange } = this;
+      if (isFunction(beforeChange)) {
+        try {
+          const res = await beforeChange(value, { data, rowData });
+          return !!res;
+        } catch (err) {
+          console.err(err.message || err);
+          return false;
+        }
+      }
+      return true;
     },
   },
 };

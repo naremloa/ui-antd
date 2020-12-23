@@ -6,9 +6,10 @@
     :disabled="disabled"
     :loading="loading"
     :default-checked="defaultChecked"
+    :checked="value"
     :checked-children="checkedChildren"
     :un-checked-children="unCheckedChildren"
-    @change="handleChange">
+    @change="handleBeforeChange">
     <slot />
   </a-switch>
 </template>
@@ -19,6 +20,7 @@ import { Switch as ASwitch } from 'ant-design-vue';
 export default {
   name: 'FeSwitch',
   components: { ASwitch },
+  model: { prop: 'value', event: 'change' },
   props: {
     disabled: {
       type: Boolean,
@@ -40,6 +42,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    value: {
+      type: Boolean,
+      default: false,
+    },
+    beforeChange: {
+      type: Function,
+      default: null,
+    },
   },
   data() {
     return {
@@ -47,12 +57,20 @@ export default {
     };
   },
   methods: {
-    async handleChange(...params) {
-      const { hasLoading } = this;
-      if (!isFunction(this.$listeners.change)) return;
-      if (hasLoading) this.loading = true;
-      await Promise.resolve(this.$listeners.change(...params));
-      this.loading = false;
+    changeLoading(val) {
+      if (this.hasLoading) this.loading = !!val;
+      else if (this.loading) this.loading = false;
+    },
+    async handleBeforeChange(...params) {
+      // 優先拿 prop 中的 change callback
+      const beforeCb = this.beforeChange;
+      if (isFunction(beforeCb)) {
+        this.changeLoading(true);
+        const res = await beforeCb(...params);
+        this.changeLoading(false);
+        if (!res) return;
+      }
+      this.$emit('change', ...params);
     },
   },
 };

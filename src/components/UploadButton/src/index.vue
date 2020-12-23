@@ -61,7 +61,7 @@ export default {
       });
 
       if (hasBigFiles) {
-        alert(this.$t('i18n_upload_size_error'));
+        // alert(this.$t('i18n_upload_size_error'));
         return [];
       }
 

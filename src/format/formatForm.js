@@ -21,3 +21,35 @@ export const ffInputPassword = ({
   formType: 'fe-input-password',
   formTypeEvent: 'change',
 });
+export const ffSelect = ({
+  prop = '',
+  label = '',
+  options = [],
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-select',
+  formTypeProps: {
+    ...rest.formTypeProps,
+    options,
+  },
+  formTypeEvent: 'change',
+});
+export const ffSwitch = ({
+  prop = '',
+  label = '',
+  beforeChange,
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formTypeProps: {
+    ...rest.formTypeProps,
+    beforeChange,
+  },
+  formType: 'fe-switch',
+  formTypeEvent: 'change',
+});
