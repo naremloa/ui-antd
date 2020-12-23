@@ -18,3 +18,19 @@ export const fPagination = ({
   pageSize,
   total,
 });
+
+export const fSwitch = ({
+  disabled,
+  beforeChange,
+  hasLoading,
+  checkedChildren,
+  unCheckedChildren,
+  ...rest
+} = {}) => ({
+  ...rest,
+  disabled,
+  beforeChange,
+  hasLoading,
+  checkedChildren,
+  unCheckedChildren,
+});

@@ -2,6 +2,7 @@ import dayjs from '@/utils/dayjs';
 import {
   fButton,
   fPagination,
+  fSwitch,
 } from './format';
 
 export const ftPagination = fPagination;
@@ -71,18 +72,12 @@ export const ftColumn = ({
 
 export const ftSwitch = ({
   disabled,
-  change,
-  hasLoading,
-  checkedChildren,
-  unCheckedChildren,
+  beforeChange,
   ...rest
 } = {}) => ({
-  ...rest,
+  ...fSwitch(rest),
   disabled,
-  change,
-  hasLoading,
-  checkedChildren,
-  unCheckedChildren,
+  beforeChange,
   columnType: 'switch',
 });
 
