@@ -27,6 +27,11 @@ export default {
       type: Array,
       default: () => [],
     },
+    rowKey: {
+      type: [String, Function],
+      default: () => (record, idx) => idx,
+    },
+
     pagination: {
       type: Object,
       default: () => ({ current: 1, pageSize: 10, total: 0 }),
@@ -44,6 +49,7 @@ export default {
         {
           props: {
             ...this.$attrs,
+            rowKey: this.rowKey,
             columns: undefined,
             dataSource: this.dataSource,
             pagination: {
