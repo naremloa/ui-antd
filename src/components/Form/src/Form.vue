@@ -15,6 +15,12 @@ export default {
       default: () => ({ span: 14 }),
     },
   },
+  methods: {
+    validate(...params) { this.$refs.Form.validate(...params); },
+    validateField(...params) { this.$refs.Form.validateField(...params); },
+    resetFields(...params) { this.$refs.Form.resetFields(...params); },
+    clearValidate(...params) { this.$refs.Form.clearValidate(...params); },
+  },
   render(h) {
     return h(
       'form-model',
@@ -24,6 +30,7 @@ export default {
           labelCol: this.labelCol,
           wrapperCol: this.wrapperCol,
         },
+        ref: 'Form',
       },
       this.$slots.default,
     );
