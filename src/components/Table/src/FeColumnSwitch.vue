@@ -49,7 +49,7 @@ export default {
           const res = await beforeChange(value, { data, rowData });
           return !!res;
         } catch (err) {
-          console.err(err.message || err);
+          console.error(err.message || err);
           return false;
         }
       }
