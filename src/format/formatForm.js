@@ -116,30 +116,32 @@ export const ffSwitch = ({
   formType: 'fe-switch',
   formTypeEvent: 'change',
 });
-<<<<<<< HEAD
 
 export const ffDatePicker = ({
   prop = '',
   label = '',
-=======
-export const ffUpload = ({
-  prop = '',
-  label = '',
-  // beforeChange,
->>>>>>> edit: ffUpload + FFInputNumber Ref. #5 #7
   ...rest
 }) => ({
   ...rest,
   prop,
   label,
-<<<<<<< HEAD
   formType: 'fe-date-picker',
-=======
+  formTypeEvent: 'change',
+});
+
+export const ffUpload = ({
+  prop = '',
+  label = '',
+  // beforeChange,
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
   formTypeProps: {
     ...rest.formTypeProps,
     // beforeChange,
   },
   formType: 'fe-upload',
->>>>>>> edit: ffUpload + FFInputNumber Ref. #5 #7
   formTypeEvent: 'change',
 });
