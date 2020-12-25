@@ -55,6 +55,7 @@
     <fe-modal
       v-model="visible"
       width="middle"
+      data="Mydata"
       :template="modalTemplate" />
 
     <fe-dropdown
