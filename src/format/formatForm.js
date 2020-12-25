@@ -21,17 +21,6 @@ export const ffInputNumber = ({
   formTypeEvent: 'change',
 });
 
-export const ffInputNumber = ({
-  prop = '',
-  label = '',
-  ...rest
-}) => ({
-  ...rest,
-  prop,
-  label,
-  formType: 'fe-input-number',
-  formTypeEvent: 'change',
-});
 export const ffText = ({
   prop = '',
   label = '',
