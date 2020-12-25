@@ -1,5 +1,3 @@
-const { FeRadioButton } = require('./src');
-
 export {
   FeRadioButton,
   FeRadioGroup,

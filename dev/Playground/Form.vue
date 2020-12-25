@@ -25,9 +25,9 @@
       </fe-form-item>
       <fe-form-item
         label="fe-input-number"
-        prop="password">
+        prop="age">
         <fe-input-number
-          v-model="form.password"
+          v-model="form.age"
           placeholder="input password" />
       </fe-form-item>
       <fe-form-item
@@ -144,15 +144,9 @@
       </fe-form-item>
       <fe-form-item
         label="fe-upload-button">
-        <fe-upload-button v-model="form.fileList" />
-      </fe-form-item>
-      <fe-form-item
-        label="fe-upload-button">
         <fe-upload
           v-model="form.fileList"
-          list-type="picture">
-          <fe-button> <fe-icon type="upload" /> upload </fe-button>
-        </fe-upload>
+          list-type="picture" />
       </fe-form-item>
       <fe-form-item :wrapper-col="{ span: 14, offset: 4 }">
         <fe-button
@@ -180,15 +174,18 @@ export default {
   data() {
     const {
       ffInput,
+      ffInputNumber,
       ffInputPassword,
       ffSelect,
       ffSwitch,
       ffDatePicker,
+      ffUpload,
     } = this.$format;
     return {
       other: '',
       form: {
         name: '',
+        age: 1,
         region: '',
         regions: [2],
         date: null,
@@ -199,7 +196,18 @@ export default {
         desc: '',
         IPlist: [],
         password: '',
-        fileList: [],
+        fileList: [{
+          uid: '-1',
+          name: 'image.png',
+          status: 'done',
+          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        },
+        {
+          uid: '-2',
+          name: 'image.png',
+          status: 'done',
+          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        }],
       },
       rules: {
         name: [
@@ -230,13 +238,20 @@ export default {
         ffInput({
           prop: 'name',
           label: 'fe-input',
+          rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
+        }),
+        ffInputNumber({
+          prop: 'age',
+          label: 'fe-input-number',
+          rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
         ffInputPassword({
           prop: 'password',
           label: 'fe-input-password',
           formTypeProps: {
-            placeholder: 'Number',
+            placeholder: 'Password',
           },
+          rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
         ffSelect({
           prop: 'regions',
@@ -260,6 +275,11 @@ export default {
           prop: 'date',
           label: 'fe-date-picker',
           rules: [{ required: true, message: 'required', trigger: 'change' }],
+        }),
+        ffUpload({
+          prop: 'fileList',
+          label: 'fe-upload',
+          // change: (row, e) => { this.form.delivery = row; },
         }),
       ],
     };
