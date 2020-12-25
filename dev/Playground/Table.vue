@@ -83,7 +83,9 @@ export default {
           title: 'Textarea',
         })(ftTextarea({
           placeholder: 'HI',
-          defaultValue: 'DEFAULT',
+          change: (data, rowData) => {
+            this.dataSource[this.dataSource.indexOf(rowData)].textarea = data;
+          },
         })),
       ],
     };

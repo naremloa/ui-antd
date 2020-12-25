@@ -1,7 +1,7 @@
 <template>
   <a-textarea
     ref="Textarea"
-    v-model="value"
+    :value="value"
     class="fe-textarea"
     :max-length="maxLength"
     :disabled="disabled"
@@ -9,15 +9,15 @@
     v-bind="$attrs"
     :placeholder="placeholder"
     :auto-size="autoSize"
-    @change="handleChange(data, rowData)" />
+    @change="handleChange" />
 </template>
 <script>
 import { Input as ATextarea } from 'ant-design-vue';
-import { isFunction } from '@/utils/lodash';
 
 export default {
   name: 'FeTextarea',
   components: { ATextarea },
+  model: { prop: 'value', event: 'change' },
   props: {
     data: {
       type: [String, Number],
@@ -43,27 +43,14 @@ export default {
       type: Boolean,
       default: false,
     },
-    defaultValue: {
+    value: {
       type: String,
       default: '',
     },
-    change: {
-      type: Function,
-      default: null,
-    },
-  },
-  data() {
-    return {
-      value: '',
-    };
-  },
-  created() {
-    this.value = this.defaultValue;
   },
   methods: {
-    async handleChange(...params) {
-      if (!isFunction(this.$listeners.change)) return;
-      await Promise.resolve(this.$listeners.change(...params));
+    handleChange(e) {
+      this.$emit('change', e.target.value);
     },
   },
 };

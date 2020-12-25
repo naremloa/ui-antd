@@ -11,6 +11,7 @@ export const dataSource = [
     dd: 'New York No. 1 Lake Park asjdflasjdflkjas;dlkjgf;aslkdjg;askldjgaskdjg;klasjdg',
     tags: ['nice', 'developer'],
     switch: 1,
+    textarea: '3345678',
   },
   {
     key: '2',
@@ -20,6 +21,7 @@ export const dataSource = [
     address: 'London No. 1 Lake Park',
     tags: ['loser'],
     switch: 0,
+    textarea: '3345678',
   },
   {
     key: '3',
@@ -29,6 +31,7 @@ export const dataSource = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
     switch: false,
+    textarea: '3345678',
   },
 ];
 

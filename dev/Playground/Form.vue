@@ -177,9 +177,12 @@ export default {
       ffInputNumber,
       ffInputPassword,
       ffSelect,
+      ffCheckbox,
       ffSwitch,
       ffDatePicker,
       ffUpload,
+      ffTextarea,
+      ffText,
     } = this.$format;
     return {
       other: '',
@@ -192,6 +195,8 @@ export default {
         date1: undefined,
         delivery: true,
         type: [],
+        text: 'text',
+        textarea: 'textarea',
         resource: '',
         desc: '',
         IPlist: [],
@@ -253,18 +258,31 @@ export default {
           },
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
+        ffText({
+          prop: 'text',
+          label: 'fe-text',
+        }),
+        ffTextarea({
+          prop: 'textarea',
+          label: 'fe-textarea',
+          formTypeProps: {
+            autoSize: { minRows: 3, maxRows: 5 },
+          },
+          rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
+        }),
         ffSelect({
           prop: 'regions',
           label: 'fe-select',
           options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
-          formTypeProps: {
-            placeholder: 'Number',
-          },
+        }),
+        ffCheckbox({
+          prop: 'type',
+          label: 'fe-select',
+          options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
         }),
         ffSwitch({
           prop: 'delivery',
           label: 'fe-switch',
-          // change: (row, e) => { this.form.delivery = row; },
         }),
         {
           prop: 'name',
@@ -279,7 +297,6 @@ export default {
         ffUpload({
           prop: 'fileList',
           label: 'fe-upload',
-          // change: (row, e) => { this.form.delivery = row; },
         }),
       ],
     };
