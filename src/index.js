@@ -29,7 +29,7 @@ import * as Collapse from './components/Collapse';
 import Modal from './components/Modal';
 import * as UploadButton from './components/UploadButton';
 import * as Upload from './components/Upload';
-// import * as Modal from './components/Modal';
+import * as Text from './components/Text';
 import format from './format';
 
 const components = {
@@ -58,6 +58,7 @@ const components = {
   ...Tabs,
   ...Tooltip,
   ...ExportDataBtn,
+  ...Text,
 };
 
 const install = (Vue) => {

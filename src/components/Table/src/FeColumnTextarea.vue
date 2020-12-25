@@ -1,12 +1,12 @@
 <template>
   <fe-textarea
-    :default-value="defaultValue"
+    v-model="value"
     :placeholder="placeholder"
     :auto-size="autoSize"
-    :change="change"
     :max-length="maxLength"
     class="fe-column-textarea"
-    v-bind="$attrs" />
+    v-bind="$attrs"
+    @change="handleChange" />
 </template>
 <script>
 import { FeTextarea } from '@/components/Textarea';
@@ -37,11 +37,25 @@ export default {
     },
     change: {
       type: Function,
-      default: null,
+      default: () => {},
     },
     maxLength: {
       type: Number,
       default: 1000,
+    },
+  },
+  data() {
+    return {
+      value: this.data,
+    };
+  },
+  watch: {
+    data(newVal) { if (this.value !== newVal) this.value = !!newVal; },
+  },
+  methods: {
+    handleChange(value) {
+      const { change, rowData } = this;
+      change(value, rowData);
     },
   },
 };

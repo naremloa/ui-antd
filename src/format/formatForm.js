@@ -21,6 +21,42 @@ export const ffInputNumber = ({
   formTypeEvent: 'change',
 });
 
+export const ffInputNumber = ({
+  prop = '',
+  label = '',
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-input-number',
+  formTypeEvent: 'change',
+});
+export const ffText = ({
+  prop = '',
+  label = '',
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-text',
+  // formTypeEvent: 'change.value',
+});
+export const ffTextarea = ({
+  prop = '',
+  label = '',
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-textarea',
+  formTypeProps: {
+    ...rest.formTypeProps,
+  },
+  formTypeEvent: 'change',
+});
 export const ffInputPassword = ({
   prop = '',
   label = '',
@@ -42,6 +78,22 @@ export const ffSelect = ({
   prop,
   label,
   formType: 'fe-select',
+  formTypeProps: {
+    ...rest.formTypeProps,
+    options,
+  },
+  formTypeEvent: 'change',
+});
+export const ffCheckbox = ({
+  prop = '',
+  label = '',
+  options = [],
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-checkbox-group',
   formTypeProps: {
     ...rest.formTypeProps,
     options,

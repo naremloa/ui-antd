@@ -99,14 +99,12 @@ export const ftSelect = ({
 });
 
 export const ftTextarea = ({
-  defaultValue,
   autoSize,
   placeholder,
   ...rest
 } = {}) => ({
-  defaultValue,
+  ...rest,
   autoSize,
   placeholder,
-  ...rest,
   columnType: 'textarea',
 });
