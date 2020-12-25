@@ -53,3 +53,15 @@ export const ffSwitch = ({
   formType: 'fe-switch',
   formTypeEvent: 'change',
 });
+
+export const ffDatePicker = ({
+  prop = '',
+  label = '',
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-date-picker',
+  formTypeEvent: 'change',
+});

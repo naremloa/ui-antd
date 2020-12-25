@@ -183,6 +183,7 @@ export default {
       ffInputPassword,
       ffSelect,
       ffSwitch,
+      ffDatePicker,
     } = this.$format;
     return {
       other: '',
@@ -190,6 +191,7 @@ export default {
         name: '',
         region: '',
         regions: [2],
+        date: null,
         date1: undefined,
         delivery: true,
         type: [],
@@ -248,6 +250,16 @@ export default {
           prop: 'delivery',
           label: 'fe-switch',
           // change: (row, e) => { this.form.delivery = row; },
+        }),
+        {
+          prop: 'name',
+          label: 'text',
+          formType: (h, { value }) => `測試, 這邊會跟 fe-input 的值更新: ${value}`,
+        },
+        ffDatePicker({
+          prop: 'date',
+          label: 'fe-date-picker',
+          rules: [{ required: true, message: 'required', trigger: 'change' }],
         }),
       ],
     };

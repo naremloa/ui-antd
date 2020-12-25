@@ -1,5 +1,6 @@
 <script>
 import { FormModel } from 'ant-design-vue';
+import { isFunction } from '@/utils/lodash';
 
 const { Item } = FormModel;
 export default {
@@ -15,9 +16,14 @@ export default {
     prop: {
       type: String,
       default: '',
+      required: true,
+    },
+    rules: {
+      type: Array,
+      default: () => [],
     },
     formType: {
-      type: [Object, String],
+      type: [Function, Object, String],
       default: '',
     },
     formTypeProp: {
@@ -46,17 +52,19 @@ export default {
         },
       },
     );
-    if (!this.prop) return this.formType ? renderInner() : h();
     return h(
       'fe-form-item',
       {
         props: {
           ...this.$attrs,
           prop: this.prop,
+          rules: this.rules,
         },
         on: this.$listeners,
       },
-      [renderInner()],
+      [isFunction(this.formType)
+        ? this.formType(h, { value: this.value })
+        : renderInner()],
     );
   },
 };
