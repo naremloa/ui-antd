@@ -13,8 +13,8 @@ export default {
       default: () => [],
     },
     value: {
-      type: [Array, String, Number],
-      default: '',
+      type: [Array, String, Number, undefined],
+      default: undefined,
     },
   },
   render(h) {

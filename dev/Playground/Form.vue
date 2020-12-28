@@ -189,7 +189,7 @@ export default {
       form: {
         name: '',
         age: 1,
-        region: '',
+        region: undefined,
         regions: [2],
         date: null,
         date1: undefined,
@@ -243,6 +243,9 @@ export default {
         ffInput({
           prop: 'name',
           label: 'fe-input',
+          formTypeProps: {
+            placeholder: 'Please input XXXXX',
+          },
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
         ffInputNumber({
