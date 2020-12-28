@@ -241,11 +241,13 @@ export default {
       },
       formItemSetting: [
         ffInput({
+          nested: {
+            label: 'nested',
+          },
           prop: 'name',
           label: 'fe-input',
-          formTypeProps: {
-            placeholder: 'Please input XXXXX',
-          },
+          wrapperCol: { span: 18 },
+          labelCol: { span: 6 },
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
         ffInputNumber({

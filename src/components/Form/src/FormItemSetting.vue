@@ -1,6 +1,6 @@
 <script>
 import { FormModel } from 'ant-design-vue';
-import { isFunction } from '@/utils/lodash';
+import { isFunction, isObject, isString } from '@/utils/lodash';
 
 const { Item } = FormModel;
 export default {
@@ -38,6 +38,10 @@ export default {
       type: String,
       default: 'input',
     },
+    nested: {
+      type: [String, Object],
+      default: '',
+    },
   },
   render(h) {
     const renderInner = () => h(
@@ -52,7 +56,7 @@ export default {
         },
       },
     );
-    return h(
+    const renderFormItem = () => h(
       'fe-form-item',
       {
         props: {
@@ -65,6 +69,16 @@ export default {
       [isFunction(this.formType)
         ? this.formType(h, { value: this.value })
         : renderInner()],
+    );
+    if (!this.nested) return renderFormItem();
+    const handleNested = (val) => {
+      if (isObject(val)) return val;
+      return { label: val };
+    };
+    return h(
+      'fe-form-item',
+      { props: handleNested(this.nested) },
+      [renderFormItem()],
     );
   },
 };

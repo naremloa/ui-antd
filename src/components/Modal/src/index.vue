@@ -65,6 +65,9 @@ export default {
                 visible: this.visible,
                 data: this.data,
               },
+              on: {
+                close: (status) => { this.$emit('close', status); },
+              },
             },
           )
           : [],
