@@ -189,7 +189,7 @@ export default {
       form: {
         name: '',
         age: 1,
-        region: '',
+        region: undefined,
         regions: [2],
         date: null,
         date1: undefined,
