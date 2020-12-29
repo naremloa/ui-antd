@@ -51,6 +51,7 @@ export default {
           ...this.formTypeProps,
           [this.formTypeProp]: this.value,
         },
+        attrs: this.formTypeProps,
         on: {
           [this.formTypeEvent]: (value) => this.$emit('input', value),
         },
