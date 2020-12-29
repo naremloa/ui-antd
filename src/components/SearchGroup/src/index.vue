@@ -34,22 +34,11 @@
             </fe-row>
           </template>
           <fe-row>
-            <fe-form-item
+            <fe-form-item-setting
               v-for="(item, iIdx) in localFormList"
               :key="`${item.prop || 0} - ${iIdx}`"
-              :label="item.label"
-              :prop="item.prop"
-              :rules="item.rules">
-              <component
-                :is="`fe-${item.formType}`"
-                v-model="form[item.prop]"
-                v-bind="item" />
-            </fe-form-item>
-            <!-- <fe-form-item label="測試 checkbox">
-              <fe-checkbox-group
-                v-model="form.checkboxValue"
-                :options="checkboxOptions" />
-            </fe-form-item> -->
+              v-model="form[item.prop]"
+              v-bind="item" />
           </fe-row>
           <fe-row
             type="flex"
