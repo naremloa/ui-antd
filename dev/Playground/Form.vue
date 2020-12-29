@@ -297,6 +297,11 @@ export default {
         ffDatePicker({
           prop: 'date',
           label: 'fe-date-picker',
+          formTypeProps: {
+            showTime: {
+              format: 'HH:mm:ss',
+            },
+          },
           rules: [{ required: true, message: 'required', trigger: 'change' }],
         }),
         ffUpload({
