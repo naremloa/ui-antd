@@ -6,7 +6,7 @@
     :show-arrow="showArrow"
     :options="options"
     v-bind="$attrs"
-    @change="handleChange(rowData)" />
+    @change="handleChange($event, rowData)" />
 </template>
 <script>
 import { isFunction } from '@/utils/lodash';
@@ -50,7 +50,8 @@ export default {
     this.value = this.defaultValue;
   },
   methods: {
-    async handleChange(rowData = {}) {
+    async handleChange(value, rowData = {}) {
+      this.$emit('update:date-source', value);
       if (isFunction(this.change)) {
         await this.change(rowData);
       }
