@@ -54,17 +54,21 @@ export default {
           dataIndex: 'action',
           title: 'Action',
           // width: 200,
-          columnsStyle: { display: 'flex', justifyContent: 'space-around' },
-        })(ftButton({ text: '按鈕' }), ftButton({ text: '按鈕2' })),
+          columnsStyle: { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' },
+        })(
+          ftButton({ text: '按鈕', disabled: (rowData) => !rowData.switch }),
+          ftButton({ text: '按鈕2' }),
+        ),
         ftColumn({
           dataIndex: 'switch',
           title: 'Switch',
         })(ftSwitch({
           checkedChildren: 'OK',
           unCheckedChildren: 'NO',
-          beforeChange: (data, rowData) => true
-          // const idx = this.dataSource.indexOf(row);
-          // this.dataSource[idx].switch = !data
+          beforeChange: (value, { data, rowData }) => {
+            const idx = this.dataSource.indexOf(rowData);
+            this.dataSource[idx].switch = !data;
+          }
           ,
         })),
         ftColumn({

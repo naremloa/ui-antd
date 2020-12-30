@@ -15,6 +15,7 @@ import { Button as AButton } from 'ant-design-vue';
 export default {
   name: 'FeButton',
   components: { AButton },
+  inheritAttrs: false,
   props: {
     hasLoading: {
       type: Boolean,
