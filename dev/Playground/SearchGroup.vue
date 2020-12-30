@@ -16,6 +16,9 @@ export default {
         fsInput({
           prop: 'inputValue',
           label: '測試',
+          formTypeProps: {
+            placeholder: '3345667',
+          },
           // rules: [{ required: true, message: '必填 ', trigger: 'change' }],
         }),
         fsSelect({
