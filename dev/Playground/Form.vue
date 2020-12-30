@@ -266,6 +266,7 @@ export default {
         ffText({
           prop: 'text',
           label: 'fe-text',
+          format: () => `${this.form.text} / ${this.form.age}`,
         }),
         ffTextarea({
           prop: 'textarea',

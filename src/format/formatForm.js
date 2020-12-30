@@ -24,12 +24,17 @@ export const ffInputNumber = ({
 export const ffText = ({
   prop = '',
   label = '',
+  format = null,
   ...rest
 }) => ({
   ...rest,
   prop,
   label,
   formType: 'fe-text',
+  formTypeProps: {
+    format,
+    ...rest.formTypeProps,
+  },
   // formTypeEvent: 'change.value',
 });
 export const ffTextarea = ({
