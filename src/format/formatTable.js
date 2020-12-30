@@ -108,3 +108,17 @@ export const ftTextarea = ({
   placeholder,
   columnType: 'textarea',
 });
+
+export const ftInput = ({
+  ...rest
+} = {}) => ({
+  ...rest,
+  columnType: 'input',
+});
+
+export const ftCheckbox = ({
+  ...rest
+} = {}) => ({
+  ...rest,
+  columnType: 'checkbox',
+});

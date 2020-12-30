@@ -1,12 +1,17 @@
 <template>
   <div class="table">
     <fe-table
+      ref="formTable"
+      :form="true"
       :table-error="true"
       :columns="columns"
       :data-source="dataSource"
       :pagination="pagination"
       :scroll="{ x: 400 }"
       @change="handleChange" />
+    <fe-button @click="formSubmit">
+      表單表格提交
+    </fe-button>
   </div>
 </template>
 <script>
@@ -17,34 +22,44 @@ export default {
   name: 'Table',
   data() {
     const {
-      ftColumn, ftText, ftTextarea, ftButton, ftSwitch, ftSelect, ftPagination,
+      ftColumn, ftTextarea, ftButton, ftSwitch, ftSelect,
+      ftPagination, ftInput, ftCheckbox,
     } = this.$format;
     return {
       pagination: ftPagination({ total: 500 }),
       dataSource,
       columns: [
+        // ftColumn({
+        //   dataIndex: 'age',
+        //   title: 'Age',
+        //   header: (h) => h('div', 'Age Header'),
+        //   // width: 80,
+        // })(ftText({ text: 'aaage' })),
+        // ftColumn({
+        //   dataIndex: 'address',
+        //   title: 'Address',
+        //   header: TableHeader,
+        //   // width: 300,
+        // })(),
+        // ftColumn({
+        //   dataIndex: 'firstName',
+        //   title: 'FirstName',
+        //   // width: 100,
+        // })(),
         ftColumn({
           dataIndex: 'age',
           title: 'Age',
           header: (h) => h('div', 'Age Header'),
-          // width: 80,
-        })(ftText({ text: 'aaage' })),
+        })(ftCheckbox({ options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }] })),
         ftColumn({
-          dataIndex: 'address',
-          title: 'Address',
-          header: TableHeader,
-          // width: 300,
-        })(),
-        ftColumn({
-          dataIndex: 'firstName',
-          title: 'FirstName',
-          // width: 100,
-        })(),
-        ftColumn({
-          dataIndex: 'lastName',
+          dataIndex: 'bbs',
           title: 'LastName',
           // width: 100,
-        })(),
+        })(
+          ftInput({
+            rules: [{ required: true, message: 'required', trigger: 'change' }],
+          }),
+        ),
         ftColumn({
           dataIndex: 'tags',
           title: 'Tags',
@@ -57,7 +72,7 @@ export default {
           columnsStyle: { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' },
         })(
           ftButton({ text: '按鈕', disabled: (rowData) => !rowData.switch }),
-          ftButton({ text: '按鈕2' }),
+          // ftButton({ text: '按鈕2' }),
         ),
         ftColumn({
           dataIndex: 'switch',
@@ -101,6 +116,10 @@ export default {
         current,
         pageSize,
       };
+    },
+    async formSubmit() {
+      const res = await this.$refs.formTable.submit();
+      console.log('check submit', res);
     },
   },
 };

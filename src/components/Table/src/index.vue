@@ -1,7 +1,7 @@
 <script>
 import { Table as ATable } from 'ant-design-vue';
 import { FeCard } from '@/components/Card';
-import { isObject, isFunction } from '@/utils/lodash';
+import { isObject, isFunction, cloneDeep } from '@/utils/lodash';
 import FeCusColumn from './FeCusColumn.vue';
 
 const { Column: ATableColumn } = ATable;
@@ -32,10 +32,38 @@ export default {
       type: [String, Function],
       default: () => (record, idx) => idx,
     },
-
+    form: {
+      type: Boolean,
+      default: false,
+    },
     pagination: {
       type: Object,
       default: () => ({ current: 1, pageSize: 10, total: 0 }),
+    },
+  },
+  data() {
+    return {
+      localDataSource: [],
+    };
+  },
+  watch: {
+    dataSource: {
+      handler(newVal) {
+        this.localDataSource = cloneDeep(newVal);
+      },
+      immediate: true,
+    },
+  },
+  methods: {
+    async submit() {
+      if (!this.form) return null;
+      try {
+        await this.$refs.tableForm.validate();
+        return this.localDataSource;
+      } catch (err) {
+        console.error(err?.message);
+      }
+      return null;
     },
   },
   render(h) {
@@ -47,76 +75,105 @@ export default {
       // text node
       return node;
     }
+    const renderTable = () => h(
+      'a-table',
+      {
+        props: {
+          ...this.$attrs,
+          rowKey: this.rowKey,
+          columns: undefined,
+          dataSource: this.dataSource,
+          pagination: {
+            showSizeChanger: true,
+            showQuickJumper: true,
+            // locale: {
+            //   items_per_page: '条/页',
+            //   jump_to: '跳至',
+            //   page: '页',
+            // },
+            ...this.pagination,
+          },
+          bordered: true,
+          locale: {
+            emptyText: this.tableError ? '资料载入失败，请重新尝试' : '无符合条件之资料',
+          },
+        },
+        on: this.$listeners,
+        scopedSlots: this.$scopedSlots,
+      },
+      this.columns.map(({
+        dataIndex,
+        title,
+        header = null,
+        cusColumns = [],
+        columnsStyle = {},
+        ...rest
+      } = {}) => h(
+        'a-table-column',
+        {
+          props: {
+            ...rest,
+            dataIndex,
+            ...(header ? {} : { title }),
+          },
+          key: dataIndex,
+          scopedSlots: {
+            default: (
+              data,
+              rowData,
+              idx,
+              // column,
+            ) => h(
+              'fe-cus-column',
+              {
+                props: {
+                  cusColumns,
+                  columnsStyle,
+                  dataIndex,
+                  rowData,
+                },
+                attrs: { data, idx },
+                on: {
+                  'update:data-source': (value) => {
+                    this.localDataSource.splice(idx, 1, value);
+                    // this.$emit('update:data-source', [
+                    //   ...this.dataSource.slice(0, idx),
+                    //   value,
+                    //   ...this.dataSource.slice(idx - (this.dataSource.length - 1)),
+                    // ]);
+                  },
+                },
+              },
+            ),
+          },
+        },
+        [header && h(
+          'div',
+          { slot: 'title' },
+          [displayHeader(header)],
+        )],
+      )),
+    );
     return h(
       'fe-card',
       {
         class: 'fe-table',
         props: { bodyStyle: { padding: 0 } },
       },
-      [h(
-        'a-table',
-        {
-          props: {
-            ...this.$attrs,
-            rowKey: this.rowKey,
-            columns: undefined,
-            dataSource: this.dataSource,
-            pagination: {
-              showSizeChanger: true,
-              showQuickJumper: true,
-              // locale: {
-              //   items_per_page: '条/页',
-              //   jump_to: '跳至',
-              //   page: '页',
-              // },
-              ...this.pagination,
+      [
+        this.form
+          ? h(
+            'fe-form',
+            {
+              props: {
+                model: { data: this.localDataSource },
+              },
+              ref: 'tableForm',
             },
-            bordered: true,
-            locale: {
-              emptyText: this.tableError ? '资料载入失败，请重新尝试' : '无符合条件之资料',
-            },
-          },
-          on: this.$listeners,
-          scopedSlots: this.$scopedSlots,
-        },
-        this.columns.map(({
-          dataIndex,
-          title,
-          header = null,
-          cusColumns = [],
-          columnsStyle = {},
-          ...rest
-        } = {}) => h(
-          'a-table-column',
-          {
-            props: {
-              ...rest,
-              dataIndex,
-              ...(header ? {} : { title }),
-            },
-            key: dataIndex,
-            scopedSlots: {
-              default: (
-                data,
-                rowData,
-              // idx,
-              // column,
-              ) => h(
-                'fe-cus-column',
-                {
-                  props: { cusColumns, columnsStyle },
-                  attrs: { data, rowData },
-                },
-              ),
-            },
-          },
-          [header && h(
-            'div',
-            { slot: 'title' },
-            [displayHeader(header)],
-          )],
-        )),
-      )],
+            [renderTable()],
+          )
+          : renderTable(),
+      ],
     );
   },
 };

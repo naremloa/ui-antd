@@ -14,9 +14,13 @@ export default {
       type: Object,
       default: () => ({ span: 14 }),
     },
+    model: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
-    validate(...params) { this.$refs.Form.validate(...params); },
+    validate(...params) { return this.$refs.Form.validate(...params); },
     validateField(...params) { this.$refs.Form.validateField(...params); },
     resetFields(...params) { this.$refs.Form.resetFields(...params); },
     clearValidate(...params) { this.$refs.Form.clearValidate(...params); },
@@ -29,6 +33,7 @@ export default {
           ...this.$attrs,
           labelCol: this.labelCol,
           wrapperCol: this.wrapperCol,
+          model: this.model,
         },
         ref: 'Form',
       },
