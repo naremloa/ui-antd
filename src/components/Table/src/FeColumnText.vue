@@ -11,13 +11,13 @@
   </div>
 </template>
 <script>
-import { isFunction } from '@/utils/lodash';
+import { isFunction, isObject } from '@/utils/lodash';
 
 export default {
   name: 'FeColumnText',
   props: {
     data: {
-      type: [String, Number],
+      type: [String, Number, Object],
       default: '',
     },
     rowData: {
@@ -42,6 +42,7 @@ export default {
       const { text, format } = this;
       const waitingFormat = text || data;
       const displayText = isFunction(format) ? format(waitingFormat, rowData) : waitingFormat;
+      if (isObject(displayText)) return JSON.stringify(displayText);
       return displayText || '-';
     },
   },
