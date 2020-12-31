@@ -1,3 +1,7 @@
 import FeCard from './src';
 
-export { FeCard };
+const install = (Vue) => {
+  Vue.component('FeCard', FeCard);
+};
+
+export default install;

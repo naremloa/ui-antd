@@ -2,6 +2,10 @@
 export default {
   name: 'FeColumnInput',
   props: {
+    data: {
+      type: [Number, String],
+      default: '',
+    },
     idx: {
       type: Number,
       required: true,
@@ -13,6 +17,16 @@ export default {
     rules: {
       type: Array,
       default: () => [],
+    },
+  },
+  data() {
+    return {
+      value: this.data,
+    };
+  },
+  watch: {
+    data(newVal) {
+      this.value = newVal;
     },
   },
   methods: {
@@ -28,12 +42,16 @@ export default {
         props: {
           prop: `data.${this.idx}.${this.dataIndex}`,
           rules: this.rules,
+          wrapperCol: { span: 24 },
         },
       },
       [h(
         'fe-input',
         {
-          props: this.$attrs,
+          props: {
+            ...this.$attrs,
+            value: this.value,
+          },
           on: { 'change.value': this.handleChange },
         },
       )],

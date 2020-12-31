@@ -37,7 +37,7 @@ export const ftButton = ({
   format,
   text,
   ...(fButton(rest)),
-  columnType: 'button',
+  columnType: 'fe-column-button',
 });
 
 export const ftDate = ({
@@ -78,7 +78,7 @@ export const ftSwitch = ({
   ...fSwitch(rest),
   disabled,
   beforeChange,
-  columnType: 'switch',
+  columnType: 'fe-column-switch',
 });
 
 export const ftSelect = ({
@@ -95,7 +95,7 @@ export const ftSelect = ({
   value,
   options,
   change,
-  columnType: 'select',
+  columnType: 'fe-column-select',
 });
 
 export const ftTextarea = ({
@@ -106,19 +106,19 @@ export const ftTextarea = ({
   ...rest,
   autoSize,
   placeholder,
-  columnType: 'textarea',
+  columnType: 'fe-column-textarea',
 });
 
 export const ftInput = ({
   ...rest
 } = {}) => ({
   ...rest,
-  columnType: 'input',
+  columnType: 'fe-column-input',
 });
 
 export const ftCheckbox = ({
   ...rest
 } = {}) => ({
   ...rest,
-  columnType: 'checkbox',
+  columnType: 'fe-column-checkbox',
 });

@@ -47,12 +47,12 @@ export default {
         //   // width: 100,
         // })(),
         ftColumn({
-          dataIndex: 'age',
-          title: 'Age',
+          dataIndex: 'checkbox',
+          title: 'Checkbox',
           header: (h) => h('div', 'Age Header'),
         })(ftCheckbox({ options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }] })),
         ftColumn({
-          dataIndex: 'bbs',
+          dataIndex: 'lastName',
           title: 'LastName',
           // width: 100,
         })(
@@ -64,7 +64,7 @@ export default {
           dataIndex: 'tags',
           title: 'Tags',
           // width: 100,
-        })({ columnType: 'tag' }),
+        })({ columnType: 'fe-column-tag' }),
         ftColumn({
           dataIndex: 'action',
           title: 'Action',
