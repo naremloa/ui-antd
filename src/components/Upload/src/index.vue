@@ -1,6 +1,7 @@
 <template>
   <div class="clearfix">
     <Upload
+      v-bind="$attrs"
       :file-list="value"
       :list-type="listType"
       :remove="handleRemove"
@@ -56,6 +57,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    length: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
@@ -77,6 +82,9 @@ export default {
       this.previewVisible = true;
     },
     handleChange({ fileList }) {
+      if (this.length !== -1) {
+        fileList.splice(0, fileList.length - this.length);
+      }
       this.$emit('change', fileList);
     },
     handleRemove(file) {
