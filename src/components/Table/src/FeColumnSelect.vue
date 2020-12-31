@@ -10,11 +10,9 @@
 </template>
 <script>
 import { isFunction } from '@/utils/lodash';
-import { FeSelect } from '@/components/Select';
 
 export default {
   name: 'FeColumnSelect',
-  components: { FeSelect },
   props: {
     rowData: {
       type: Object,

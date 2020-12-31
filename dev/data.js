@@ -12,6 +12,7 @@ export const dataSource = [
     tags: ['nice', 'developer'],
     switch: 1,
     textarea: '3345678',
+    checkbox: [1],
   },
   {
     key: '2',
@@ -22,6 +23,7 @@ export const dataSource = [
     tags: ['loser'],
     switch: 0,
     textarea: '3345678',
+    checkbox: [2],
   },
   {
     key: '3',
@@ -32,6 +34,7 @@ export const dataSource = [
     tags: ['cool', 'teacher'],
     switch: false,
     textarea: '3345678',
+    checkbox: [],
   },
 ];
 

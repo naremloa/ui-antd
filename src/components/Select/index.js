@@ -1,3 +1,6 @@
 import FeSelect from './src/index.vue';
 
-export { FeSelect };
+const install = (Vue) => {
+  Vue.component('FeSelect', FeSelect);
+};
+export default install;

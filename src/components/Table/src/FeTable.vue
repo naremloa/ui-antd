@@ -1,8 +1,6 @@
 <script>
 import { Table as ATable } from 'ant-design-vue';
-import { FeCard } from '@/components/Card';
 import { isObject, isFunction, cloneDeep } from '@/utils/lodash';
-import FeCusColumn from './FeCusColumn.vue';
 
 const { Column: ATableColumn } = ATable;
 
@@ -11,8 +9,6 @@ export default {
   components: {
     ATable,
     ATableColumn,
-    FeCusColumn,
-    FeCard,
   },
   props: {
     tableError: {

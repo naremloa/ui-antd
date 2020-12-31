@@ -2,6 +2,10 @@
 export default {
   name: 'FeColumnCheckbox',
   props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
     idx: {
       type: Number,
       required: true,
@@ -17,8 +21,13 @@ export default {
   },
   data() {
     return {
-      value: [],
+      value: this.data,
     };
+  },
+  watch: {
+    data(newVal) {
+      this.value = newVal;
+    },
   },
   render(h) {
     return h(

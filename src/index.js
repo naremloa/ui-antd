@@ -12,19 +12,19 @@ import * as Row from './components/Row';
 import * as Col from './components/Col';
 import * as Breadcrumb from './components/Breadcrumb';
 import SearchGroup from './components/SearchGroup';
-import * as Card from './components/Card';
+import Card from './components/Card';
 import * as Radio from './components/Radio';
 import * as DatePicker from './components/DatePicker';
-import * as Input from './components/Input';
+import Input from './components/Input';
 import * as InputList from './components/InputList';
 import * as InputNumber from './components/InputNumber';
-import * as Textarea from './components/Textarea';
+import Textarea from './components/Textarea';
 import Form from './components/Form';
-import * as Select from './components/Select';
+import Select from './components/Select';
 import Checkbox from './components/Checkbox';
-import * as Table from './components/Table';
+import Table from './components/Table';
 import * as Tag from './components/Tag';
-import * as Switch from './components/Switch';
+import Switch from './components/Switch';
 import * as Collapse from './components/Collapse';
 import Modal from './components/Modal';
 import * as UploadButton from './components/UploadButton';
@@ -41,17 +41,12 @@ const components = {
   ...Row,
   ...Col,
   ...Breadcrumb,
-  ...Card,
   ...Radio,
   ...DatePicker,
   ...Input,
   ...InputList,
   ...InputNumber,
-  ...Textarea,
-  ...Select,
-  ...Table,
   ...Tag,
-  ...Switch,
   ...Collapse,
   ...UploadButton,
   ...Upload,
@@ -71,6 +66,12 @@ const install = (Vue) => {
   Vue.use(Form);
   Vue.use(SearchGroup);
   Vue.use(Checkbox);
+  Vue.use(Table);
+  Vue.use(Card);
+  Vue.use(Input);
+  Vue.use(Select);
+  Vue.use(Switch);
+  Vue.use(Textarea);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};
