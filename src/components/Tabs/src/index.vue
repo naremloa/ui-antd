@@ -1,8 +1,8 @@
 <template>
   <a-tabs @change="handleChange">
     <a-tab-pane
-      v-for="(tab,i) in tabsArray"
-      :key="i"
+      v-for="(tab, i) in tabsArray"
+      :key="tab.key ? tab.key : i"
       :tab="tab.label">
       <slot :name="tab.content" />
     </a-tab-pane>
