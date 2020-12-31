@@ -34,7 +34,7 @@ export default {
       if (hasLoading) this.loading = true;
       await Promise.resolve(this.$listeners.click(...params));
       this.loading = false;
-      if (hasLoading) this.$refs.Button?.$el.blur();
+      this.$refs.Button?.$el.blur();
     },
   },
 };
