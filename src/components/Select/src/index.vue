@@ -1,5 +1,6 @@
 <script>
 import { Select } from 'ant-design-vue';
+import { isFunction, isArray } from '@/utils/lodash';
 
 const { Option } = Select;
 
@@ -9,12 +10,28 @@ export default {
   model: { prop: 'value', event: 'change' },
   props: {
     options: {
-      type: Array,
+      type: [Array, Promise, Function],
       default: () => [],
     },
     value: {
       type: [Array, String, Number, undefined],
       default: undefined,
+    },
+  },
+  data() {
+    return {
+      localOptions: [],
+    };
+  },
+  watch: {
+    options: {
+      async handler(val) {
+        const res = isFunction(val)
+          ? await val()
+          : await Promise.resolve(val);
+        if (isArray(res)) this.localOptions = res;
+      },
+      immediate: true,
     },
   },
   render(h) {
@@ -33,7 +50,7 @@ export default {
           },
         },
       },
-      this.options.map(({
+      this.localOptions.map(({
         value,
         label,
         disabled,

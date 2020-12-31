@@ -92,7 +92,11 @@ export default {
           width: 200,
         })(ftSelect({
           defaultValue: { value: 1, label: 'A1' }.label,
-          options: [{ value: 1, label: 'A1' }, { value: 2, label: 'A2' }],
+          options: () => new Promise((res) => {
+            setTimeout(() => {
+              res([{ value: 1, label: 'A1' }, { value: 2, label: 'A2' }]);
+            }, 5000);
+          }),
           change: (row) => {
             console.log('YO', row);
           },
