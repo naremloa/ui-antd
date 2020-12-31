@@ -1,4 +1,5 @@
 import 'ant-design-vue/dist/antd.css';
+import './styles/index.scss';
 import Button from './components/Button';
 import * as Avatar from './components/Avatar';
 import * as Tooltip from './components/Tooltip';

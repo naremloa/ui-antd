@@ -22,6 +22,7 @@ export default {
           // rules: [{ required: true, message: '必填 ', trigger: 'change' }],
         }),
         fsSelect({
+          hide: true,
           prop: 'selectValue',
           label: '測試 select',
           options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],

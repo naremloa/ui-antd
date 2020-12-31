@@ -7,12 +7,14 @@ import {
 //   return null;
 // };
 
-export const fsInput = ffInput;
+const fsItem = ({ hide = true, ...rest } = {}) => ({ ...rest, hide });
 
-export const fsSelect = ffSelect;
+export const fsInput = (...params) => fsItem(ffInput(...params));
 
-export const fsInputNumber = ffInputNumber;
+export const fsSelect = (...params) => fsItem(ffSelect(...params));
 
-export const fsCheckbox = ffCheckbox;
+export const fsInputNumber = (...params) => fsItem(ffInputNumber(...params));
 
-export const fsDatePicker = ffDatePicker;
+export const fsCheckbox = (...params) => fsItem(ffCheckbox(...params));
+
+export const fsDatePicker = (...params) => fsItem(ffDatePicker(...params));

@@ -1,5 +1,21 @@
 <template>
   <div class="fe-search-group">
+    <fe-row
+      type="flex"
+      justify="end">
+      <fe-button
+        type="link"
+        @click="handleCollpase">
+        <template v-if="collapse">
+          <fe-icon type="down" />
+          展开
+        </template>
+        <template v-else>
+          <fe-icon type="up" />
+          收合
+        </template>
+      </fe-button>
+    </fe-row>
     <fe-card>
       <fe-form
         ref="Form"
@@ -40,23 +56,36 @@
               v-model="form[item.prop]"
               v-bind="item" />
           </fe-row>
-          <fe-row
-            type="flex"
-            justify="end">
-            <fe-col>
-              <fe-button @click="handleReset">
-                清除條件
-              </fe-button>
-            </fe-col>
-            <fe-col>
-              <fe-button
-                type="primary"
-                :has-loading="true"
-                @click="validate">
-                搜索
-              </fe-button>
-            </fe-col>
-          </fe-row>
+          <transition name="bounce">
+            <fe-row v-show="!collapse">
+              <fe-row>
+                <fe-row>
+                  <fe-form-item-setting
+                    v-for="(item, iIdx) in localHideFormList"
+                    :key="`${item.prop || 0} - ${iIdx}`"
+                    v-model="form[item.prop]"
+                    v-bind="item" />
+                </fe-row>
+                <fe-row
+                  type="flex"
+                  justify="end">
+                  <fe-col>
+                    <fe-button @click="handleReset">
+                      清除條件
+                    </fe-button>
+                  </fe-col>
+                  <fe-col>
+                    <fe-button
+                      type="primary"
+                      :has-loading="true"
+                      @click="validate">
+                      搜索
+                    </fe-button>
+                  </fe-col>
+                </fe-row>
+              </fe-row>
+            </fe-row>
+          </transition>
         </fe-row>
       </fe-form>
     </fe-card>
@@ -106,7 +135,9 @@ export default {
   },
   data() {
     return {
+      collapse: false,
       localFormList: [],
+      localHideFormList: [],
       form: {},
       // checkboxOptions: [
       //   { label: 'Apple', value: 'Apple' },
@@ -130,9 +161,17 @@ export default {
         Promise.resolve(newVal).then((list) => {
           if (!isArray(list) || list.length === 0) {
             this.localFormList.splice(0);
+            this.localHideFormList.splice(0);
             return;
           }
-          this.localFormList = cloneDeep(list);
+          const [fList, hfList] = cloneDeep(list).reduce((acc, cur) => {
+            const [formList, hideFormList] = acc;
+            if (cur.hide) hideFormList.push(cur);
+            else formList.push(cur);
+            return [formList, hideFormList];
+          }, [[], []]);
+          this.localFormList = fList;
+          this.localHideFormList = hfList;
           this.form = this.handleFormInit(cloneDeep(this.form), list);
         });
       },
@@ -147,6 +186,9 @@ export default {
     },
   },
   methods: {
+    handleCollpase() {
+      this.collapse = !this.collapse;
+    },
     handleFormInit(form, formList) {
       formList.forEach((item) => {
         if (item?.prop) {

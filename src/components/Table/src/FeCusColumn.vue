@@ -25,7 +25,9 @@ export default {
       ? this.cusColumns.map(({ columnType, ...rest }) => h(
         columnType,
         {
-          props: { ...this.$attrs, ...rest, dataIndex: this.dataIndex },
+          props: {
+            ...this.$attrs, ...rest, dataIndex: this.dataIndex, rowData: this.rowData,
+          },
           attrs: rest,
           on: {
             'update:date-source': (value) => {
