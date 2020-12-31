@@ -188,6 +188,7 @@ export default {
       other: '',
       form: {
         name: '',
+        a1: '',
         age: 1,
         region: undefined,
         regions: [2],
@@ -311,7 +312,7 @@ export default {
           label: 'fe-switch',
         }),
         {
-          prop: 'name',
+          prop: 'a1',
           label: 'text',
           formType: (h, { value }) => `測試, 這邊會跟 fe-input 的值更新: ${value}`,
         },
@@ -334,6 +335,7 @@ export default {
           label: 'fe-upload',
           formTypeProps: {
             listType: 'text',
+            length: 3,
           },
         }),
       ],
