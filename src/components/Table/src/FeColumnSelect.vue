@@ -4,7 +4,6 @@
     class="fe-column-select"
     :disabled="disabled"
     :show-arrow="showArrow"
-    :options="options"
     v-bind="$attrs"
     @change="handleChange($event, rowData)" />
 </template>
@@ -17,10 +16,6 @@ export default {
     rowData: {
       type: Object,
       default: () => ({}),
-    },
-    options: {
-      type: Array,
-      default: () => [],
     },
     defaultValue: {
       type: [Array, String, Number],

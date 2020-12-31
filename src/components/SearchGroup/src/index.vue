@@ -63,7 +63,6 @@
   </div>
 </template>
 <script>
-import { FeCard } from '@/components/Card';
 import { FeRadioButton, FeRadioGroup } from '@/components/Radio';
 import {
   isArray, cloneDeep, has, isNil, forOwn, isFunction,
@@ -74,7 +73,7 @@ import { notification } from 'ant-design-vue';
 export default {
   name: 'FeSearchGroup',
   components: {
-    FeCard, FeRadioButton, FeRadioGroup,
+    FeRadioButton, FeRadioGroup,
   },
   props: {
     search: {
