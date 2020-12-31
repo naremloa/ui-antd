@@ -220,7 +220,7 @@ export default {
       this.$emit('reset');
     },
     handleFormOutput(form) {
-      const outputForm = cloneDeep(form);
+      const outputForm = cloneDeep(form || this.form);
       if (isFunction(this.formatOutput)) return this.formatOutput(outputForm);
       forOwn(outputForm, (value, key) => {
         if (value === '' || value === -1) outputForm[key] = null;
