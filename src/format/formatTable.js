@@ -22,7 +22,7 @@ export const ftText = ({
   slotComponent,
   columnsStyle,
   align: 'center',
-  columnType: 'text',
+  columnType: 'fe-column-text',
 });
 
 export const ftButton = ({
