@@ -300,7 +300,11 @@ export default {
         ffSelect({
           prop: 'regions',
           label: 'fe-select',
-          options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
+          options: () => new Promise((res) => {
+            setTimeout(() => {
+              res([{ value: 1, label: 'A1' }, { value: 2, label: 'A2' }]);
+            }, 5000);
+          }),
         }),
         ffCheckbox({
           prop: 'type',

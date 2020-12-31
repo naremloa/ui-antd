@@ -41,6 +41,7 @@ export default {
         class: 'fe-select',
         props: {
           ...this.$attrs,
+          options: this.localOptions,
           value: this.value,
         },
         on: {
