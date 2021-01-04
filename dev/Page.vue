@@ -82,6 +82,12 @@
 
     <fe-export-data-btn
       :btn-text="'導出excel數據'" />
+    <fe-button @click="handleNotify">
+      Notify
+    </fe-button>
+    <fe-button @click="handleModalDirec">
+      Modal
+    </fe-button>
   </div>
 </template>
 <script>
@@ -144,6 +150,19 @@ export default {
     },
     clickFuncA(e) {
       console.log('e--', e);
+    },
+    handleNotify() {
+      this.$notify({
+        title: '通知',
+        message: '通知内容',
+      });
+    },
+    handleModalDirec() {
+      this.$modal({
+        title: '通知',
+        message: '通知内容',
+        type: 'error',
+      });
     },
   },
 };

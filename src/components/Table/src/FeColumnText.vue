@@ -16,8 +16,9 @@ import { isFunction, isObject } from '@/utils/lodash';
 export default {
   name: 'FeColumnText',
   props: {
+    // any type
+    /* eslint-disable vue/require-prop-types */
     data: {
-      type: [String, Number, Object, Boolean],
       default: '',
     },
     rowData: {

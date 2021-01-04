@@ -2,6 +2,7 @@
   <div class="table">
     <fe-table
       ref="formTable"
+      :loading="tableLoading"
       :form="true"
       :table-error="true"
       :columns="columns"
@@ -26,8 +27,9 @@ export default {
       ftPagination, ftInput, ftCheckbox,
     } = this.$format;
     return {
+      tableLoading: false,
       pagination: ftPagination({ total: 500 }),
-      dataSource,
+      dataSource: [],
       columns: [
         // ftColumn({
         //   dataIndex: 'age',
@@ -112,6 +114,12 @@ export default {
         })),
       ],
     };
+  },
+  async mounted() {
+    this.tableLoading = true;
+    await new Promise((res) => setTimeout(() => res(), 500));
+    this.dataSource = dataSource;
+    this.tableLoading = false;
   },
   methods: {
     handleChange({ current, pageSize }) {
