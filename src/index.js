@@ -31,6 +31,7 @@ import Modal from './components/Modal';
 import * as UploadButton from './components/UploadButton';
 import * as Upload from './components/Upload';
 import * as Text from './components/Text';
+import Notify from './components/Notify';
 import format from './format';
 
 const components = {
@@ -73,6 +74,7 @@ const install = (Vue) => {
   Vue.use(Switch);
   Vue.use(Textarea);
   Vue.use(Radio);
+  Vue.use(Notify);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

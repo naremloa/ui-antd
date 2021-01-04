@@ -17,7 +17,7 @@ export default {
     },
     rowData: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
   },
   render(h) {
