@@ -139,3 +139,20 @@ export const ffUpload = ({
   formType: 'fe-upload',
   formTypeEvent: 'change',
 });
+
+export const ffRadio = ({
+  prop = '',
+  label = '',
+  options = [],
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-radio-group',
+  formTypeProps: {
+    ...rest.formTypeProps,
+    options,
+  },
+  formTypeEvent: 'change',
+});
