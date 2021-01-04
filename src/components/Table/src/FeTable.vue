@@ -34,7 +34,7 @@ export default {
     },
     pagination: {
       type: Object,
-      default: () => ({ current: 1, pageSize: 10, total: 0 }),
+      default: () => ({ current: 1, pageSize: 30, total: 0 }),
     },
   },
   data() {
@@ -82,11 +82,12 @@ export default {
           pagination: {
             showSizeChanger: true,
             showQuickJumper: true,
-            // locale: {
-            //   items_per_page: '条/页',
-            //   jump_to: '跳至',
-            //   page: '页',
-            // },
+            locale: {
+              items_per_page: '条/页',
+              jump_to: '跳至',
+              page: '页',
+            },
+            pageSizeOptions: ['30', '50', '100', '150', '200'],
             ...this.pagination,
           },
           bordered: true,
