@@ -11,7 +11,7 @@ export const fButton = ({
 
 export const fPagination = ({
   current = 1,
-  pageSize = 10,
+  pageSize = 30,
   total = 0,
 } = {}) => ({
   current,
