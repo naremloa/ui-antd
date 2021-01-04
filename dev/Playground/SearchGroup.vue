@@ -2,6 +2,7 @@
   <div class="search-group">
     <fe-search-group
       :form-list="formList"
+      :form-init="{ selectValue: 1 }"
       :search="handleSearch"
       :date-shortcut="'date'" />
   </div>
@@ -16,10 +17,11 @@ export default {
         fsInput({
           prop: 'inputValue',
           label: '測試',
+          default: '22',
           formTypeProps: {
             placeholder: '3345667',
           },
-          // rules: [{ required: true, message: '必填 ', trigger: 'change' }],
+          rules: [{ required: true, message: '必填 ', trigger: 'change' }],
         }),
         fsSelect({
           hide: true,

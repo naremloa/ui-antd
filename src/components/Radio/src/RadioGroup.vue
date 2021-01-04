@@ -28,6 +28,7 @@ export default {
       'a-radio-group',
       {
         props: {
+          ...this.$attrs,
           options: this.options,
           value: this.value,
         },
@@ -41,6 +42,7 @@ export default {
           },
         },
       },
+      this.$slots.default,
     );
   },
 };

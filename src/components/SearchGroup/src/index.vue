@@ -135,6 +135,7 @@ export default {
       localFormList: [],
       localHideFormList: [],
       form: {},
+      formDefault: {},
       // checkboxOptions: [
       //   { label: 'Apple', value: 'Apple' },
       //   { label: 'Pear', value: 'Pear' },
@@ -186,6 +187,7 @@ export default {
       this.collapse = !this.collapse;
     },
     handleFormInit(form, formList) {
+      const formDefault = {};
       formList.forEach((item) => {
         if (item?.prop) {
           const { prop, default: defaultValue = null } = item;
@@ -194,20 +196,24 @@ export default {
               ? this.formInit[prop]
               : defaultValue;
           }
+          formDefault[prop] = defaultValue;
         }
       });
       if (has(form, this.dateShortcut) && !has(this.formInitValue, this.dateShortcut)) {
         this.dateShortcutTime = getLatestDayTimeByNow(this.dateShortcutValue);
       }
+      this.formDefault = formDefault;
       return form;
     },
     handleReset() {
-      forOwn(this.form, (value, key) => {
-        if (isArray(this.form[key])) {
-          this.form[key] = [];
-        } else this.form[key] = null;
-        this.$refs.Form.clearValidate();
-      });
+      // forOwn(this.form, (value, key) => {
+      //   if (isArray(this.form[key])) {
+      //     this.form[key] = [];
+      //   } else this.form[key] = null;
+      //   this.$refs.Form.clearValidate();
+      // });
+      this.form = cloneDeep(this.formDefault);
+      this.$refs.Form.clearValidate();
       // 处理 日期热键的初始化问题
       if (this.dateShortcutDefault) {
         this.dateShortcutValue = this.dateShortcutDefault;
