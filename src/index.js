@@ -14,7 +14,7 @@ import * as Col from './components/Col';
 import * as Breadcrumb from './components/Breadcrumb';
 import SearchGroup from './components/SearchGroup';
 import Card from './components/Card';
-import * as Radio from './components/Radio';
+import Radio from './components/Radio';
 import * as DatePicker from './components/DatePicker';
 import Input from './components/Input';
 import * as InputList from './components/InputList';
@@ -42,7 +42,6 @@ const components = {
   ...Row,
   ...Col,
   ...Breadcrumb,
-  ...Radio,
   ...DatePicker,
   ...Input,
   ...InputList,
@@ -73,6 +72,7 @@ const install = (Vue) => {
   Vue.use(Select);
   Vue.use(Switch);
   Vue.use(Textarea);
+  Vue.use(Radio);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

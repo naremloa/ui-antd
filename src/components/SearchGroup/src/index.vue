@@ -92,7 +92,6 @@
   </div>
 </template>
 <script>
-import { FeRadioButton, FeRadioGroup } from '@/components/Radio';
 import {
   isArray, cloneDeep, has, isNil, forOwn, isFunction,
 } from '@/utils/lodash';
@@ -101,9 +100,6 @@ import { notification } from 'ant-design-vue';
 
 export default {
   name: 'FeSearchGroup',
-  components: {
-    FeRadioButton, FeRadioGroup,
-  },
   props: {
     search: {
       type: Function,

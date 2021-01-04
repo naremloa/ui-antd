@@ -183,6 +183,7 @@ export default {
       ffUpload,
       ffTextarea,
       ffText,
+      ffRadio,
     } = this.$format;
     return {
       other: '',
@@ -234,6 +235,7 @@ export default {
           response: 'Server Error 500', // custom error message to show
           url: 'http://www.baidu.com/zzz.png',
         }],
+        radio: 2,
       },
       rules: {
         name: [
@@ -341,6 +343,16 @@ export default {
             listType: 'text',
             length: 3,
           },
+        }),
+        ffRadio({
+          prop: 'radio',
+          label: 'fe-radio',
+          options: [
+            { label: '我是1', value: 1 },
+            { label: '我是2', value: 2 },
+            { label: '我是3', value: 3 },
+            { label: '我是4', value: 4 },
+          ],
         }),
       ],
     };

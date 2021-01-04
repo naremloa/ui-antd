@@ -1,11 +1,10 @@
 <script>
 import { Checkbox } from 'ant-design-vue';
-import FeCheckboxAll from './CheckboxAll.vue';
 
 const { Group: ACheckboxGroup } = Checkbox;
 export default {
   name: 'FeCheckboxGroup',
-  components: { ACheckboxGroup, FeCheckboxAll },
+  components: { ACheckboxGroup },
   inheritAttrs: false,
   model: { prop: 'value', event: 'change' },
   props: {
@@ -16,10 +15,6 @@ export default {
     options: {
       type: Array,
       default: () => [],
-    },
-    hasAll: {
-      type: Boolean,
-      default: true,
     },
   },
   render(h) {

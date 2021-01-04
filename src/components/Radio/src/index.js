@@ -1,7 +1,7 @@
 import { Radio } from 'ant-design-vue';
+import FeRadioGroup from './RadioGroup.vue';
 
 const {
-  Group: FeRadioGroup,
   Button: FeRadioButton,
 } = Radio;
 const FeRadio = Radio;
