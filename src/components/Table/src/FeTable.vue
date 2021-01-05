@@ -75,6 +75,8 @@ export default {
       'a-table',
       {
         props: {
+          tableLayout: 'auto',
+          scroll: { x: 'max-content', y: 'max-content' },
           ...this.$attrs,
           rowKey: this.rowKey,
           columns: undefined,

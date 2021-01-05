@@ -48,6 +48,7 @@ export default {
         class: 'fe-select',
         props: {
           ...restAttrs,
+          loading: this.loading,
           value: this.value,
         },
         on: {

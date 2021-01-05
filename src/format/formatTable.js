@@ -58,6 +58,7 @@ export const ftColumn = ({
   title = '',
   // String, Object, Function
   header = null,
+  width = 100,
   ...rest
 } = {}) => (...cusColumns) => {
   if (cusColumns.length === 0) cusColumns = [ftText()];
@@ -65,6 +66,7 @@ export const ftColumn = ({
     dataIndex,
     title,
     header,
+    width,
     ...rest,
     cusColumns,
   });
