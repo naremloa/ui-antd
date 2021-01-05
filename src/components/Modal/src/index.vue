@@ -66,7 +66,10 @@ export default {
                 data: this.data,
               },
               on: {
-                close: (status) => { this.$emit('close', status); },
+                close: (status) => {
+                  this.$emit('change', false);
+                  this.$emit('close', status);
+                },
               },
             },
           )
