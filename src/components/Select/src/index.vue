@@ -10,6 +10,7 @@ const { Option: ASelectOption } = ASelect;
 export default {
   name: 'FeSelect',
   components: { ASelect, ASelectOption, ASpin },
+  inheritAttrs: false,
   model: { prop: 'value', event: 'change' },
   props: {
     options: {

@@ -21,8 +21,8 @@
         ref="Form"
         :model="form"
         layout="inline"
-        :label-col="{ span: '10' }"
-        :wrapper-col="{ span: '14' }">
+        :label-col="undefined"
+        :wrapper-col="undefined">
         <fe-row>
           <template v-if="dateShortcut">
             <fe-row type="flex">
