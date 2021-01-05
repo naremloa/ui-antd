@@ -1,12 +1,15 @@
 <script>
-import { Select } from 'ant-design-vue';
+import {
+  Select as ASelect,
+  Spin as ASpin,
+} from 'ant-design-vue';
 import { isFunction, isArray } from '@/utils/lodash';
 
-const { Option } = Select;
+const { Option: ASelectOption } = ASelect;
 
 export default {
   name: 'FeSelect',
-  components: { Select, Option },
+  components: { ASelect, ASelectOption, ASpin },
   model: { prop: 'value', event: 'change' },
   props: {
     options: {
@@ -21,27 +24,30 @@ export default {
   data() {
     return {
       localOptions: [],
+      loading: false,
     };
   },
   watch: {
     options: {
       async handler(val) {
+        this.loading = true;
         const res = isFunction(val)
           ? await val()
           : await Promise.resolve(val);
+        this.loading = false;
         if (isArray(res)) this.localOptions = res;
       },
       immediate: true,
     },
   },
   render(h) {
+    const { options, ...restAttrs } = this.$attrs;
     return h(
-      'Select',
+      'a-select',
       {
         class: 'fe-select',
         props: {
-          ...this.$attrs,
-          options: this.localOptions,
+          ...restAttrs,
           value: this.value,
         },
         on: {
@@ -51,24 +57,36 @@ export default {
           },
         },
       },
-      this.localOptions.map(({
-        value,
-        label,
-        disabled,
-        class: className,
-      }) => h(
-        'Option',
-        {
-          props: {
-            key: value,
+      [
+        this.loading
+          ? h(
+            'div',
+            {
+              style: { margin: '5px', display: 'flex', justifyContent: 'center' },
+              slot: 'dropdownRender',
+            },
+            [h('a-spin')],
+          )
+          : this.localOptions.map(({
             value,
+            label,
             disabled,
-            title: label,
             class: className,
-          },
-        },
-        label,
-      )),
+          }) => h(
+            'a-select-option',
+            {
+              props: {
+                value,
+                disabled,
+                title: label,
+                class: className,
+              },
+              key: value,
+            },
+            label,
+          )),
+      ],
+
     );
   },
 };
