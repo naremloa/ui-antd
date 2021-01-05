@@ -7,7 +7,7 @@ import {
 //   return null;
 // };
 
-const fsItem = ({ hide = true, ...rest } = {}) => ({ ...rest, hide });
+const fsItem = ({ hide = false, ...rest } = {}) => ({ ...rest, hide });
 
 export const fsInput = (...params) => fsItem(ffInput(...params));
 

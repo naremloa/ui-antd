@@ -56,7 +56,7 @@
               v-model="form[item.prop]"
               v-bind="item" />
           </fe-row>
-          <transition name="bounce">
+          <transition-collapse>
             <fe-row v-show="!collapse">
               <fe-row>
                 <fe-row>
@@ -85,7 +85,7 @@
                 </fe-row>
               </fe-row>
             </fe-row>
-          </transition>
+          </transition-collapse>
         </fe-row>
       </fe-form>
     </fe-card>
@@ -97,9 +97,11 @@ import {
 } from '@/utils/lodash';
 import { getLatestDayTimeByNow } from '@/utils/tool';
 import { notification } from 'ant-design-vue';
+import TransitionCollapse from './TransitionCollapse.vue';
 
 export default {
   name: 'FeSearchGroup',
+  components: { TransitionCollapse },
   props: {
     search: {
       type: Function,
