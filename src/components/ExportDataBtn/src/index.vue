@@ -24,10 +24,6 @@ export default {
       type: Function,
       default: null,
     },
-    params: { // 下載excel函式的參數
-      type: Object,
-      default: () => ({}),
-    },
     noData: {
       type: Boolean,
       default: false,
@@ -55,17 +51,19 @@ export default {
 
   methods: {
     // Remove fields with empty value
-    getDownloadParams() {
+    async getDownloadParams() {
+      if (!isFunction(this.downloadApiFunc)) {
+        console.error('downloadApiFunc is not function');
+        return {};
+      }
+      const tempParams = await this.downloadApiFunc();
       // eslint-disable-next-line no-restricted-syntax
-      for (const [key, val] of Object.entries(this.params)) {
+      for (const [key, val] of Object.entries(tempParams)) {
         if (val === '') {
-          delete this.params[key];
+          delete tempParams[key];
         }
       }
-      if (isFunction(this.downloadApiFunc)) {
-        return this.downloadApiFunc(...this.params);
-      }
-      return { ...this.downloadParams };
+      return tempParams;
     },
     // 設定下載檔案的檔名
     setDownloadFileName(res) {
@@ -86,28 +84,24 @@ export default {
     async handleDownload() {
       // Getting parameters needed in downloading
       this.loading = true;
-      this.downloadParams = await this.getDownloadParams();
+      const res = await this.getDownloadParams();
       this.loading = false;
 
       // Start downloading
-      try {
-        // Parse download file name in response
-        this.setDownloadFileName(this.downloadParams);
+      // Parse download file name in response
+      this.setDownloadFileName(res);
 
-        // Create download link
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(
-          new Blob([this.downloadParams.data]),
-        );
-        link.setAttribute('download', this.downloadFileName);
-        document.body.appendChild(link);
-        link.click();
+      // Create download link
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(
+        new Blob([res.data]),
+      );
+      link.setAttribute('download', this.downloadFileName);
+      document.body.appendChild(link);
+      link.click();
 
-        // Trigger closing modal if needed
-        this.$emit(this.emitEventName);
-      } catch (e) {
-        console.log('e', e);
-      }
+      // Trigger closing modal if needed
+      this.$emit(this.emitEventName);
     },
   },
 
