@@ -31,7 +31,7 @@ const notify = () => {
           : undefined,
         description: message,
       });
-    }, 1000);
+    }, 200);
   };
 };
 
