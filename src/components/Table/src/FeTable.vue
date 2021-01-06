@@ -97,7 +97,16 @@ export default {
             emptyText: this.tableError ? '资料载入失败，请重新尝试' : '无符合条件之资料',
           },
         },
-        on: this.$listeners,
+        on: {
+          ...this.$listeners,
+          change: ({ current, pageSize, total }) => {
+            const pagination = {
+              ...this.pagination, current, pageSize, total,
+            };
+            this.$emit('update:pagination', pagination);
+            this.$emit('change', pagination);
+          },
+        },
         scopedSlots: this.$scopedSlots,
       },
       this.columns.map(({

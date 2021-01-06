@@ -7,7 +7,7 @@
       :table-error="true"
       :columns="columns"
       :data-source="dataSource"
-      :pagination="pagination"
+      :pagination.sync="pagination"
       :scroll="{ x: 400 }"
       @change="handleChange" />
     <fe-button @click="formSubmit">
@@ -123,11 +123,12 @@ export default {
   },
   methods: {
     handleChange({ current, pageSize }) {
-      this.pagination = {
-        ...this.pagination,
-        current,
-        pageSize,
-      };
+      console.log('handle change');
+      // this.pagination = {
+      //   ...this.pagination,
+      //   current,
+      //   pageSize,
+      // };
     },
     async formSubmit() {
       const res = await this.$refs.formTable.submit();
