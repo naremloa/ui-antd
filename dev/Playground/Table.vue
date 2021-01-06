@@ -85,8 +85,7 @@ export default {
           beforeChange: (value, { data, rowData }) => {
             const idx = this.dataSource.indexOf(rowData);
             this.dataSource[idx].switch = !data;
-          }
-          ,
+          },
         })),
         ftColumn({
           dataIndex: 'select',

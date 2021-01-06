@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     handleChange(value) {
+      this.value = value;
       this.$emit('update:date-source', value);
     },
   },
