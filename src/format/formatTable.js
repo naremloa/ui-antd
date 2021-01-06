@@ -42,13 +42,14 @@ export const ftButton = ({
 
 export const ftDate = ({
   dataIndex = '',
+  unix = false,
   ...rest
 } = {}) => ftText({
   ...rest,
   format: (data, rowData) => {
     const date = dataIndex ? rowData[dataIndex] : data;
     if (!date) return '-';
-    return dayjs(date).format('YYYY-MM-DD HH:mm:ss');
+    return (unix ? dayjs.unix(date) : dayjs(date)).format('YYYY-MM-DD HH:mm:ss');
   },
 });
 
