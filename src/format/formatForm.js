@@ -7,7 +7,7 @@ export const ffInput = ({
   prop,
   label,
   formType: 'fe-input',
-  formTypeEvent: 'change.value',
+  formTypeEvent: 'change',
 });
 export const ffInputNumber = ({
   prop = '',
@@ -35,7 +35,6 @@ export const ffText = ({
     format,
     ...rest.formTypeProps,
   },
-  // formTypeEvent: 'change.value',
 });
 export const ffTextarea = ({
   prop = '',

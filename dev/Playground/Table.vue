@@ -59,6 +59,8 @@ export default {
           // width: 100,
         })(
           ftInput({
+            disabled: (rowData) => !rowData.switch,
+            type: 'inputNumber',
             rules: [{ required: true, message: 'required', trigger: 'change' }],
           }),
         ),

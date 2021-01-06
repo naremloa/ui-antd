@@ -1,4 +1,6 @@
 <script>
+import { isBoolean, isFunction } from '@/utils/lodash';
+
 export default {
   name: 'FeColumnInput',
   props: {
@@ -18,11 +20,27 @@ export default {
       type: Array,
       default: () => [],
     },
+    rowData: {
+      type: Object,
+      default: () => ({}),
+    },
+    disabled: {
+      type: [Boolean, Function],
+      default: false,
+    },
   },
   data() {
     return {
       value: this.data,
     };
+  },
+  computed: {
+    isDisabled() {
+      const { disabled, rowData } = this;
+      if (isBoolean(disabled)) return disabled;
+      if (isFunction(disabled)) return disabled(rowData);
+      return false;
+    },
   },
   watch: {
     data(newVal) {
@@ -52,8 +70,13 @@ export default {
           props: {
             ...this.$attrs,
             value: this.value,
+            disabled: this.isDisabled,
           },
-          on: { 'change.value': this.handleChange },
+          attrs: {
+            ...this.$attrs,
+            disabled: this.isDisabled,
+          },
+          on: { change: this.handleChange },
         },
       )],
     );
