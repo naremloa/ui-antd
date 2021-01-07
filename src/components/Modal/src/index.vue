@@ -28,6 +28,10 @@ export default {
       type: [Object, Array, Boolean, String, Number],
       default: null,
     },
+    // title: {
+    //   type: String,
+    //   default: () => '給個title吧!',
+    // },
   },
   computed: {
     modalWidth() {
@@ -51,12 +55,14 @@ export default {
           width: this.modalWidth,
           visible: this.visible,
           footer: null,
+
         },
         on: {
           ...this.$listeners,
         },
       },
       [
+
         this.template
           ? h(
             this.template,
@@ -64,6 +70,7 @@ export default {
               props: {
                 visible: this.visible,
                 data: this.data,
+
               },
               on: {
                 close: (status) => {

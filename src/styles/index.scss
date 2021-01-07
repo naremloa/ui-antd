@@ -125,3 +125,10 @@
   }
 }
 // 覆寫 ant-design tabs --- end
+
+// 覆寫 ant-design modal --- end
+.ant-modal-body {
+  box-sizing: border-box;
+  padding: 40px;
+}
+// 覆寫 ant-design modal --- end
