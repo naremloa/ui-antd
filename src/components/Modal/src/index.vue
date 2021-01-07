@@ -9,11 +9,6 @@ export default {
     width: {
       type: String,
       default: 'small',
-      /** 只能傳進來下面幾種類型的寬度
-       * small: width: 80%, max-width: 480px;
-       * middle: width: 100%, max-width: 720px;
-       * large: width: 100%, max-width: 1200px;
-       */
       validator: (val) => ['small', 'middle', 'large'].includes(val),
     },
     visible: {
@@ -36,10 +31,10 @@ export default {
   computed: {
     modalWidth() {
       const styleWidth = {
-        // small: { width: ' 80%', 'max-width': '480px' },
+        // small: { width: ' 80%', 'max-width': '520px' },
         // middle: { width: '100%', 'max-width': '720px' },
         // large: { width: '100%', 'max-width': '1200px' },
-        small: 480,
+        small: 520,
         middle: 720,
         large: 1200,
       };
