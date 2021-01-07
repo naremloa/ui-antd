@@ -8,7 +8,7 @@
         @click="handleCollpase">
         <template v-if="collapse">
           <fe-icon type="down" />
-          展开
+          展开篩選
         </template>
         <template v-else>
           <fe-icon type="up" />
@@ -16,17 +16,17 @@
         </template>
       </fe-button>
     </fe-row>
-    <fe-card>
+    <fe-card :body-style="{padding: '12px 20px'}">
       <fe-form
         ref="Form"
         :model="form"
         layout="inline"
-        :label-col="undefined"
-        :wrapper-col="undefined">
+        :label-col="{}"
+        :wrapper-col="{}">
         <fe-row>
           <template v-if="dateShortcut">
-            <fe-row type="flex">
-              <fe-col :flex="1">
+            <fe-row style="margin-bottom: 4px;">
+              <fe-space>
                 <fe-radio-group
                   v-model="dateShortcutValue"
                   button-style="solid">
@@ -37,8 +37,7 @@
                     {{ item.label }}
                   </fe-radio-button>
                 </fe-radio-group>
-              </fe-col>
-              <fe-col :flex="2">
+
                 <fe-range-picker
                   v-model="dateShortcutTime"
                   separator="到"
@@ -46,46 +45,39 @@
                   format="YYYY-MM-DD HH:mm:ss"
                   :placeholder="['開始時間', '結束時間']"
                   value-format="YYYY-MM-DD HH:mm:ss" />
-              </fe-col>
+              </fe-space>
             </fe-row>
           </template>
-          <fe-row>
-            <fe-form-item-setting
-              v-for="(item, iIdx) in localFormList"
-              :key="`${item.prop || 0} - ${iIdx}`"
-              v-model="form[item.prop]"
-              v-bind="item" />
-          </fe-row>
+
+          <fe-form-item-setting
+            v-for="(item, iIdx) in localFormList"
+            :key="`${item.prop || 0} - ${iIdx}`"
+            v-model="form[item.prop]"
+            v-bind="item" />
           <transition-collapse>
             <fe-row v-show="!collapse">
-              <fe-row>
-                <fe-row>
-                  <fe-form-item-setting
-                    v-for="(item, iIdx) in localHideFormList"
-                    :key="`${item.prop || 0} - ${iIdx}`"
-                    v-model="form[item.prop]"
-                    v-bind="item" />
-                </fe-row>
-                <fe-row
-                  type="flex"
-                  justify="end">
-                  <fe-col>
-                    <fe-button @click="handleReset">
-                      清除條件
-                    </fe-button>
-                  </fe-col>
-                  <fe-col>
-                    <fe-button
-                      type="primary"
-                      :has-loading="true"
-                      @click="validate">
-                      搜索
-                    </fe-button>
-                  </fe-col>
-                </fe-row>
-              </fe-row>
+              <fe-form-item-setting
+                v-for="(item, iIdx) in localHideFormList"
+                :key="`${item.prop || 0} - ${iIdx}`"
+                v-model="form[item.prop]"
+                v-bind="item" />
             </fe-row>
           </transition-collapse>
+          <fe-row
+            type="flex"
+            justify="end">
+            <fe-space>
+              <fe-button @click="handleReset">
+                清除條件
+              </fe-button>
+              <fe-button
+                type="primary"
+                :has-loading="true"
+                @click="validate">
+                搜索
+              </fe-button>
+            </fe-space>
+          </fe-row>
         </fe-row>
       </fe-form>
     </fe-card>

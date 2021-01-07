@@ -56,6 +56,33 @@ export default [
             },
             component: () => import('../Page.vue'),
           },
+
+        ],
+      },
+      {
+        path: 'ui',
+        name: 'ui',
+        meta: {
+          title: 'UI Guide',
+        },
+        component: FakeLayout,
+        children: [
+          {
+            path: 'skeleton',
+            name: 'skeleton',
+            meta: {
+              title: '架構',
+            },
+            component: () => import('../Playground/Skeleton.vue'),
+          },
+          {
+            path: 'button',
+            name: 'button',
+            meta: {
+              title: '按鈕',
+            },
+            component: () => import('../Playground/Button.vue'),
+          },
         ],
       },
     ],
