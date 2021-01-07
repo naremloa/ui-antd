@@ -1,5 +1,4 @@
 import 'ant-design-vue/dist/antd.css';
-import './styles/index.scss';
 import Button from './components/Button';
 import * as Avatar from './components/Avatar';
 import * as Tooltip from './components/Tooltip';
@@ -32,9 +31,13 @@ import * as UploadButton from './components/UploadButton';
 import * as Upload from './components/Upload';
 import * as Text from './components/Text';
 import Notify from './components/Notify';
+
+import Space from './components/Space';
 import format from './format';
+import './styles/index.scss';
 
 const components = {
+
   ...Layout,
   ...Avatar,
   ...Dropdown,
@@ -62,6 +65,8 @@ const install = (Vue) => {
     console.log('install', key);
     Vue.component(key, components[key]);
   });
+  Vue.use(Space);
+
   Vue.use(Button);
   Vue.use(Modal);
   Vue.use(Form);

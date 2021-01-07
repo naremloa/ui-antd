@@ -166,7 +166,8 @@ export default {
       'fe-card',
       {
         class: 'fe-table',
-        props: { bodyStyle: { padding: 0 } },
+        props: { bodyStyle: { padding: 0 }, bordered: false },
+
       },
       [
         this.form

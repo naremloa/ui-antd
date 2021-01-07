@@ -39,3 +39,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.ant-menu-inline {
+  border-right: 0px;
+}
+</style>
