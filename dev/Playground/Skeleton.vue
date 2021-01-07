@@ -20,6 +20,14 @@
       :pagination.sync="pagination"
       :scroll="{ x: 400 }"
       @change="handleChange" />
+
+    <fe-modal
+      v-model="visible"
+      width="small"
+      :data="{}"
+      :template="template"
+      @close="closeModal" />
+
     <fe-button @click="formSubmit">
       表單表格提交
     </fe-button>
@@ -27,10 +35,12 @@
 </template>
 
 <script>
-import { dataSource } from './dataSource.js';
+import { dataSource } from './dataSource';
+import testModal from './TestModal.vue';
 
 export default {
   name: 'Button',
+
   data() {
     const {
       fsInput, fsSelect,
@@ -44,8 +54,10 @@ export default {
         { label: 'BTC', content: 'content2' },
       ],
       tableLoading: false,
+      template: testModal,
       pagination: ftPagination({ total: 500 }),
       dataSource: [],
+      visible: false,
       columns: [
         // ftColumn({
         //   dataIndex: 'age',
@@ -91,7 +103,11 @@ export default {
           // width: 200,
           columnsStyle: { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' },
         })(
-          ftButton({ text: '按鈕', disabled: (rowData) => !rowData.switch }),
+          ftButton({
+            text: '按鈕',
+            disabled: (rowData) => !rowData.switch,
+            click: this.openModal,
+          }),
           // ftButton({ text: '按鈕2' }),
         ),
         ftColumn({
@@ -199,6 +215,12 @@ export default {
     this.tableLoading = false;
   },
   methods: {
+    openModal() {
+      this.visible = true;
+    },
+    closeModal() {
+      this.visible = false;
+    },
     changeTab(tabNumber) {
       console.log(tabNumber);
     },

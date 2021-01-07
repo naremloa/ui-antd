@@ -24,13 +24,12 @@
 </template>
 <script>
 import LayoutMenu from './Menu.vue';
-import { Box as SkBox } from './Skeleton';
 
 export default {
   name: 'Layout',
   components: {
     LayoutMenu,
-    SkBox,
+
   },
   data() {
     return {
