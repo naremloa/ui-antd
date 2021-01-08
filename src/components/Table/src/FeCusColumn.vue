@@ -22,9 +22,10 @@ export default {
   },
   render(h) {
     const displayCusColumns = () => (this.cusColumns.length > 0
-      ? this.cusColumns.map(({ columnType, ...rest }) => h(
+      ? this.cusColumns.map(({ columnType, columnStyle, ...rest }) => h(
         columnType,
         {
+          style: columnStyle,
           props: {
             ...this.$attrs, ...rest, dataIndex: this.dataIndex, rowData: this.rowData,
           },
