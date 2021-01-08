@@ -81,10 +81,7 @@
     </div>
 
     <fe-export-data-btn
-      :is-compressed="true"
-      :download-api-func="handleExportReport"
-      :default-filename="genReportFileName" />
-
+      :btn-text="'導出excel數據'" />
     <fe-button @click="handleNotify">
       Notify
     </fe-button>
@@ -101,25 +98,6 @@ import { Table as ATable } from 'ant-design-vue';
 import { dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
 
-const stringToBinary = (str = '') => {
-  const s = str.toLowerCase();
-  let res = '';
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < s.length; i++) {
-    // for special characters
-    if (s[i].toLowerCase() === s[i].toUpperCase()) {
-      res += s[i];
-      // eslint-disable-next-line no-continue
-      continue;
-    }
-    if (s[i] > 'm') {
-      res += 1;
-    } else {
-      res += 0;
-    }
-  }
-  return res;
-};
 export default {
   name: 'Page',
   components: { ATable },
@@ -157,12 +135,6 @@ export default {
     };
   },
   methods: {
-    async handleExportReport() {
-      return stringToBinary('Hello hahaha');
-    },
-    genReportFileName() {
-      return 'FILE_NAME';
-    },
     handleChange({ current, pageSize }) {
       this.pagination = { ...this.pagination, current, pageSize };
     },
