@@ -25,7 +25,6 @@ export default {
         key = '',
       } = node;
       if (isArray(childNode) && childNode.length) {
-        console.log('submenu', label, key, disabled);
         return h(
           'a-sub-menu',
           { props: { title: label, disabled }, key },

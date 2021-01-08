@@ -222,7 +222,6 @@ export default {
       forOwn(outputForm, (value, key) => {
         if (value === '' || value === -1) outputForm[key] = null;
       });
-      console.log('check form', form);
       // 將日期混入搜索 params 中
       if (this.dateShortcut) outputForm[this.dateShortcut] = this.dateShortcutTime;
       return outputForm;
