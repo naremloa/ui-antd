@@ -1,6 +1,7 @@
 <template>
   <div class="fe-search-group">
     <fe-row
+      v-if="localHideFormList.length"
       type="flex"
       justify="end">
       <fe-button
