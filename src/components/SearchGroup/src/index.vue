@@ -260,8 +260,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.fe-search-group {
-  margin-top: 10px;
-}
-</style>

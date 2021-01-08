@@ -10,6 +10,17 @@
       :tabs-array="tabsArray"
       :change="changeTab" />
 
+    <fe-title
+      title="列表名稱"
+      type="table">
+      <template #left-extra>
+        left-extra slot
+      </template>
+      <template #right-extra>
+        right-extra slot
+      </template>
+    </fe-title>
+
     <fe-table
       ref="formTable"
       :loading="tableLoading"
