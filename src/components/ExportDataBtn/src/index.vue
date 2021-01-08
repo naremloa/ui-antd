@@ -11,7 +11,6 @@
 <script>
 import { isFunction } from '@/utils/lodash';
 import { Button as AButton } from 'ant-design-vue';
-import JSZip from 'jszip';
 
 export default {
   name: 'FeExportDataBtn',
@@ -40,11 +39,6 @@ export default {
     total: { // 檔案數據有幾筆 超過會變成壓縮檔
       type: Number,
       default: 0,
-    },
-    // 壓縮成zip
-    isCompressed: {
-      type: Boolean,
-      default: false,
     },
   },
   data() {
@@ -86,13 +80,6 @@ export default {
           : `${this.defaultFilename}${extName}`;
       }
     },
-    async detectFileType(binary) {
-      if (!this.isCompressed) return new Blob([binary.data]);
-      const zip = new JSZip();
-      zip.file(this.defaultFilename, binary.data);
-      const content = await zip.generateAsync({ type: 'blob' });
-      return content;
-    },
     // 下載檔案
     async handleDownload() {
       // Getting parameters needed in downloading
@@ -103,11 +90,12 @@ export default {
       // Start downloading
       // Parse download file name in response
       this.setDownloadFileName(res);
-      const file = await this.detectFileType(res);
-      console.log('file---', file);
+
       // Create download link
       const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(file);
+      link.href = window.URL.createObjectURL(
+        new Blob([res.data]),
+      );
       link.setAttribute('download', this.downloadFileName);
       document.body.appendChild(link);
       link.click();
