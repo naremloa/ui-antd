@@ -7,6 +7,12 @@ import {
 
 export const ftPagination = fPagination;
 
+const ftCommon = ({
+  columnStyle = {},
+} = {}) => ({
+  columnStyle,
+});
+
 export const ftText = ({
   // Function(data, rowData)
   format = null,
@@ -14,14 +20,13 @@ export const ftText = ({
   text = '',
   // Component
   slotComponent = null,
-  // Object
-  columnsStyle = {},
+  ...rest
 } = {}) => ({
   format,
   text,
   slotComponent,
-  columnsStyle,
   align: 'center',
+  ...ftCommon(rest),
   columnType: 'fe-column-text',
 });
 
@@ -36,6 +41,7 @@ export const ftButton = ({
   click,
   format,
   text,
+  ...ftCommon(rest),
   ...(fButton(rest)),
   columnType: 'fe-column-button',
 });
@@ -45,6 +51,7 @@ export const ftDate = ({
   unix = false,
   ...rest
 } = {}) => ftText({
+  ...ftCommon(rest),
   ...rest,
   format: (data, rowData) => {
     const date = dataIndex ? rowData[dataIndex] : data;
@@ -60,6 +67,8 @@ export const ftColumn = ({
   // String, Object, Function
   header = null,
   width = 100,
+  // Object
+  columnsStyle = {},
   ...rest
 } = {}) => (...cusColumns) => {
   if (cusColumns.length === 0) cusColumns = [ftText()];
@@ -68,6 +77,7 @@ export const ftColumn = ({
     title,
     header,
     width,
+    columnsStyle,
     ...rest,
     cusColumns,
   });
@@ -81,6 +91,7 @@ export const ftSwitch = ({
   ...fSwitch(rest),
   disabled,
   beforeChange,
+  ...ftCommon(rest),
   columnType: 'fe-column-switch',
 });
 
@@ -98,6 +109,7 @@ export const ftSelect = ({
   value,
   options,
   change,
+  ...ftCommon(rest),
   columnType: 'fe-column-select',
 });
 
@@ -109,12 +121,14 @@ export const ftTextarea = ({
   ...rest,
   autoSize,
   placeholder,
+  ...ftCommon(rest),
   columnType: 'fe-column-textarea',
 });
 
 export const ftInput = ({
   ...rest
 } = {}) => ({
+  ...ftCommon(rest),
   ...rest,
   columnType: 'fe-column-input',
 });
@@ -122,6 +136,7 @@ export const ftInput = ({
 export const ftCheckbox = ({
   ...rest
 } = {}) => ({
+  ...ftCommon(rest),
   ...rest,
   columnType: 'fe-column-checkbox',
 });
