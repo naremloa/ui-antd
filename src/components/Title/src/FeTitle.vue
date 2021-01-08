@@ -1,21 +1,9 @@
 <template>
-  <div class="fe-title">
-    <div class="fe-title__title">
-      <p
-        class="title-text"
-        :class="type && `title-text__${type}`">
-        {{ title }}
-      </p>
-      <div
-        class="left-extra">
-        <slot name="left-extra" />
-      </div>
-    </div>
-    <div
-      class="right-extra">
-      <slot name="right-extra" />
-    </div>
-  </div>
+  <p
+    class="fe-title"
+    :class="className">
+    {{ title }}
+  </p>
 </template>
 
 <script>
@@ -31,6 +19,29 @@ export default {
       type: String,
       default: '',
     },
+    display: {
+      type: String,
+      default: 'block',
+    },
+  },
+  data() {
+    return {
+      className: '',
+    };
+  },
+  created() {
+    this.setClass();
+  },
+  methods: {
+    setClass() {
+      if (this.type) {
+        this.className = `fe-title__${this.type}`;
+      }
+
+      if (this.display === 'inline') {
+        this.className += ' fe-title--inline';
+      }
+    },
   },
 
 };
@@ -40,21 +51,10 @@ export default {
 
 .fe-title {
   margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  &__title {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  &--inline {
+    display: inline-block;
   }
-}
-
-.title-text {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0;
 
   &__modal {
     font-size: 18px;
@@ -67,12 +67,17 @@ export default {
     font-weight: 500;
     color: #333333;
   }
-}
 
-.left-extra {
-  display: inline-block;
-  margin-left: 10px;
-
+  &__login {
+    display: inline-block;
+    margin: 0px auto 80px;
+    border: 0;
+    border-bottom: 3px solid;
+    border-image-source: linea r-gradient(to right, #003956, #003956);
+    border-image-slice: 1;
+    font-weight: 500;
+    font-size: 32px;
+  }
 }
 
 </style>
