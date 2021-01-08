@@ -1,8 +1,15 @@
 <template>
   <div class="add-account">
-    <fe-cus-title
+    <fe-title
       title="新增角色"
-      type="modal" />
+      type="modal">
+      <template #left-extra>
+        left
+      </template>
+      <template #right-extra>
+        right
+      </template>
+    </fe-title>
     <fe-form
       ref="addAndEditForm"
       :model="form"

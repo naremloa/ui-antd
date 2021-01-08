@@ -31,7 +31,7 @@ import * as UploadButton from './components/UploadButton';
 import * as Upload from './components/Upload';
 import * as Text from './components/Text';
 import Notify from './components/Notify';
-import CusTitle from './components/CusTitle';
+import Title from './components/Title';
 import Space from './components/Space';
 import format from './format';
 import './styles/index.scss';
@@ -65,7 +65,7 @@ const install = (Vue) => {
     Vue.component(key, components[key]);
   });
   Vue.use(Space);
-  Vue.use(CusTitle);
+  Vue.use(Title);
   Vue.use(Button);
   Vue.use(Modal);
   Vue.use(Form);

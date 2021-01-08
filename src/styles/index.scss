@@ -1,14 +1,78 @@
-.fe-button.ant-btn {
-  border-radius: 16px;
+// layout --start
+.ly {
+  &__header {
+    color: #fff;
+    background-color: #212946;
+    font-size: 16px;
+  }
+
+  &__content {
+
+    background-color: #fff;
+
+    &__sider {
+
+      border-right: 1px solid rgba(#000000, 0.05);
+
+      // 覆寫antd
+      .ant-layout-sider-children {
+        background-color: #fff;
+      }
+
+    }
+
+    &__main {
+      padding: 20px;
+      margin: 0;
+      background-color: #fff;
+    }
+  }
+
+}
+// layout ---end
+
+// 覆寫 ant design menu ---start
+.ant-menu {
+  border-right: 0px transparent;
 }
 
-.ant-input {
-  border-radius: 16px;
+.ant-menu-submenu-title {
+  border-bottom: 1px solid rgba(black, 0.05);
 }
 
-.ant-select-selection {
-  border-radius: 16px;
+.ant-menu-inline .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-item:not(:last-child) {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
+
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 0px;
+}
+
+.ant-menu-item-selected {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #fa6400;
+}
+
+// 覆寫antd
+.ant-menu-item {
+  border-bottom: 1px solid rgba(black, 0.05);
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+// 覆寫 ant design menu ---start
+
+
 
 
 // 覆寫 ant-design radio button wrapper --- start
@@ -126,9 +190,53 @@
 }
 // 覆寫 ant-design tabs --- end
 
-// 覆寫 ant-design modal --- end
+// 覆寫 ant-design modal --- start
 .ant-modal-body {
   box-sizing: border-box;
   padding: 40px;
 }
 // 覆寫 ant-design modal --- end
+
+// 覆寫 ant-design  --- start
+.fe-button.ant-btn {
+  border-radius: 16px;
+}
+
+.ant-input {
+  border-radius: 16px;
+}
+
+.ant-select-selection {
+  border-radius: 16px;
+}
+// 覆寫 ant-design  --- end
+
+
+// 複寫 ant-design table --- start
+
+.ant-table-thead > tr > th.ant-table-row-cell-break-word {
+  text-align: center;
+}
+
+.ant-table-row-cell-break-word {
+  
+  .fe-cus-column {
+    text-align: center;
+  }
+}
+
+// 複寫 ant-design table --- end
+
+
+// 複寫 ant-design card --- start
+.ant-card {
+  margin-bottom: 20px;
+}
+// 複寫 ant-design card --- start
+
+
+// 複寫 ant-design breadcrumb --- start
+.ant-breadcrumb {
+  margin-bottom: 20px;
+}
+// 複寫 ant-design breadcrumb --- end
