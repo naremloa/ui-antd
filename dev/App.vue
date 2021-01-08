@@ -9,11 +9,16 @@ export default {
   name: 'App',
 };
 </script>
-<style lang="stylus" scoped>
-.app
-  display flex
-  min-height 100vh
-  .ant-layout-content {
-    padding: 15px 10px;
-  }
+<style lang="scss">
+
+html,body {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+}
 </style>

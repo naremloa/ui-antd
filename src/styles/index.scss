@@ -1,34 +1,74 @@
 // layout --start
+
 .ly {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
   &__header {
+    width: 100%;
     color: #fff;
     background-color: #212946;
     font-size: 16px;
+    height: 60px;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &__content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      &__left {
+
+      }
+
+      &__right {
+
+      }
+    }
   }
 
-  &__content {
-
+  &__body {
+    width: 100%;
+    flex: 1;
     background-color: #fff;
+    display: flex;
+    overflow: scroll;
 
-    &__sider {
-
+    &__aside {
+      width: 200px;
+      flex: none;
+      box-sizing: border-box;
       border-right: 1px solid rgba(#000000, 0.05);
+      overflow: auto;
 
       // 覆寫antd
       .ant-layout-sider-children {
         background-color: #fff;
       }
-
     }
 
     &__main {
+      flex: 1;
       padding: 20px;
       margin: 0;
       background-color: #fff;
+      overflow: auto;
+      box-sizing: border-box;
     }
   }
-
 }
+
 // layout ---end
 
 // 覆寫 ant design menu ---start

@@ -29,7 +29,7 @@
       :columns="columns"
       :data-source="dataSource"
       :pagination.sync="pagination"
-      :scroll="{ x: 400 }"
+      :scroll="{ x: true }"
       @change="handleChange" />
 
     <fe-modal
@@ -87,6 +87,14 @@ export default {
         //   title: 'FirstName',
         //   // width: 100,
         // })(),
+        ftColumn({ dataIndex: 'id', title: '用户编号' })(),
+        ftColumn({ dataIndex: 'username', title: '账号', width: 160 })(),
+        ftColumn({ dataIndex: 'nickname', title: '名称', width: 160 })(),
+        ftColumn({ dataIndex: 'platform', title: '平台' })(),
+        ftColumn({ dataIndex: 'ids', title: '用户编号' })(),
+        ftColumn({ dataIndex: 'usernames', title: '账号', width: 160 })(),
+        ftColumn({ dataIndex: 'nicknames', title: '名称', width: 160 })(),
+        ftColumn({ dataIndex: 'platforms', title: '平台' })(),
         ftColumn({
           dataIndex: 'checkbox',
           title: 'Checkbox',
