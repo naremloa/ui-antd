@@ -18,7 +18,7 @@
       :visible="previewVisible"
       :template="modalTemplate"
       :footer="null"
-      :data="previewImage"
+      :data="previewData"
       width="middle"
       @cancel="handleCancel" />
   </div>
@@ -66,7 +66,10 @@ export default {
     return {
       modalTemplate: ModalTemplate,
       previewVisible: false,
-      previewImage: '',
+      previewData: {
+        url: '',
+        type: '',
+      },
       fileList: [],
     };
   },
@@ -78,7 +81,10 @@ export default {
       if (!file.url && !file.preview) {
         file.preview = await getBase64(file.originFileObj);
       }
-      this.previewImage = file.url || file.preview;
+      this.previewData = {
+        url: file.url || file.preview,
+        type: file.type || 'img',
+      };
       this.previewVisible = true;
     },
     handleChange({ fileList }) {
