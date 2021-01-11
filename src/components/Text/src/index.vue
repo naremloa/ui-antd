@@ -6,7 +6,7 @@ export default {
   model: { prop: 'value', event: 'change' },
   props: {
     value: {
-      type: [Number, String],
+      type: [Number, String, Boolean],
       default: '',
     },
     format: {
