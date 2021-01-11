@@ -1,3 +1,5 @@
+@import './vars';
+
 // layout --start
 
 .ly {
@@ -50,7 +52,7 @@
       flex: none;
       box-sizing: border-box;
       border-right: 1px solid rgba(#000000, 0.05);
-      overflow: auto;
+      overflow-y: auto;
 
       // 覆寫antd
       .ant-layout-sider-children {
@@ -306,3 +308,12 @@
 // 複寫 ant-design breadcrumb --- end
 
 
+// 複寫 ant-design other --- start
+.ant-form-item-required {
+
+  &::before {
+    content: ''
+  }
+
+}
+// 複寫 ant-design other --- end
