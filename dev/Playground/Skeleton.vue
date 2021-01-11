@@ -10,16 +10,21 @@
       :tabs-array="tabsArray"
       :change="changeTab" />
 
-    <fe-title
-      title="列表名稱"
-      type="table">
-      <template #left-extra>
-        left-extra slot
-      </template>
-      <template #right-extra>
-        right-extra slot
-      </template>
-    </fe-title>
+    <fe-row
+      type="flex"
+      justify="space-between"
+      align="middle">
+      <div>
+        <fe-title
+          title="列表名稱"
+          type="table" />
+      </div>
+      <div>
+        <fe-add-button
+          title="title"
+          @click="handleButton" />
+      </div>
+    </fe-row>
 
     <fe-table
       ref="formTable"
@@ -239,6 +244,9 @@ export default {
     },
     closeModal() {
       this.visible = false;
+    },
+    handleButton() {
+      console.log('hi');
     },
     changeTab(tabNumber) {
       console.log(tabNumber);
