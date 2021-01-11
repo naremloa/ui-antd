@@ -217,10 +217,11 @@ export default {
         }],
         fileText: [{
           uid: '1',
-          name: 'xxx.png',
+          name: 'xxx.pdf',
           status: 'done',
           response: 'Server Error 500', // custom error message to show
-          url: 'http://www.baidu.com/xxx.png',
+          url: 'https://storage.googleapis.com/jys-cms/bvtuur5iei00n679e7g0',
+          type: 'pdf',
         },
         {
           uid: '2',
