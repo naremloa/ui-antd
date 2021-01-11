@@ -16,8 +16,9 @@ export default {
       default: '',
     },
     type: {
+      required: true,
       type: String,
-      default: '',
+      validator: (value) => ['modal', 'form', 'table'].includes(value),
     },
     display: {
       type: String,
@@ -56,6 +57,12 @@ export default {
     display: inline-block;
   }
 
+  &__default {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+  }
+
   &__modal {
     font-size: 18px;
     font-weight: 500;
@@ -63,6 +70,12 @@ export default {
   }
 
   &__table {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+  }
+
+  &__form {
     font-size: 18px;
     font-weight: 500;
     color: #333333;
