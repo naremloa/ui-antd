@@ -32,7 +32,7 @@ export default {
           attrs: rest,
           on: {
             'update:date-source': (value) => {
-              this.$emit('update:data-source', { ...this.rowData, [this.dataIndex]: value });
+              this.$emit('update:data-source', { [this.dataIndex]: value });
             },
           },
         },

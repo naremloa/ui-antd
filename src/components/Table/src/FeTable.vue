@@ -143,7 +143,7 @@ export default {
                 attrs: { data, idx },
                 on: {
                   'update:data-source': (value) => {
-                    this.localDataSource.splice(idx, 1, value);
+                    this.localDataSource.splice(idx, 1, { ...this.localDataSource[idx], ...value });
                     // this.$emit('update:data-source', [
                     //   ...this.dataSource.slice(0, idx),
                     //   value,
