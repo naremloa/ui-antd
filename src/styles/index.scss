@@ -286,6 +286,7 @@
 // 複寫 ant-design card --- start
 .ant-card {
   margin-bottom: 20px;
+  border-radius: 4px;
 }
 // 複寫 ant-design card --- start
 
@@ -295,3 +296,13 @@
   margin-bottom: 20px;
 }
 // 複寫 ant-design breadcrumb --- end
+
+
+
+// 複寫 ant-design breadcrumb --- start
+.ant-switch-checked {
+  background-color: #99cc33;
+}
+// 複寫 ant-design breadcrumb --- end
+
+

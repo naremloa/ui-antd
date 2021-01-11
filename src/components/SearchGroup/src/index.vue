@@ -66,7 +66,8 @@
           </transition-collapse>
           <fe-row
             type="flex"
-            justify="end">
+            justify="end"
+            style="margin-top: 10px">
             <fe-space>
               <fe-button @click="handleReset">
                 清除條件
