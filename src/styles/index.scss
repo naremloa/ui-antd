@@ -271,8 +271,15 @@
   .fe-cus-column {
     text-align: center;
   }
+
+  .ant-form-item-control {
+    line-height: normal;
+  }
 }
 
+.ant-table-tbody>tr>td {
+  vertical-align: middle;
+}
 // 複寫 ant-design table --- end
 
 
