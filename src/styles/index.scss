@@ -43,7 +43,7 @@
     flex: 1;
     background-color: #fff;
     display: flex;
-    overflow: scroll;
+    overflow: auto;
 
     &__aside {
       width: 200px;
@@ -146,7 +146,6 @@
 }
 // 覆寫 ant-design radio button wrapper --- end
 
-
 // 覆寫 ant-design pagination --- start
 .ant-pagination {
 
@@ -219,6 +218,15 @@
   }
 }
 // 覆寫 ant-design pagination --- end
+
+// 覆寫 ant-design input --- start
+
+.ant-input-number {
+  border-radius:  16px;
+  overflow: hidden;
+}
+
+// 覆寫 ant-design input --- end
 
 // 覆寫 ant-design tabs --- start
 .ant-tabs-tab {
