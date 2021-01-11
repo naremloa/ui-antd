@@ -46,6 +46,10 @@ export default {
     data(newVal) {
       this.value = newVal;
     },
+    // 輔助內部狀態，獲取外部資料變更後，自動更新。
+    rowData(newVal) {
+      this.value = newVal[this.dataIndex];
+    },
   },
   methods: {
     handleChange(value) {
