@@ -33,6 +33,7 @@ import * as Text from './components/Text';
 import Notify from './components/Notify';
 import Title from './components/Title';
 import Space from './components/Space';
+import AddButton from './components/AddButton';
 import format from './format';
 import './styles/index.scss';
 
@@ -64,6 +65,7 @@ const install = (Vue) => {
     console.log('install', key);
     Vue.component(key, components[key]);
   });
+  Vue.use(AddButton);
   Vue.use(Space);
   Vue.use(Title);
   Vue.use(Button);
