@@ -79,7 +79,9 @@
         </template>
       </fe-tooltip>
     </div>
-
+    <fe-icon
+      type="info-circle"
+      theme="filled" />
     <fe-export-data-btn
       :btn-text="'導出excel數據'" />
     <fe-button @click="handleNotify">
