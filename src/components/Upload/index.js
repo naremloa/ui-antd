@@ -1,3 +1,7 @@
 import FeUpload from './src/index.vue';
 
-export { FeUpload };
+const install = (Vue) => {
+  Vue.component('FeFupload', FeUpload);
+};
+
+export default install;

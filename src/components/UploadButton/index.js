@@ -1,4 +1,7 @@
-import UploadButton from './src/index.vue';
+import FeUploadButton from './src/index.vue';
 
-const FeUploadButton = UploadButton;
-export { FeUploadButton };
+const install = (Vue) => {
+  Vue.component('FeUploadButton', FeUploadButton);
+};
+
+export default install;

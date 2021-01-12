@@ -1,3 +1,7 @@
 import FeIcon from './src/icon';
 
-export { FeIcon };
+const install = (Vue) => {
+  Vue.component('FeIcon', FeIcon);
+};
+
+export default install;

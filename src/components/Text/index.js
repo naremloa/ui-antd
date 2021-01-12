@@ -1,3 +1,7 @@
 import FeText from './src/index.vue';
 
-export { FeText };
+const install = (Vue) => {
+  Vue.component('FeText', FeText);
+};
+
+export default install;

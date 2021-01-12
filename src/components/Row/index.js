@@ -1,5 +1,7 @@
 import FeRow from './src/row';
 
-export {
-  FeRow,
+const install = (Vue) => {
+  Vue.component('FeRow', FeRow);
 };
+
+export default install;

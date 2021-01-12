@@ -89,7 +89,6 @@ export default {
           },
           on: {
             change: this.handleChange,
-            blur: this.handleBlur,
           },
         },
       )],
