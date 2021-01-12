@@ -1,4 +1,6 @@
 <script>
+import { isFunction } from '@/utils/lodash';
+
 export default {
   name: 'FeCusColumn',
   inheritAttrs: false,
@@ -25,7 +27,9 @@ export default {
       ? this.cusColumns.map(({ columnType, columnStyle, ...rest }) => h(
         columnType,
         {
-          style: columnStyle,
+          style: isFunction(columnStyle)
+            ? columnStyle(this.rowData[this.dataIndex], this.rowData, rest)
+            : columnStyle,
           props: {
             ...this.$attrs, ...rest, dataIndex: this.dataIndex, rowData: this.rowData,
           },
