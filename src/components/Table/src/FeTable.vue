@@ -95,6 +95,7 @@ export default {
           bordered: true,
           locale: {
             emptyText: this.tableError ? '资料载入失败，请重新尝试' : '无符合条件之资料',
+            ...(this.$attrs.locale ? { ...this.$attrs.locale } : {}),
           },
         },
         on: {
