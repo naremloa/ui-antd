@@ -18,4 +18,5 @@ export { default as EyeInvisibleOutline } from '@ant-design/icons/lib/outline/Ey
 export { default as UploadOutline } from '@ant-design/icons/lib/outline/UploadOutline';
 export { default as CheckCircleOutline } from '@ant-design/icons/lib/outline/CheckCircleOutline';
 export { default as InfoCircleOutline } from '@ant-design/icons/lib/outline/InfoCircleOutline';
+export { default as InfoCircleFill } from '@ant-design/icons/lib/fill/InfoCircleFill';
 export { default as ExclamationCircleOutline } from '@ant-design/icons/lib/outline/ExclamationCircleOutline';
