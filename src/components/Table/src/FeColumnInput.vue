@@ -53,8 +53,12 @@ export default {
   },
   methods: {
     handleChange(value) {
-      this.value = value;
       this.$emit('update:date-source', value);
+      this.value = value;
+      // 延遲驗證時機，保證值獲得更新
+      this.$nextTick(() => {
+        this.$refs.FormItem.onFieldChange();
+      });
     },
   },
   render(h) {
@@ -66,7 +70,10 @@ export default {
           prop: `data.${this.idx}.${this.dataIndex}`,
           rules: this.rules,
           wrapperCol: { span: 24 },
+          // 由於更新鏈過長，需要手動延遲驗證時機，來保證值獲得更新
+          autoLink: false,
         },
+        ref: 'FormItem',
       },
       [h(
         'fe-input',
@@ -80,7 +87,10 @@ export default {
             ...this.$attrs,
             disabled: this.isDisabled,
           },
-          on: { change: this.handleChange },
+          on: {
+            change: this.handleChange,
+            blur: this.handleBlur,
+          },
         },
       )],
     );
