@@ -21,12 +21,26 @@ export default {
       type: [Array, String, Number, undefined],
       default: undefined,
     },
+    showSearch: {
+      type: Boolean,
+      default: false,
+    },
+    notFoundContent: {
+      type: String,
+      default: '暂无资料',
+    },
   },
   data() {
     return {
       localOptions: [],
       loading: false,
     };
+  },
+  computed: {
+    baseFilterOption() {
+      if (!this.showSearch) return true;
+      return (inputValue, options) => !!options.data.props?.title.includes(inputValue);
+    },
   },
   watch: {
     options: {
@@ -48,9 +62,11 @@ export default {
       {
         class: 'fe-select',
         props: {
+          filterOption: this.baseFilterOption,
           ...restAttrs,
           loading: this.loading,
           value: this.value,
+          notFoundContent: this.notFoundContent,
         },
         on: {
           ...this.$listeners,

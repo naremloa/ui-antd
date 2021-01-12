@@ -27,9 +27,12 @@ export default {
           hide: true,
           prop: 'selectValue',
           label: '測試 select',
-          options: [{ value: 1, label: '測試1' }, { value: 2, label: '測試2' }],
+          options: [{ value: 1, label: '香蕉' }, { value: 2, label: '蘋果' }],
           allowClear: true,
           rules: [{ required: true, message: '必填 ', trigger: 'change' }],
+          formTypeProps: {
+            showSearch: true,
+          },
         }),
       ],
     };

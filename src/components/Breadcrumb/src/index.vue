@@ -18,11 +18,27 @@ export default {
   render(h) {
     return h(
       'a-breadcrumb',
-      this.items.map(({ title, icon }) => h(
+      this.items.map(({ title, icon, href }, idx) => (title || icon)
+      && h(
         'a-breadcrumb-item',
+        {
+          props: { href },
+          on: {
+            click: () => this.$router.push(href),
+          },
+        },
         [
-          icon && h('fe-icon', { props: { type: icon } }),
-          title,
+          idx >= this.items.length
+            ? h('span', [
+              icon && h('fe-icon', { props: { type: icon } }),
+              title,
+            ])
+            : h(
+              'router-link', { props: { to: href || '' } }, [
+                icon && h('fe-icon', { props: { type: icon } }),
+                title,
+              ],
+            ),
         ],
       )),
     );

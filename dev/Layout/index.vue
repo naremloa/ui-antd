@@ -38,7 +38,7 @@ export default {
   computed: {
     breadcrumb() {
       return this.$route.matched
-        .map(({ meta: { title, icon } = {} }) => ({ title, icon }));
+        .map(({ path: href, meta: { title, icon } = {} }) => ({ title, icon, href }));
     },
   },
 };

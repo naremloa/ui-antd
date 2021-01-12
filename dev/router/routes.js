@@ -23,6 +23,7 @@ export default [
           title: '展示頁',
         },
         component: FakeLayout,
+        redirect: '/playground/search-group',
         children: [
           {
             path: 'search-group',
