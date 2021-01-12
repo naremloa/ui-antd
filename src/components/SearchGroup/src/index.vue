@@ -26,6 +26,9 @@
         :wrapper-col="{}">
         <fe-row>
           <template v-if="dateShortcut">
+            <fe-row v-if="dateShortcutLabel">
+              {{ dateShortcutLabel }}
+            </fe-row>
             <fe-row style="margin-bottom: 4px;">
               <fe-space>
                 <fe-radio-group
@@ -110,6 +113,10 @@ export default {
       default: () => ({}),
     },
     dateShortcut: {
+      type: String,
+      default: '',
+    },
+    dateShortcutLabel: {
       type: String,
       default: '',
     },

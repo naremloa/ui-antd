@@ -4,7 +4,8 @@
       :form-list="formList"
       :form-init="{ selectValue: 1 }"
       :search="handleSearch"
-      :date-shortcut="'date'" />
+      :date-shortcut="'date'"
+      date-shortcut-label="dateShortcut 測試" />
   </div>
 </template>
 <script>

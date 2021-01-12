@@ -1,13 +1,11 @@
 <script>
 import { Breadcrumb } from 'ant-design-vue';
-import { FeIcon } from '@/components/Icon';
 
 export default {
   name: 'FeBreadcrumb',
   components: {
     ABreadcrumb: Breadcrumb,
     ABreadcrumbItem: Breadcrumb.Item,
-    FeIcon,
   },
   props: {
     items: {

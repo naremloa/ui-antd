@@ -10,7 +10,7 @@ import * as Menu from './components/Menu';
 import Icon from './components/Icon';
 import Row from './components/Row';
 import Col from './components/Col';
-import * as Breadcrumb from './components/Breadcrumb';
+import Breadcrumb from './components/Breadcrumb';
 import SearchGroup from './components/SearchGroup';
 import Card from './components/Card';
 import Radio from './components/Radio';
@@ -42,7 +42,6 @@ const components = {
   ...Avatar,
   ...Dropdown,
   ...Menu,
-  ...Breadcrumb,
   ...InputList,
   ...InputNumber,
   ...Tag,
@@ -58,6 +57,7 @@ const install = (Vue) => {
     Vue.component(key, components[key]);
   });
   Vue.use(Layout);
+  Vue.use(Breadcrumb);
   Vue.use(Col);
   Vue.use(Row);
   Vue.use(Upload);
