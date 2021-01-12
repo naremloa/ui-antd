@@ -18,7 +18,7 @@ export default {
     type: {
       required: true,
       type: String,
-      validator: (value) => ['modal', 'form', 'table'].includes(value),
+      validator: (value) => ['login', 'modal', 'form', 'table'].includes(value),
     },
     display: {
       type: String,
