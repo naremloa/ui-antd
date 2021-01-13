@@ -36,7 +36,32 @@ export default {
             showSearch: true,
           },
         }),
-
+        fsSelect({
+          prop: 'searchSelect',
+          label: '測試 search select',
+          options: [
+            { label: 'a', value: 1 },
+            { label: 'b', value: 2 },
+            { label: 'c', value: 3 },
+            { label: 'abc', value: 4 },
+          ],
+          default: 1,
+          formTypeProps: {
+            showSearch: true,
+            placeholder: 'input search text',
+            filterOption(input, option) {
+              console.log('input--', input);
+              console.log('option--', option);
+              return (
+                option.componentOptions.children[0]
+                  .text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              );
+            },
+            search(key) {
+              console.log('key---', key);
+            },
+          },
+        }),
       ],
     };
   },
