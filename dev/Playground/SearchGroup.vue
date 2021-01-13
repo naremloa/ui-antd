@@ -5,7 +5,7 @@
       :form-init="{ selectValue: 1 }"
       :search="handleSearch"
       :date-shortcut="'date'"
-      date-shortcut-label="dateShortcut 測試" />
+      date-shortcut-label="測試 日期選擇" />
   </div>
 </template>
 <script>
@@ -16,6 +16,7 @@ export default {
     return {
       formList: [
         fsInput({
+          hide: true,
           prop: 'inputValue',
           label: '測試',
           default: '22',
@@ -24,8 +25,8 @@ export default {
           },
           rules: [{ required: true, message: '必填 ', trigger: 'change' }],
         }),
+
         fsSelect({
-          hide: true,
           prop: 'selectValue',
           label: '測試 select',
           options: [{ value: 1, label: '香蕉' }, { value: 2, label: '蘋果' }],
@@ -35,6 +36,7 @@ export default {
             showSearch: true,
           },
         }),
+
       ],
     };
   },
