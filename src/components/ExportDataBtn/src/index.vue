@@ -92,9 +92,10 @@ export default {
       this.setDownloadFileName(res);
 
       // Create download link
+      const binaryData = res.data || res;
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(
-        new Blob([res.data]),
+        new Blob([binaryData]),
       );
       link.setAttribute('download', this.downloadFileName);
       document.body.appendChild(link);
