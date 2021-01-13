@@ -20,3 +20,11 @@ export { default as CheckCircleOutline } from '@ant-design/icons/lib/outline/Che
 export { default as InfoCircleOutline } from '@ant-design/icons/lib/outline/InfoCircleOutline';
 export { default as InfoCircleFill } from '@ant-design/icons/lib/fill/InfoCircleFill';
 export { default as ExclamationCircleOutline } from '@ant-design/icons/lib/outline/ExclamationCircleOutline';
+export { default as MenuOutline } from '@ant-design/icons/lib/outline/MenuOutline';
+// menu
+export { default as UserOutline } from '@ant-design/icons/lib/outline/UserOutline';
+export { default as AliwangwangOutline } from '@ant-design/icons/lib/outline/AliwangwangOutline';
+export { default as PayCircleOutline } from '@ant-design/icons/lib/outline/PayCircleOutline';
+export { default as TransactionOutline } from '@ant-design/icons/lib/outline/TransactionOutline';
+export { default as FileTextOutline } from '@ant-design/icons/lib/outline/FileTextOutline';
+export { default as SettingOutline } from '@ant-design/icons/lib/outline/SettingOutline';
