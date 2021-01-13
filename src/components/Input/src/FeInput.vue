@@ -31,7 +31,7 @@ export default {
             value: this.value,
           },
           on: {
-            change: (val) => this.$emit('change', val),
+            change: (val) => this.$emit('change', +`${val}`),
           },
         },
       );
