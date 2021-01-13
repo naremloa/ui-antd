@@ -13,6 +13,7 @@ export default [
         name: 'Home',
         meta: {
           title: 'Home',
+          icon: 'home',
         },
         component: () => import('../Home.vue'),
       },
@@ -21,6 +22,7 @@ export default [
         name: 'Playground',
         meta: {
           title: '展示頁',
+          icon: 'home',
         },
         component: FakeLayout,
         redirect: '/playground/search-group',
@@ -30,6 +32,7 @@ export default [
             name: 'SearchGroup',
             meta: {
               title: '搜索框展示頁',
+              icon: 'home',
             },
             component: () => import('../Playground/SearchGroup.vue'),
           },

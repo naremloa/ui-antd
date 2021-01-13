@@ -6,7 +6,7 @@ import * as Dropdown from './components/Dropdown';
 import * as ExportDataBtn from './components/ExportDataBtn';
 import * as Tabs from './components/Tabs';
 import Layout from './components/Layout';
-import * as Menu from './components/Menu';
+import Menu from './components/Menu';
 import Icon from './components/Icon';
 import Row from './components/Row';
 import Col from './components/Col';
@@ -41,7 +41,6 @@ import './styles/index.scss';
 const components = {
   ...Avatar,
   ...Dropdown,
-  ...Menu,
   ...InputList,
   ...InputNumber,
   ...Tag,
@@ -56,6 +55,7 @@ const install = (Vue) => {
     console.log('install', key);
     Vue.component(key, components[key]);
   });
+  Vue.use(Menu);
   Vue.use(Layout);
   Vue.use(Breadcrumb);
   Vue.use(Col);

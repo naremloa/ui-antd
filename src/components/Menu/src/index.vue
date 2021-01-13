@@ -21,17 +21,29 @@ export default {
       const {
         children: childNode = [],
         label = '',
+        icon,
         disabled = false,
         key = '',
       } = node;
       if (isArray(childNode) && childNode.length) {
         return h(
           'a-sub-menu',
-          { props: { title: label, disabled }, key },
-          handleNode(childNode),
+          { props: { disabled }, key },
+          [
+            h(
+              'span',
+              { slot: 'title' },
+              [icon && h('fe-icon', { props: { type: icon } }), label],
+            ),
+            ...handleNode(childNode),
+          ],
         );
       }
-      return h('a-menu-item', { props: { disabled }, key }, label);
+      return h(
+        'a-menu-item',
+        { props: { disabled }, key },
+        [icon && h('fe-icon', { props: { type: icon } }), label],
+      );
     });
     return h(
       'a-menu',

@@ -16,10 +16,11 @@ export default {
     };
   },
   mounted() {
-    const handleRoutes = (acc, { name, meta: { title = '', display = [] } = {}, children = [] } = {}) => [
+    const handleRoutes = (acc, { name, meta: { title = '', display = [], icon } = {}, children = [] } = {}) => [
       ...acc,
       ...(display.includes('none') ? [] : [{
         label: title,
+        icon,
         key: name,
         eventKey: name,
         children: children.length > 0 ? children.reduce(handleRoutes, []) : children,
