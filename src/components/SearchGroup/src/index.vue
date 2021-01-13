@@ -1,7 +1,7 @@
 <template>
   <div class="fe-search-group">
+    <!-- v-if="localHideFormList.length" -->
     <fe-row
-      v-if="localHideFormList.length"
       type="flex"
       justify="end">
       <fe-button
@@ -17,73 +17,82 @@
         </template>
       </fe-button>
     </fe-row>
-    <fe-card :body-style="{padding: '12px 20px'}">
+    <fe-card :body-style="{padding: '12px 20px', position: 'relative'}">
       <fe-form
         ref="Form"
         :model="form"
         layout="inline"
         :label-col="{}"
         :wrapper-col="{}">
-        <fe-row>
-          <template v-if="dateShortcut">
-            <fe-row v-if="dateShortcutLabel">
-              {{ dateShortcutLabel }}
-            </fe-row>
-            <fe-row style="margin-bottom: 4px;">
+        <div class="search-group">
+          <div class="search-group__always-show">
+            <template v-if="dateShortcut">
+              <fe-row>
+                <fe-row
+                  v-if="dateShortcutLabel"
+                  style="margin-bottom: 5px; color: rgba(0, 0, 0, 0.85)">
+                  {{ dateShortcutLabel }}
+                </fe-row>
+                <fe-space>
+                  <fe-radio-group
+                    v-model="dateShortcutValue"
+                    button-style="solid">
+                    <fe-radio-button
+                      v-for="item in dateShortcutSetting.options"
+                      :key="item.value"
+                      :value="item.value">
+                      {{ item.label }}
+                    </fe-radio-button>
+                  </fe-radio-group>
+                  <fe-range-picker
+                    v-model="dateShortcutTime"
+                    separator="到"
+                    :show-tiem="{ format: 'HH:mm:ss' }"
+                    format="YYYY-MM-DD HH:mm:ss"
+                    :placeholder="['開始時間', '結束時間']"
+                    value-format="YYYY-MM-DD HH:mm:ss" />
+                </fe-space>
+              </fe-row>
+            </template>
+            <fe-form-item-setting
+              v-for="(item, iIdx) in localFormList"
+              :key="`${item.prop || 0} - ${iIdx}`"
+              v-model="form[item.prop]"
+              v-bind="item" />
+          </div>
+
+          <div class="search-group__btn-wrapper">
+            <div
+              class="search-btn-wrapper"
+              :class="dateShortcut === 'date' && 'search-btn-wrapper__date'">
               <fe-space>
-                <fe-radio-group
-                  v-model="dateShortcutValue"
-                  button-style="solid">
-                  <fe-radio-button
-                    v-for="item in dateShortcutSetting.options"
-                    :key="item.value"
-                    :value="item.value">
-                    {{ item.label }}
-                  </fe-radio-button>
-                </fe-radio-group>
-
-                <fe-range-picker
-                  v-model="dateShortcutTime"
-                  separator="到"
-                  :show-tiem="{ format: 'HH:mm:ss' }"
-                  format="YYYY-MM-DD HH:mm:ss"
-                  :placeholder="['開始時間', '結束時間']"
-                  value-format="YYYY-MM-DD HH:mm:ss" />
+                <fe-button @click="handleReset">
+                  清除條件
+                </fe-button>
+                <fe-button
+                  type="primary"
+                  :has-loading="true"
+                  @click="validate">
+                  搜索
+                </fe-button>
               </fe-space>
-            </fe-row>
-          </template>
+            </div>
+          </div>
+        </div>
 
-          <fe-form-item-setting
-            v-for="(item, iIdx) in localFormList"
-            :key="`${item.prop || 0} - ${iIdx}`"
-            v-model="form[item.prop]"
-            v-bind="item" />
-          <transition-collapse>
-            <fe-row v-show="!collapse">
+        <transition-collapse>
+          <div v-show="!collapse">
+            <fe-row>
               <fe-form-item-setting
                 v-for="(item, iIdx) in localHideFormList"
                 :key="`${item.prop || 0} - ${iIdx}`"
                 v-model="form[item.prop]"
                 v-bind="item" />
             </fe-row>
-          </transition-collapse>
-          <fe-row
-            type="flex"
-            justify="end"
-            style="margin-top: 10px">
-            <fe-space>
-              <fe-button @click="handleReset">
-                清除條件
-              </fe-button>
-              <fe-button
-                type="primary"
-                :has-loading="true"
-                @click="validate">
-                搜索
-              </fe-button>
-            </fe-space>
-          </fe-row>
-        </fe-row>
+            <!-- 佔位 -->
+            <fe-row style="margin-top: 10px; height: 32px " />
+          </div>
+        </transition-collapse>
       </fe-form>
     </fe-card>
   </div>
@@ -267,3 +276,35 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+
+.search-group {
+  display: flex;
+  justify-content: space-between;
+
+  &__always-show {
+    flex: 1;
+
+  }
+
+  &__btn-wrapper {
+    flex: none;
+    width: 160px;
+  }
+}
+
+.search-btn-wrapper {
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+  transition: 0.5s;
+  z-index: 100;
+  margin-bottom: 4px;
+
+  &__date {
+    margin-bottom: 0px;
+  }
+}
+
+</style>
