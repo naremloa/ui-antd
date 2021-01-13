@@ -1,7 +1,7 @@
 <template>
   <fe-ly>
     <!-- 頭 -->
-    <fe-ly-header>
+    <fe-ly-header @handle-hbg="handleHbg">
       <template #header-left>
         管理後台
       </template>
@@ -11,7 +11,7 @@
     <!-- 身 -->
     <fe-ly-body>
       <!-- 身-側欄 -->
-      <fe-ly-body-aside>
+      <fe-ly-body-aside :hbg-state="hbgState">
         <layout-menu />
       </fe-ly-body-aside>
       <!-- 身-內容 -->
@@ -29,10 +29,10 @@ export default {
   name: 'Layout',
   components: {
     LayoutMenu,
-
   },
   data() {
     return {
+      hbgState: true,
     };
   },
   computed: {
@@ -41,6 +41,13 @@ export default {
         .map(({ path: href, meta: { title, icon } = {} }) => ({ title, icon, href }));
     },
   },
+  methods: {
+    handleHbg() {
+      console.log('state', this.hbgState);
+      this.hbgState = !this.hbgState;
+    },
+  },
+
 };
 </script>
 

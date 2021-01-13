@@ -10,9 +10,20 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  overflow: hidden;
+
+  &__hbg-icon {
+    @media screen and (min-width: 576px) {
+      display: none;
+    }
+  }
 
   &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    z-index: 900;
     color: #fff;
     background-color: #212946;
     font-size: 16px;
@@ -41,6 +52,8 @@
   }
 
   &__body {
+    box-sizing: border-box;
+    padding-top: 60px;
     width: 100%;
     flex: 1;
     background-color: #fff;
@@ -48,11 +61,19 @@
     overflow: auto;
 
     &__aside {
-      width: 200px;
+      width: 0px;
       flex: none;
       box-sizing: border-box;
       border-right: 1px solid rgba(#000000, 0.05);
       overflow-y: auto;
+      transition: 0.5s;
+      transform-origin: top left;
+      transform: scaleX(0);
+
+      &--open {
+        width: 200px;
+        transform: scaleX(1);
+      }
 
       // 覆寫antd
       .ant-layout-sider-children {
@@ -321,3 +342,7 @@
 }
 
 // 複寫 ant-design other --- end
+
+
+
+
