@@ -26,6 +26,7 @@ module.exports = {
       singleline: 'never',
       multiline: 'never',
     }],
+    'vue/custom-event-name-casing': 'off',
   },
   settings: {
     'import/resolver': {

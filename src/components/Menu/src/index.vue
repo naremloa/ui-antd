@@ -10,8 +10,17 @@ export default {
     AMenuItem: Menu.Item,
   },
   inheritAttrs: false,
+  model: { prop: 'selectedKeys', event: 'selectChange' },
   props: {
     children: {
+      type: Array,
+      default: () => [],
+    },
+    selectedKeys: {
+      type: Array,
+      default: () => [],
+    },
+    openKeys: {
       type: Array,
       default: () => [],
     },
@@ -49,8 +58,16 @@ export default {
       'a-menu',
       {
         class: 'fe-menu',
-        props: { ...this.$attrs, mode: 'inline' },
-        on: this.$listeners,
+        props: {
+          ...this.$attrs,
+          mode: 'inline',
+          selectedKeys: this.selectedKeys,
+          openKeys: this.openKeys,
+        },
+        on: {
+          selectChange: (val) => this.$emit('selectChange', val),
+          'update:openKeys': (val) => this.$emit('update:openKeys', val),
+        },
       },
       handleNode(this.children),
     );
