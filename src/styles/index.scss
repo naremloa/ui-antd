@@ -13,7 +13,8 @@
   overflow: hidden;
 
   &__hbg-icon {
-    @media screen and (min-width: 576px) {
+    cursor: pointer;
+    @media screen and (min-width: 768px) {
       display: none;
     }
   }
@@ -341,7 +342,30 @@
   text-align: center;
 }
 
+// search group
+.search-group-more,.search-group {
+  .ant-row.ant-form-item {
+    width: 100%;
+
+    .ant-form-item-label {
+      width: auto;
+      vertical-align: middle;
+      padding-bottom: 0;
+    }
+
+    .ant-col.ant-form-item-control-wrapper {
+      width: auto;   
+      vertical-align: middle;
+    }
+
+    @media screen and (min-width: 576px) {
+      width: auto;
+    }
+  }
+}
+
 // 複寫 ant-design other --- end
+
 
 
 
