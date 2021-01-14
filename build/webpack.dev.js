@@ -109,7 +109,7 @@ module.exports = {
   devServer: {
     contentBase: resolve('../dev'),
     publicPath: '/dev/',
-    host: 'localhost',
+    host: '0.0.0.0',
     port: '8181',
     hot: true,
     open: true,

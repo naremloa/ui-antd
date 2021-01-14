@@ -20,6 +20,17 @@ export default {
       type: [String, Number],
       default: '',
     },
+    formatter: {
+      type: Function,
+      default: null,
+    },
+    parser: {
+      type: Function,
+      default: null,
+    },
+  },
+  methods: {
+    updateValue(val) { this.$emit('change', +`${this.parser(val)}`); },
   },
   render(h) {
     if (this.type === 'inputNumber') {
@@ -29,9 +40,42 @@ export default {
           props: {
             ...this.$attrs,
             value: this.value,
+            formatter: this.formatter,
+            parser: this.parser,
           },
           on: {
             change: (val) => this.$emit('change', +`${val}`),
+          },
+          nativeOn: {
+            '!keypress': (e) => {
+              if (this.formatter && this.parser) {
+                e.stopPropagation();
+                const { target: { value: val }, key } = e;
+                const parser = this.parser(val);
+                this.updateValue(val);
+                const formatter = this.formatter(`${parser}${key}`);
+                setTimeout(() => { e.target.value = formatter; }, 0);
+              }
+            },
+            '!input': (e) => {
+              if (this.formatter && this.parser) {
+                e.stopPropagation();
+              }
+            },
+            '!mousedown': (e) => {
+              if (this.formatter && this.parser) {
+                if (e.target.className !== 'ant-input-number-input') {
+                  const input = document.querySelector('input.ant-input-number-input');
+                  this.updateValue(input.value);
+                }
+              }
+            },
+            '!blur': (e) => {
+              if (this.formatter && this.parser) {
+                e.stopPropagation();
+                this.updateValue(e.target.value);
+              }
+            },
           },
         },
       );

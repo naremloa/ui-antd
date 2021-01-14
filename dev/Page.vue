@@ -1,5 +1,12 @@
 <template>
   <div class="page">
+    <fe-row>
+      <fe-input
+        v-model="inputNumber"
+        type="inputNumber"
+        :formatter="value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+        :parser="value => value.replace(/\$\s?|(,*)/g, '')" />
+    </fe-row>
     <fe-button
       @click="handleModal">
       彈窗
@@ -109,6 +116,7 @@ export default {
     } = this.$format;
 
     return {
+      inputNumber: 1,
       dataSource2,
       pagination: ftPagination({ total: 500 }),
 
