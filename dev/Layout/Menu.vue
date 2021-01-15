@@ -1,8 +1,8 @@
 <template>
   <fe-menu
+    v-model="selectedKeys"
     :children="children"
     :open-keys.sync="openKeys"
-    :default-selected-keys="defaultSelectedKeys"
     @click="handleItemClick" />
 </template>
 <script>
@@ -12,8 +12,14 @@ export default {
     return {
       children: [],
       openKeys: [],
-      defaultSelectedKeys: [],
+      selectedKeys: [],
     };
+  },
+  watch: {
+    $route(newVal) {
+      const { name } = newVal;
+      this.selectedKeys = [name];
+    },
   },
   mounted() {
     const handleRoutes = (acc, { name, meta: { title = '', display = [], icon } = {}, children = [] } = {}) => [
@@ -30,7 +36,7 @@ export default {
     const { matched: path = [] } = this.$route;
     this.children = ((routes.find(({ name } = {}) => name === 'Root'))?.children || []).reduce(handleRoutes, []);
     this.openKeys = path.slice(1, path.length - 1).map(({ name }) => name);
-    this.defaultSelectedKeys.push(this.$route.name);
+    this.selectedKeys.push(this.$route.name);
   },
   methods: {
     handleItemClick({ key }) {

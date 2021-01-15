@@ -67,6 +67,7 @@ export default {
         on: {
           selectChange: (val) => this.$emit('selectChange', val),
           'update:openKeys': (val) => this.$emit('update:openKeys', val),
+          click: (...params) => this.$emit('click', ...params),
         },
       },
       handleNode(this.children),
