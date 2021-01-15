@@ -45,3 +45,12 @@ export const dataSource2 = [
     C: 'C1',
   },
 ];
+
+export const getData = async () => {
+  await new Promise((res) => setTimeout(() => res(), 500));
+  return [null, {
+    data: new Array(60).fill(null)
+      .map((_, id) => ({ id: `${id}`, name: `${id}`, age: Math.floor(Math.random() * 100) })),
+    meta: { total: 60 },
+  }];
+};

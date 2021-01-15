@@ -104,7 +104,6 @@ export default {
             const pagination = {
               ...this.pagination, current, pageSize, total,
             };
-            this.$emit('update:pagination', pagination);
             this.$emit('change', pagination);
           },
         },

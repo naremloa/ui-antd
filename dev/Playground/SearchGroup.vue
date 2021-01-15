@@ -3,9 +3,9 @@
     <fe-search-group
       :form-list="formList"
       :form-init="{ selectValue: 1 }"
-      :search="handleSearch"
       :date-shortcut="'date'"
-      date-shortcut-label="測試 日期選擇" />
+      date-shortcut-label="測試 日期選擇"
+      @search="handleSearch" />
   </div>
 </template>
 <script>

@@ -53,6 +53,14 @@ export default [
             component: () => import('../Playground/Form.vue'),
           },
           {
+            path: 'page-with-search-group-and-table',
+            name: 'PageWithSearchGroupAndTable',
+            meta: {
+              title: '搜索框和表格頁面展示',
+            },
+            component: () => import('../Playground/PageWithSearchGroupAndTable.vue'),
+          },
+          {
             path: 'page',
             name: 'Page',
             meta: {

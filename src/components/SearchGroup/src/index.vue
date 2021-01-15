@@ -72,7 +72,7 @@
                 <fe-button
                   type="primary"
                   :has-loading="true"
-                  @click="validate">
+                  @click="validate({ current: 1 })">
                   搜索
                 </fe-button>
               </fe-space>
@@ -129,10 +129,6 @@ export default {
   name: 'FeSearchGroup',
   components: { TransitionCollapse },
   props: {
-    search: {
-      type: Function,
-      default: null,
-    },
     formList: {
       type: [Array, Promise],
       default: () => [],
@@ -274,10 +270,10 @@ export default {
       if (this.dateShortcut) outputForm[this.dateShortcut] = this.dateShortcutTime;
       return outputForm;
     },
-    async validate() {
+    async validate(params = {}) {
       try {
         await this.$refs.Form.validate();
-        this.handleSearch();
+        this.handleSearch(params);
       } catch (err) {
         notification.error({
           message: '標題',
@@ -285,21 +281,15 @@ export default {
         });
       }
     },
-    async handleSearch() {
-      // 保證 search 正常可用
-      if (!isFunction(this.search)) {
-        return this.$notify({ type: 'error', message: 'do not have search function' });
-      }
-      this.$emit('search-start');
-      const params = this.handleFormOutput(this.form);
-      await this.search(params);
-      this.$emit('search-end');
-      return null;
+    async handleSearch(params = {}) {
+      const searchData = this.handleFormOutput(this.form) || {};
+      const data = { ...searchData, ...params };
+      this.$emit('search', data);
     },
-    async handleResearch() {
+    async search(params = {}) {
       return new Promise((res) => {
         setTimeout(async () => {
-          await this.validate();
+          await this.validate(params);
           res();
         }, 200);
       });
