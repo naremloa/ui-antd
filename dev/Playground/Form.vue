@@ -291,6 +291,20 @@ export default {
           prop: 'text',
           label: 'fe-text',
           format: () => `${this.form.text} / ${this.form.age}`,
+          formTypeProps: {
+            class: () => {
+              if (this.form.text === '123123') {
+                return { 111: true, 222: true };
+              }
+              return '12 22';
+            },
+            style: () => {
+              if (this.form.text === '123123') {
+                return { color: 'blue' };
+              }
+              return '';
+            },
+          },
         }),
         ffTextarea({
           prop: 'textarea',
@@ -336,6 +350,10 @@ export default {
         ffUpload({
           prop: 'fileList',
           label: 'fe-upload',
+          formTypeProps: {
+            preview: false,
+            download: true,
+          },
         }),
         ffUpload({
           prop: 'fileText',
@@ -343,6 +361,8 @@ export default {
           formTypeProps: {
             listType: 'text',
             length: 3,
+            preview: false,
+            download: true,
           },
         }),
         ffRadio({
@@ -357,6 +377,11 @@ export default {
         }),
       ],
     };
+  },
+  created() {
+    setTimeout(() => {
+      this.form.text = '123123';
+    }, 2000);
   },
   methods: {
     handleSubmit() {
