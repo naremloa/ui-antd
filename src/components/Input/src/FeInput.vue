@@ -22,11 +22,11 @@ export default {
     },
     formatter: {
       type: Function,
-      default: null,
+      default: undefined,
     },
     parser: {
       type: Function,
-      default: null,
+      default: undefined,
     },
   },
   methods: {
