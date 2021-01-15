@@ -33,7 +33,7 @@
                   style="margin-bottom: 5px; color: rgba(0, 0, 0, 0.85)">
                   {{ dateShortcutLabel }}
                 </fe-row>
-                <fe-space>
+                <fe-space class="date-radio-btn-wrapper">
                   <fe-radio-group
                     v-model="dateShortcutValue"
                     button-style="solid">
@@ -61,7 +61,7 @@
               v-bind="item" />
           </div>
 
-          <div class="search-group__btn-wrapper">
+          <div class="search-group__btn-wrapper search-group__btn-wrapper--pc">
             <div
               class="search-btn-wrapper"
               :class="dateShortcut === 'date' && 'search-btn-wrapper__date'">
@@ -82,7 +82,7 @@
 
         <transition-collapse>
           <div v-show="!collapse">
-            <fe-row>
+            <fe-row class="search-group-more">
               <fe-form-item-setting
                 v-for="(item, iIdx) in localHideFormList"
                 :key="`${item.prop || 0} - ${iIdx}`"
@@ -90,9 +90,29 @@
                 v-bind="item" />
             </fe-row>
             <!-- 佔位 -->
-            <fe-row style="margin-top: 10px; height: 32px " />
+            <fe-row
+              class="pc-show"
+              style="margin-top: 4px; height: 32px" />
           </div>
         </transition-collapse>
+
+        <fe-row>
+          <div class="search-group__btn-wrapper--mobile">
+            <div>
+              <fe-space>
+                <fe-button @click="handleReset">
+                  清除條件
+                </fe-button>
+                <fe-button
+                  type="primary"
+                  :has-loading="true"
+                  @click="validate">
+                  搜索
+                </fe-button>
+              </fe-space>
+            </div>
+          </div>
+        </fe-row>
       </fe-form>
     </fe-card>
   </div>
@@ -163,6 +183,17 @@ export default {
         ],
       },
     };
+  },
+  computed: {
+    collapseState() {
+      const w = window.document.body.clientWidth;
+      console.log('w--', w);
+
+      if (w < 576) {
+        return true;
+      }
+      return false;
+    },
   },
   watch: {
     formList: {
@@ -279,18 +310,72 @@ export default {
 
 <style scoped lang="scss">
 
+.fe-search-group {
+  .pc-show {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: inline-block;
+    }
+  }
+}
+
 .search-group {
   display: flex;
   justify-content: space-between;
 
+  .ant-form-item-label {
+    width: auto;
+  }
+
   &__always-show {
     flex: 1;
+    margin-bottom: 4px;
 
+    .date-radio-btn-wrapper {
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+
+      .ant-space-item:nth-child(2) {
+        margin-top: 5px;
+      }
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+
+        .ant-space-item:nth-child(2) {
+          margin-top: 0px;
+        }
+      }
+    }
   }
 
   &__btn-wrapper {
     flex: none;
-    width: 160px;
+    width: 0px;
+
+    &--pc {
+      display: none;
+    }
+
+    &--mobile {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 160px;
+
+      &--pc {
+        display: inline-block;
+      }
+
+      &--mobile {
+        display: none;
+      }
+    }
   }
 }
 
