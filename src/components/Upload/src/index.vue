@@ -1,12 +1,15 @@
 <template>
   <div class="clearfix">
     <Upload
-      v-bind="$attrs"
+      v-bind="handleAttr"
       :file-list="value"
       :list-type="listType"
-      :remove="handleRemove"
       :before-upload="beforeUpload"
-      @preview="handlePreview"
+      :show-upload-list="{
+        showRemoveIcon: remove,
+        showDownloadIcon: download
+      }"
+      v-on="handleEvent"
       @change="handleChange">
       <fe-button>
         <fe-icon
@@ -61,6 +64,18 @@ export default {
       type: Number,
       default: 1,
     },
+    preview: {
+      type: Boolean,
+      default: true,
+    },
+    download: {
+      type: Boolean,
+      default: false,
+    },
+    remove: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -68,10 +83,25 @@ export default {
       previewVisible: false,
       previewData: {
         url: '',
-        type: '',
+        alt: '',
       },
       fileList: [],
     };
+  },
+  computed: {
+    handleEvent() {
+      const payload = {};
+      this.preview && (payload.preview = this.handlePreview);
+      this.download && (payload.download = this.handleDownload);
+      this.remove && (payload.remove = this.handleRemove);
+      return payload;
+    },
+    handleAttr() {
+      const {
+        download, remove, preview, ...rest
+      } = this.$attrs || {};
+      return rest;
+    },
   },
   methods: {
     handleCancel() {
@@ -81,11 +111,32 @@ export default {
       if (!file.url && !file.preview) {
         file.preview = await getBase64(file.originFileObj);
       }
-      this.previewData = {
-        url: file.url || file.preview,
-        type: file.type || 'img',
-      };
+      this.previewData.url = file.url || file.preview;
+      this.previewData.alt = file.name;
       this.previewVisible = true;
+    },
+    handleDownload(file) {
+      fetch(file.url)
+        .then((resp) => resp.blob())
+        .then((blob) => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          // a.style.display = 'none';
+          a.href = url;
+          a.download = file.name;
+          // document.body.appendChild(a);
+          a.click();
+          // document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        })
+        .catch((err) => {
+          console.error('[ERROR] handleDownload is failed: ', err);
+          const a = document.createElement('a');
+          a.href = file.url;
+          a.download = file.name;
+          a.target = '_blank';
+          a.click();
+        });
     },
     handleChange({ fileList }) {
       if (this.length !== -1) {

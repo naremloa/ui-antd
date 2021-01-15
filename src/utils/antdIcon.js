@@ -3,6 +3,7 @@
 export { default as CheckOutline } from '@ant-design/icons/lib/outline/CheckOutline';
 export { default as PaperClipOutline } from '@ant-design/icons/lib/outline/PaperClipOutline';
 export { default as DeleteOutline } from '@ant-design/icons/lib/outline/DeleteOutline';
+export { default as DownloadOutline } from '@ant-design/icons/lib/outline/DownloadOutline';
 export { default as UpOutlineOutline } from '@ant-design/icons/lib/outline/UpOutline';
 export { default as DownOutline } from '@ant-design/icons/lib/outline/DownOutline';
 export { default as RightOutline } from '@ant-design/icons/lib/outline/RightOutline';

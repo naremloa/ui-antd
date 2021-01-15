@@ -227,7 +227,7 @@ export default {
           uid: '2',
           name: 'yyy.png',
           status: 'done',
-          url: 'http://www.baidu.com/yyy.png',
+          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
         },
         {
           uid: '3',
@@ -296,7 +296,7 @@ export default {
               if (this.form.text === '123123') {
                 return { 111: true, 222: true };
               }
-              return '12 22';
+              return ['11', '22'];
             },
             style: () => {
               if (this.form.text === '123123') {
@@ -351,7 +351,6 @@ export default {
           prop: 'fileList',
           label: 'fe-upload',
           formTypeProps: {
-            preview: false,
             download: true,
           },
         }),
@@ -363,6 +362,7 @@ export default {
             length: 3,
             preview: false,
             download: true,
+            remove: false,
           },
         }),
         ffRadio({
