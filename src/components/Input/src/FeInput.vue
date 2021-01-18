@@ -3,6 +3,7 @@ import {
   Input as AInput,
   InputNumber as AInputNumber,
 } from 'ant-design-vue';
+import { isFunction } from '@/utils/lodash';
 
 export default {
   name: 'FeInput',
@@ -28,6 +29,10 @@ export default {
       type: Function,
       default: undefined,
     },
+    enterEvent: {
+      type: Function,
+      default: null,
+    },
   },
   methods: {
     // updateValue(val) { this.$emit('change', +`${this.parser(val)}`); },
@@ -45,6 +50,13 @@ export default {
           },
           on: {
             change: (val) => this.$emit('change', +`${val}`),
+          },
+          nativeOn: {
+            keypress: (e) => {
+              if (e.keyCode === 13 && isFunction(this.enterEvent)) {
+                this.enterEvent();
+              }
+            },
           },
           // nativeOn: {
           //   '!keypress': (e) => {
@@ -90,6 +102,13 @@ export default {
         },
         on: {
           'change.value': (val) => this.$emit('change', val),
+        },
+        nativeOn: {
+          keypress: (e) => {
+            if (e.keyCode === 13 && isFunction(this.enterEvent)) {
+              this.enterEvent();
+            }
+          },
         },
       },
     );

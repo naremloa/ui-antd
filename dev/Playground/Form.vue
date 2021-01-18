@@ -273,6 +273,11 @@ export default {
           label: 'fe-input',
           wrapperCol: { span: 18 },
           labelCol: { span: 6 },
+          formTypeProps: {
+            enterEvent: () => {
+              console.log('enter');
+            },
+          },
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
         ffInputNumber({
@@ -404,6 +409,9 @@ export default {
     },
     handle(data, rowData) {
       console.log(data, rowData);
+    },
+    handleKeypress() {
+      console.log('keypress');
     },
   },
 };
