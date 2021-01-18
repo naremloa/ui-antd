@@ -28,7 +28,8 @@
         prop="age">
         <fe-input-number
           v-model="form.age"
-          placeholder="input password" />
+          placeholder="input password"
+          :precision="8" />
       </fe-form-item>
       <fe-form-item
         label="fe-select"
@@ -278,6 +279,9 @@ export default {
           prop: 'age',
           label: 'fe-input-number',
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
+          formTypeProps: {
+            precision: 8,
+          },
         }),
         ffInputPassword({
           prop: 'password',

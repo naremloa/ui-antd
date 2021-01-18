@@ -60,6 +60,8 @@ export default {
     const renderFormItem = () => h(
       'fe-form-item',
       {
+        // NOTE: 為了 inputNumber 在 formItem 下高度丟失，新增 class 以修復
+        class: { 'form-item-input-number': this.formType === 'fe-input' && this.formTypeProps?.type === 'inputNumber' },
         props: {
           ...this.$attrs,
           prop: this.prop,

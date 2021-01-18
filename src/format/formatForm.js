@@ -17,7 +17,11 @@ export const ffInputNumber = ({
   ...rest,
   prop,
   label,
-  formType: 'fe-input-number',
+  formTypeProps: {
+    type: 'inputNumber',
+    ...(rest.formTypeProps || {}),
+  },
+  formType: 'fe-input',
   formTypeEvent: 'change',
 });
 
