@@ -17,7 +17,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const modifyVars = require('../src/styles/modifyVars');
+// const modifyVars = require('../src/styles/modifyVars');
 
 function resolve(dir) { return path.join(__dirname, '..', dir); }
 
@@ -50,7 +50,7 @@ const lessLoader = [
       sourceMap: true,
       lessOptions: {
         javascriptEnabled: true,
-        modifyVars,
+        // modifyVars,
       },
     },
   },

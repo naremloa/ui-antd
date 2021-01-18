@@ -1,0 +1,28 @@
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+  opacity: 0;
+}
+
+.ant-radio-button-wrapper {
+  border-radius: 16px;
+  
+  & + & {
+    margin-left: 10px;
+  }
+
+  &::before {
+    opacity: 0;
+    background-color: transparent;
+    width: 0;
+  }
+
+  &:first-child {
+    border-radius: 16px;
+    border: 1px solid @c-re-radio-wrapper;
+  }
+
+
+  &:last-child {
+    border-radius: 16px;
+    border: 1px solid @c-re-radio-wrapper;
+  }
+}

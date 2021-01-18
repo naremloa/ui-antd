@@ -1,0 +1,15 @@
+// 移除必填星號
+.ant-form-item-required {
+
+  &::before {
+    content: ''
+  }
+}
+
+.ant-form-item.form-item-input-number {
+  .has-error {
+    .ant-form-explain {
+      line-height: 0;
+    }
+  }
+}

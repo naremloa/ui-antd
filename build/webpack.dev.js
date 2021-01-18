@@ -12,7 +12,7 @@ const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-const modifyVars = require('../src/styles/modifyVars');
+// const modifyVars = require('../src/styles/modifyVars');
 const webpackCommonConfig = require('./webpack.common.js');
 
 process.env.NODE_ENV = 'development';
@@ -98,7 +98,7 @@ module.exports = {
               sourceMap: true,
               lessOptions: {
                 javascriptEnabled: true,
-                modifyVars,
+                // modifyVars,
               },
             },
           },

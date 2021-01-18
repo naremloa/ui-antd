@@ -1,4 +1,3 @@
-import 'ant-design-vue/dist/antd.css';
 import Button from './components/Button';
 import * as Avatar from './components/Avatar';
 import * as Tooltip from './components/Tooltip';
@@ -36,7 +35,8 @@ import Title from './components/Title';
 import Space from './components/Space';
 import AddButton from './components/AddButton';
 import format from './format';
-import './styles/index.scss';
+
+import './styles/index.less';
 
 const components = {
   ...Avatar,
