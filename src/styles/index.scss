@@ -337,12 +337,6 @@
     content: ''
   }
 }
-
-.login-box-wrapper {
-  text-align: center;
-}
-
-// search group
 .search-group-more,.search-group {
   .ant-row.ant-form-item {
     width: 100%;
@@ -364,9 +358,16 @@
   }
 }
 
+
+.login-box-wrapper {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 50px 0px 80px;
+
+  @media screen and (min-width: 576px) {
+    padding: 50px 50px 80px;
+  }
+}
 // 複寫 ant-design other --- end
-
-
-
-
 
