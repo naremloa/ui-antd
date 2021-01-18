@@ -67,6 +67,7 @@ export default {
           loading: this.loading,
           value: this.value,
           notFoundContent: this.notFoundContent,
+          showSearch: this.showSearch,
         },
         on: {
           ...this.$listeners,
