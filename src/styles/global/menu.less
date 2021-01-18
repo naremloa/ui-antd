@@ -1,0 +1,37 @@
+.ant-menu {
+  border-right: 0px transparent;
+}
+
+.ant-menu-submenu-title {
+  border-bottom: 1px solid rgba(black, 0.05);
+}
+
+.ant-menu-inline .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-item:not(:last-child) {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 0px;
+}
+
+.ant-menu-item-selected {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #fa6400;
+}
+
+// 覆寫antd
+.ant-menu-item {
+  border-bottom: 1px solid rgba(black, 0.05);
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
