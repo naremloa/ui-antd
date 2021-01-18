@@ -3,7 +3,7 @@
 }
 
 .ant-menu-submenu-title {
-  border-bottom: 1px solid rgba(black, 0.05);
+  border-bottom: 1px solid rgba(@c-black, 0.05);
 }
 
 .ant-menu-inline .ant-menu-submenu-title,
@@ -18,20 +18,20 @@
 }
 
 .ant-menu-item-selected {
-  color: #fff;
+  color: @c-white;
 
   &:hover {
-    color: #fff;
+    color: @c-white;
   }
 }
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: #fa6400;
+  background-color: @c-main;
 }
 
 // 覆寫antd
 .ant-menu-item {
-  border-bottom: 1px solid rgba(black, 0.05);
+  border-bottom: 1px solid rgba(@c-black, 0.05);
   margin-bottom: 0px;
   margin-top: 0px;
 }

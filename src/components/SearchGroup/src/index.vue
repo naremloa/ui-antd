@@ -298,13 +298,21 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
+@import "~@/styles/init/rwd.less";
+
+.hi {
+  display: none;
+   @media @md {
+        display: inline-block;
+    }
+}
 
 .fe-search-group {
   .pc-show {
     display: none;
 
-    @media screen and (min-width: 768px) {
+    @media @md {
         display: inline-block;
     }
   }
@@ -331,7 +339,7 @@ export default {
         margin-top: 5px;
       }
 
-      @media screen and (min-width: 768px) {
+      @media @md {
         flex-direction: row;
 
         .ant-space-item:nth-child(2) {
@@ -355,7 +363,7 @@ export default {
       margin-top: 4px;
     }
 
-    @media screen and (min-width: 768px) {
+    @media @md {
       width: 160px;
 
       &--pc {

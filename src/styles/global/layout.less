@@ -1,5 +1,3 @@
-// layout --start
-
 .ly {
   width: 100%;
   height: 100%;
@@ -12,7 +10,8 @@
 
   &__hbg-icon {
     cursor: pointer;
-    @media screen and (min-width: 768px) {
+
+    @media @md {
       display: none;
     }
   }
@@ -23,8 +22,8 @@
     left: 0;
     width: 100%;
     z-index: 900;
-    color: #fff;
-    background-color: #212946;
+    color: @c-white;
+    background-color: @c-header-bg;
     font-size: 16px;
     height: 60px;
     flex: none;
@@ -55,7 +54,7 @@
     padding-top: 60px;
     width: 100%;
     flex: 1;
-    background-color: #fff;
+    background-color: @c-white;
     display: flex;
     overflow: auto;
 
@@ -63,7 +62,7 @@
       width: 0px;
       flex: none;
       box-sizing: border-box;
-      border-right: 1px solid rgba(#000000, 0.05);
+      border-right: 1px solid rgba(@c-black, 0.05);
       overflow-y: auto;
       transition: 0.5s;
       transform-origin: top left;
@@ -76,7 +75,7 @@
 
       // 覆寫antd
       .ant-layout-sider-children {
-        background-color: #fff;
+        background-color: @c-white;
       }
     }
 
@@ -84,11 +83,9 @@
       flex: 1;
       padding: 20px;
       margin: 0;
-      background-color: #fff;
+      background-color: @c-white;
       overflow: auto;
       box-sizing: border-box;
     }
   }
 }
-
-// layout ---end

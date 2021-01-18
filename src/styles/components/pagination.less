@@ -4,16 +4,16 @@
     border: 1px solid transparent;
 
     > a {
-      color: #212946;
+      color: @c-re-pagination-main;
     }
 
     &:hover {
-      border: 1px solid #000000;
+      border: 1px solid @c-re-pagination-main;
 
       > a {      
         box-sizing: border-box;
         border-radius: 4px;
-        color: #212946;
+        color: @c-re-pagination-main;
       }
     }
   }
@@ -24,10 +24,10 @@
     }
 
     &:hover {
-      border: 1px solid #000000;
+      border: 1px solid @c-re-pagination-main;
 
       > a {
-        color: #212946;
+        color: @c-re-pagination-main;
       }
     }
   }
@@ -38,26 +38,26 @@
     }
 
     &:hover {
-      border: 1px solid #000000;
+      border: 1px solid @c-re-pagination-main;
 
       > a {
-          color: #212946;
+          color: @c-re-pagination-main;
       }
     }
   }
 
   .ant-pagination-item-active {
-    border: 1px solid #212946;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    background-color: #212946;
+    border: 1px solid @c-re-pagination-main;
+    box-shadow: 0 2px 4px 0 @c-re-pagination-shadow;
+    background-color: @c-re-pagination-main;
 
     > a {
-      color: #fff;
+      color: @c-white;
     }
 
     &:hover {
       > a {
-        color: #fff;
+        color: @c-white;
       }
     }
   }
