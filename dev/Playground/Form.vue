@@ -23,14 +23,14 @@
           v-model="form.password"
           placeholder="Number" />
       </fe-form-item>
-      <fe-form-item
+      <!-- <fe-form-item
         label="fe-input-number"
         prop="age">
         <fe-input-number
           v-model="form.age"
           placeholder="input password"
           :precision="8" />
-      </fe-form-item>
+      </fe-form-item> -->
       <fe-form-item
         label="fe-select"
         prop="region">
@@ -282,7 +282,7 @@ export default {
         }),
         ffInputNumber({
           prop: 'age',
-          label: 'fe-input-number',
+          label: 'fe-input-number test',
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
           formTypeProps: {
             precision: 8,

@@ -100,10 +100,14 @@ export default {
         },
         on: {
           ...this.$listeners,
-          change: ({ current, pageSize, total }) => {
+          change: ({
+            current, pageSize, total,
+          }) => {
             const pagination = {
               ...this.pagination, current, pageSize, total,
             };
+
+            this.$el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
             this.$emit('change', pagination);
           },
         },
