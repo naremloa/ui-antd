@@ -49,7 +49,7 @@ export default {
             // parser: this.parser,
           },
           on: {
-            change: (val) => this.$emit('change', +`${val}`),
+            change: (val) => this.$emit('change', val ?? +`${val}`),
           },
           nativeOn: {
             keypress: (e) => {
