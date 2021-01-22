@@ -1,6 +1,4 @@
-import { Input } from 'ant-design-vue';
 import FeInput from './FeInput.vue';
-
-const { Password: FeInputPassword } = Input;
+import FeInputPassword from './FeInputPassword.vue';
 
 export { FeInput, FeInputPassword };

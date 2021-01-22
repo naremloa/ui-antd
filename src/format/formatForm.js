@@ -63,7 +63,7 @@ export const ffInputPassword = ({
   prop,
   label,
   formType: 'fe-input-password',
-  formTypeEvent: 'change.value',
+  formTypeEvent: 'change',
 });
 export const ffSelect = ({
   prop = '',
