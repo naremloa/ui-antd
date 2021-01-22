@@ -97,6 +97,9 @@
     <fe-button @click="handleModalDirec">
       Modal
     </fe-button>
+    <fe-button @click="handleErrorMessage">
+      Error Modal
+    </fe-button>
   </div>
 </template>
 <script>
@@ -104,6 +107,7 @@ import { Table as ATable } from 'ant-design-vue';
 // import {
 //   ftColumn, ftText, ftButton, fPagination, ftSelect, ftSwitch, ftTextarea,
 // } from './format';
+import dayjs from '@/utils/dayjs';
 import { dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
 
@@ -116,6 +120,7 @@ export default {
     } = this.$format;
 
     return {
+      errMessage: null,
       inputNumber: 1,
       dataSource2,
       pagination: ftPagination({ total: 500 }),
@@ -173,6 +178,22 @@ export default {
         message: '通知内容',
         type: 'error',
       });
+    },
+    handleErrorMessage() {
+      this.errMessage = this.$errorMessage({
+        duration: null,
+        detailContent: [{
+          a: 'a', b: 'b', c: 'c', d: 'd', e: 'e', f: 'f', g: 'g', h: 'h',
+        }],
+      });
+      setTimeout(() => {
+        this.$errorMessage({
+          duration: null,
+          detailContent: [{
+            a: 'a', b: 'b', c: 'c', d: 'd', e: 'e', f: 'f', g: 'g', h: 'h',
+          }],
+        });
+      }, 2000);
     },
   },
 };

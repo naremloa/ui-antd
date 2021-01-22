@@ -17,7 +17,7 @@ export default {
     },
     template: {
       type: [Object, String],
-      required: true,
+      default: '',
     },
     data: {
       type: [Object, Array, Boolean, String, Number],
@@ -42,6 +42,28 @@ export default {
     },
   },
   render(h) {
+    const handleContent = () => {
+      if (this.template) {
+        return h(
+          this.template,
+          {
+            props: {
+              visible: this.visible,
+              data: this.data,
+
+            },
+            on: {
+              close: (status) => {
+                this.$emit('change', false);
+                this.$emit('close', status);
+              },
+            },
+          },
+        );
+      }
+      if (this.$slots.default) return this.$slots.default;
+      return null;
+    };
     return h(
       'a-modal',
       {
@@ -56,27 +78,7 @@ export default {
           ...this.$listeners,
         },
       },
-      [
-
-        this.template
-          ? h(
-            this.template,
-            {
-              props: {
-                visible: this.visible,
-                data: this.data,
-
-              },
-              on: {
-                close: (status) => {
-                  this.$emit('change', false);
-                  this.$emit('close', status);
-                },
-              },
-            },
-          )
-          : [],
-      ],
+      [handleContent()],
     );
   },
 };

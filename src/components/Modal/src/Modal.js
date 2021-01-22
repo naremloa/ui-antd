@@ -8,7 +8,7 @@ const modal = ({
   ...rest
 } = {}) => {
   if (!['success', 'info', 'warning', 'error', 'confirm'].includes(type)) {
-    console.error('tyep is not right');
+    console.error('type is not right');
     return null;
   }
   const modalInstance = type === 'confirm'
