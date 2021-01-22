@@ -361,7 +361,13 @@ export default {
           label: 'fe-upload',
           formTypeProps: {
             download: true,
+            message: '圖標尺寸 20px * 20px，檔案大小最大 1024KB',
+            btnText: '上傳按鈕',
+            btnType: 'primary',
           },
+          rules: [
+            { required: true, message: '请上传尺寸 20px*20px，格式png/jpg/jpeg，档案小于 1024KB 的 Icon 图', trigger: 'change' },
+          ],
         }),
         ffUpload({
           prop: 'fileText',

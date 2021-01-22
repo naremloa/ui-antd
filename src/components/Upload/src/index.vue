@@ -11,11 +11,14 @@
       }"
       v-on="handleEvent"
       @change="handleChange">
-      <fe-button>
+      <fe-button
+        :class="btnClass"
+        :type="btnType">
         <fe-icon
           v-if="icon"
-          :type="icon" /> {{ text }}
+          :type="icon" /> {{ btnText }}
       </fe-button>
+      <span class="note"> {{ message }}</span>
     </Upload>
     <fe-modal
       :visible="previewVisible"
@@ -44,9 +47,17 @@ export default {
   components: { Upload },
   model: { prop: 'value', event: 'change' },
   props: {
-    text: {
+    btnText: {
       type: String,
-      default: 'Upload',
+      default: '上传按钮',
+    },
+    btnClass: {
+      type: [Array, String, Object],
+      default: null,
+    },
+    btnType: {
+      type: String,
+      default: '',
     },
     icon: {
       type: String,
@@ -75,6 +86,10 @@ export default {
     remove: {
       type: Boolean,
       default: true,
+    },
+    message: {
+      type: String,
+      default: '',
     },
   },
   data() {
@@ -157,5 +172,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+  .note{
+    color:#999999;
+    font-size:12px;
+  }
 </style>
