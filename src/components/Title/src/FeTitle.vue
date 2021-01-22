@@ -83,7 +83,7 @@ export default {
 
   &__login {
     display: inline-block;
-    margin: 0px auto 80px;
+    margin: 0px auto 20px;
     border: 0;
     border-bottom: 3px solid;
     border-image-source: linea r-gradient(to right, #003956, #003956);
