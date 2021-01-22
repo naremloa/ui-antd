@@ -24,10 +24,10 @@ export default {
     validateField(...params) { this.$refs.Form.validateField(...params); },
     resetFields(...params) { this.$refs.Form.resetFields(...params); },
     clearValidate(...params) { this.$refs.Form.clearValidate(...params); },
-    async submit() {
+    async submit(...params) {
       try {
         await this.validate();
-        this.$emit('submit');
+        this.$emit('submit', ...params);
       } catch (err) { console.log('Form validate error', err?.message); }
     },
   },
