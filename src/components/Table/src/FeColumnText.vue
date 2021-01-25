@@ -5,20 +5,20 @@
         :is="slotComponent"
         v-bind="rowData" />
     </template>
-    <template v-else-if="isString(display)">
-      {{ display }}
-    </template>
-    <template v-else>
+    <template v-else-if="isObject(display)">
       <div
         v-for="(d, dIdx) in display"
         :key="dIdx">
         {{ d }}
       </div>
     </template>
+    <template v-else>
+      {{ display }}
+    </template>
   </div>
 </template>
 <script>
-import { isFunction, isString } from '@/utils/lodash';
+import { isFunction, isObject } from '@/utils/lodash';
 
 export default {
   name: 'FeColumnText',
@@ -56,7 +56,7 @@ export default {
     },
   },
   methods: {
-    isString,
+    isObject,
   },
 };
 </script>
