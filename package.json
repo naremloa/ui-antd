@@ -1,6 +1,6 @@
 {
   "name": "@fe-backstage/ui-antd",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "> TODO: description",
   "author": "naremloa <narem.lu@silkrode.com.tw>",
   "homepage": "",
@@ -20,7 +20,7 @@
   "scripts": {
     "clean": "rm -rf ./lib && echo success",
     "dev": "webpack-dev-server --config build/webpack.dev.js --watch",
-    "build:prod": "webpack --config build/webpack.prod.js",
+    "build:prod": "rm -rf ./lib && webpack --config build/webpack.prod.js",
     "test": "echo \"Error: run tests from root\" && exi`t 1"
   },
   "devDependencies": {
