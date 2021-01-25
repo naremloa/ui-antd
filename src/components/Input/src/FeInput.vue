@@ -53,6 +53,7 @@ export default {
           },
           nativeOn: {
             keypress: (e) => {
+              if (/[a-zA-Z]/.test(e.key)) e.preventDefault();
               if (e.keyCode === 13 && isFunction(this.enterEvent)) {
                 this.enterEvent();
               }
