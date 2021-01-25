@@ -10,6 +10,7 @@ const msg = ({
     console.error('type is not right');
     return Promise.reject();
   }
+
   return message[type](content, duration, onClose);
 };
 

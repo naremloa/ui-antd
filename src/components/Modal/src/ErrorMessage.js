@@ -26,4 +26,6 @@ const ErrMessage = (options) => {
   return instance;
 };
 
+ErrMessage.checkVisible = () => instance?.visible;
+
 export default ErrMessage;
