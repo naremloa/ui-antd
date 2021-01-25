@@ -165,7 +165,8 @@
         v-for="(setting, idx) in formItemSetting"
         :key="setting.prop || `setting-${idx}`"
         v-model="form[setting.prop]"
-        v-bind="setting" />
+        v-bind="setting"
+        :async-rule-status.sync="asyncRuleStatus[setting.prop]" />
     </fe-form>
   </div>
 </template>
@@ -188,6 +189,9 @@ export default {
     } = this.$format;
     return {
       other: '',
+      asyncRuleStatus: {
+        password: true,
+      },
       form: {
         name: '',
         a1: '',
@@ -291,6 +295,7 @@ export default {
         ffInputPassword({
           prop: 'password',
           label: 'fe-input-password',
+          asyncRuleErrMsg: '我錯了我錯了',
           formTypeProps: {
             placeholder: 'Password',
           },
@@ -393,21 +398,24 @@ export default {
       ],
     };
   },
-  created() {
+  mounted() {
     setTimeout(() => {
-      this.form.text = '123123';
+      this.asyncRuleStatus.password = false;
     }, 2000);
   },
   methods: {
     handleSubmit() {
-      this.$refs.ruleForm.validate((valid) => {
-        if (valid) {
-          console.log('submit!');
-        } else {
-          console.log('error submit!!');
-        }
-      });
-      console.log('handleSubmit', this.form);
+      setTimeout(() => {
+        this.asyncRuleStatus.password = false;
+      }, 2000);
+      // this.$refs.ruleForm.validate((valid) => {
+      //   if (valid) {
+      //     console.log('submit!');
+      //   } else {
+      //     console.log('error submit!!');
+      //   }
+      // });
+      // console.log('handleSubmit', this.form);
     },
     resetForm() {
       this.$refs.ruleForm.resetFields();
