@@ -9,8 +9,10 @@ export const ftPagination = fPagination;
 
 const ftCommon = ({
   columnStyle = {},
+  columnStatus = true,
 } = {}) => ({
   columnStyle,
+  columnStatus,
 });
 
 export const ftText = ({
