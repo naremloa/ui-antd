@@ -5,13 +5,20 @@
         :is="slotComponent"
         v-bind="rowData" />
     </template>
+    <template v-else-if="isString(display)">
+      {{ display }}
+    </template>
     <template v-else>
-      {{ handleDisplay(data, rowData) }}
+      <div
+        v-for="(d, dIdx) in display"
+        :key="dIdx">
+        {{ d }}
+      </div>
     </template>
   </div>
 </template>
 <script>
-import { isFunction, isObject } from '@/utils/lodash';
+import { isFunction, isString } from '@/utils/lodash';
 
 export default {
   name: 'FeColumnText',
@@ -30,7 +37,7 @@ export default {
       default: null,
     },
     text: {
-      type: [Number, String],
+      type: [Number, String, Array],
       default: '',
     },
     slotComponent: {
@@ -38,14 +45,18 @@ export default {
       default: null,
     },
   },
-  methods: {
-    handleDisplay(data, rowData) {
-      const { text, format } = this;
+  computed: {
+    display() {
+      const {
+        text, format, data, rowData,
+      } = this;
       const waitingFormat = text || data;
       const displayText = isFunction(format) ? format(waitingFormat, rowData) : waitingFormat;
-      if (isObject(displayText)) return JSON.stringify(displayText);
       return displayText || '-';
     },
+  },
+  methods: {
+    isString,
   },
 };
 </script>

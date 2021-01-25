@@ -23,7 +23,7 @@ export default {
   name: 'Table',
   data() {
     const {
-      ftColumn, ftTextarea, ftButton, ftSwitch, ftSelect,
+      ftColumn, ftText, ftTextarea, ftButton, ftSwitch, ftSelect,
       ftPagination, ftInput, ftCheckbox,
     } = this.$format;
     return {
@@ -31,12 +31,12 @@ export default {
       pagination: ftPagination({ total: 500 }),
       dataSource: [],
       columns: [
-        // ftColumn({
-        //   dataIndex: 'age',
-        //   title: 'Age',
-        //   header: (h) => h('div', 'Age Header'),
-        //   // width: 80,
-        // })(ftText({ text: 'aaage' })),
+        ftColumn({
+          dataIndex: 'age',
+          title: 'Age',
+          header: (h) => h('div', 'Age Header'),
+          // width: 80,
+        })(ftText({ text: ['asdfasdf', 'asdfasdf', 'asdfas'] })),
         // ftColumn({
         //   dataIndex: 'address',
         //   title: 'Address',
