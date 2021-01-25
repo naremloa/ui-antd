@@ -1,6 +1,6 @@
 <script>
 import { FormModel } from 'ant-design-vue';
-import { isFunction, isObject, isString } from '@/utils/lodash';
+import { isFunction, isObject } from '@/utils/lodash';
 
 const { Item } = FormModel;
 export default {
@@ -22,6 +22,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    asyncRuleStatus: {
+      type: Boolean,
+      default: false,
+    },
+    asyncRuleErrMsg: {
+      type: String,
+      default: '',
+    },
     formType: {
       type: [Function, Object, String],
       default: '',
@@ -41,6 +49,12 @@ export default {
     nested: {
       type: [String, Object],
       default: '',
+    },
+  },
+  watch: {
+    asyncRuleStatus(newVal) {
+      if (newVal === false) this.$refs.FormItem.onFieldBlur();
+      this.$nextTick(() => this.$emit('update:asyncRuleStatus', true));
     },
   },
   render(h) {
@@ -65,9 +79,21 @@ export default {
         props: {
           ...this.$attrs,
           prop: this.prop,
-          rules: this.rules,
+          rules: [
+            {
+              validator: (_, val, cb) => {
+                if (!this.asyncRuleStatus) {
+                  return cb(this.asyncRuleErrMsg);
+                }
+                return cb();
+              },
+              trigger: 'blur',
+            },
+            ...this.rules,
+          ],
         },
         on: this.$listeners,
+        ref: 'FormItem',
       },
       [isFunction(this.formType)
         ? this.formType(h, { value: this.value })
