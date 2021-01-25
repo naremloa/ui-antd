@@ -30,7 +30,7 @@
           </fe-button>
           <fe-button
             type="primary"
-            @click="visible = false">
+            @click="handleConfirm">
             {{ confirmText }}
           </fe-button>
         </fe-space>
@@ -101,6 +101,11 @@ export default {
   methods: {
     open() { this.visible = true; },
     close() { this.visible = false; },
+    handleConfirm() {
+      // this.$msg({ duration: 2, message: 'message test!!' });
+      // console.log('$msg', this.$msg);
+      this.visible = false;
+    },
     update(...params) {
       if (isArray(this.detailContent)) {
         this.detailContent = [...params, ...this.detailContent];

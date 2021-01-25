@@ -100,6 +100,9 @@
     <fe-button @click="handleErrorMessage">
       Error Modal
     </fe-button>
+    <fe-button @click="handleSimpleMessage">
+      simple messsage
+    </fe-button>
   </div>
 </template>
 <script>
@@ -156,7 +159,9 @@ export default {
     handleModal() {
       this.visible = true;
     },
-
+    handleSimpleMessage() {
+      this.$msg({ duration: 3000, message: 'test message' });
+    },
     switchChange(e) {
       console.log('e--', e);
     },
