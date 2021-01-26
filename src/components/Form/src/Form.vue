@@ -29,7 +29,7 @@ export default {
         await this.validate();
         this.$emit('submit', ...params);
       } catch (err) {
-        console.warning('Form validate error', err?.message);
+        console.warn('Form validate error', err?.message);
         this.$emit('submit-error');
       }
     },
