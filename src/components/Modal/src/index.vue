@@ -75,7 +75,13 @@ export default {
 
         },
         on: {
-          ...this.$listeners,
+          // ...this.$listeners,
+          change: (status) => {
+            this.$emit('change', status);
+          },
+          cancel: () => {
+            this.$emit('close', false);
+          },
         },
       },
       [handleContent()],
