@@ -9,11 +9,9 @@
 </template>
 <script>
 import { isFunction } from '@/utils/lodash';
-import { FeSwitch } from '@/components/Switch';
 
 export default {
   name: 'FeColumnSwitch',
-  components: { FeSwitch },
   props: {
     data: {
       type: [Number, Boolean],

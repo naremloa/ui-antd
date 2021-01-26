@@ -10,11 +10,9 @@
 </template>
 <script>
 import { isBoolean, isFunction } from '@/utils/lodash';
-import { FeButton } from '@/components/Button';
 
 export default {
   name: 'FeColumnButton',
-  components: { FeButton },
   inheritAttrs: false,
   props: {
     data: {

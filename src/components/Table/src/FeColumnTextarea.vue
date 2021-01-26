@@ -9,11 +9,9 @@
     @change="handleChange" />
 </template>
 <script>
-import { FeTextarea } from '@/components/Textarea';
 
 export default {
   name: 'FeColumnTextarea',
-  components: { FeTextarea },
   props: {
     data: {
       type: [String, Number],

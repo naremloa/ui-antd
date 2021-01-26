@@ -9,11 +9,9 @@
   </div>
 </template>
 <script>
-import { FeTag } from '@/components/Tag';
 
 export default {
   name: 'FeColumnTag',
-  components: { FeTag },
   props: {
     data: {
       type: Array,
