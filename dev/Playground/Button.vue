@@ -1,6 +1,10 @@
 <template>
   <div>
-    {{ $route.name }}
+    <fe-add-button
+      :disabled="isDisabled"
+      title="增加按鈕" />
+    <fe-add-button
+      title="增加按鈕 disabled" />
   </div>
 </template>
 
@@ -8,6 +12,16 @@
 
 export default {
   name: 'Button',
+  data() {
+    return {
+      isDisabled: false,
+    };
+  },
+  created() {
+    setTimeout(() => {
+      this.isDisabled = true;
+    }, 1500);
+  },
 };
 </script>
 
