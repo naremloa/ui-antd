@@ -2,6 +2,7 @@
   <div class="clearfix">
     <Upload
       v-bind="handleAttr"
+      :disabled="disabled"
       :file-list="value"
       :list-type="listType"
       :before-upload="beforeUpload"
@@ -13,7 +14,8 @@
       @change="handleChange">
       <fe-button
         :class="btnClass"
-        :type="btnType">
+        :type="btnType"
+        :disabled="disabled">
         <fe-icon
           v-if="icon"
           :type="icon" /> {{ btnText }}
@@ -90,6 +92,10 @@ export default {
     message: {
       type: String,
       default: '',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
