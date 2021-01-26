@@ -24,7 +24,7 @@ export default {
     },
     asyncRuleStatus: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     asyncRuleErrMsg: {
       type: String,
