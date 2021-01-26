@@ -28,7 +28,10 @@ export default {
       try {
         await this.validate();
         this.$emit('submit', ...params);
-      } catch (err) { console.log('Form validate error', err?.message); }
+      } catch (err) {
+        console.warning('Form validate error', err?.message);
+        this.$emit('submit-error');
+      }
     },
   },
   render(h) {
