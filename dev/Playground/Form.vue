@@ -278,6 +278,7 @@ export default {
           wrapperCol: { span: 18 },
           labelCol: { span: 6 },
           formTypeProps: {
+            regRule: /[a-zA-Z]/,
             enterEvent: () => {
               console.log('enter');
             },

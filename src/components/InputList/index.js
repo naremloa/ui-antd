@@ -1,3 +1,7 @@
 import FeInputList from './src/index.vue';
 
-export { FeInputList };
+const install = (Vue) => {
+  Vue.component('FeInputList', FeInputList);
+};
+
+export default install;

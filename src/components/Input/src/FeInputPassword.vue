@@ -2,7 +2,7 @@
 import {
   Input as AInput,
 } from 'ant-design-vue';
-import { isFunction } from '@/utils/lodash';
+import { isFunction, isRegExp } from '@/utils/lodash';
 
 export default {
   name: 'FeInput',
@@ -19,6 +19,10 @@ export default {
       type: Function,
       default: null,
     },
+    regRule: {
+      validator(val) { return isRegExp(val); },
+      default: null,
+    },
   },
   render(h) {
     return h(
@@ -33,6 +37,7 @@ export default {
         },
         nativeOn: {
           keypress: (e) => {
+            if (this.regRule && !this.regRule.test(e.key)) e.preventDefault();
             if (e.keyCode === 13 && isFunction(this.enterEvent)) {
               this.enterEvent();
             }
