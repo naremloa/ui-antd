@@ -68,15 +68,15 @@ module.exports = {
           'css-loader',
         ],
       },
-      {
-        test: /\.s[ca]ss$/,
-        use: [
-          'style-loader',
-          { loader: 'css-loader', options: { sourceMap: true } },
-          { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } },
-        ],
-      },
+      // {
+      //   test: /\.s[ca]ss$/,
+      //   use: [
+      //     'style-loader',
+      //     { loader: 'css-loader', options: { sourceMap: true } },
+      //     { loader: 'postcss-loader', options: { sourceMap: true } },
+      //     { loader: 'sass-loader', options: { sourceMap: true } },
+      //   ],
+      // },
       {
         test: /\.styl(us)?$/,
         use: [

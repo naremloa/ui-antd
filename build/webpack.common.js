@@ -26,12 +26,12 @@ const cssLoader = [
   { loader: 'css-loader', options: { sourceMap: true } },
 ];
 
-const sassLoader = [
-  MiniCssExtractPlugin.loader,
-  { loader: 'css-loader', options: { sourceMap: true } },
-  { loader: 'postcss-loader', options: { sourceMap: true } },
-  { loader: 'sass-loader', options: { sourceMap: true } },
-];
+// const sassLoader = [
+//   MiniCssExtractPlugin.loader,
+//   { loader: 'css-loader', options: { sourceMap: true } },
+//   { loader: 'postcss-loader', options: { sourceMap: true } },
+//   { loader: 'sass-loader', options: { sourceMap: true } },
+// ];
 
 const stylusLoader = [
   MiniCssExtractPlugin.loader,
@@ -83,10 +83,10 @@ module.exports = {
         test: /\.css$/,
         use: cssLoader,
       },
-      {
-        test: /\.s[ca]ss$/,
-        use: sassLoader,
-      },
+      // {
+      //   test: /\.s[ca]ss$/,
+      //   use: sassLoader,
+      // },
       {
         test: /\.styl(us)?$/,
         use: stylusLoader,
