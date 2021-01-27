@@ -110,8 +110,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.fe-select {
-  width: 171px
-}
-</style>

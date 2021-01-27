@@ -10,7 +10,3 @@ export default {
   name: 'LyBody',
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

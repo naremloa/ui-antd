@@ -123,36 +123,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="less">
-@import "~@/styles/init/color.less";
-
-.error-icon {
-  display: inline-block;
-  font-size: 20px;
-  color: @c-error-icon;
-}
-
-.message-text {
-  color: rgba(0, 0, 0, 0.85);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.4;
-  margin-left: 10px;
-}
-
-.detail-content {
-  border-radius: 1px;
-  background-color: rgba(#000, 0.03);
-  height: 164px;
-  box-sizing: border-box;
-  padding: 10px;
-  color: #333333;
-  overflow: auto;
-  > div:not(:last-of-type) {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-  }
-}
-</style>

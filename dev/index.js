@@ -3,6 +3,9 @@ import Vue from 'vue';
 import backstageUi from 'backstage-ui';
 import router from './router';
 import App from './App.vue';
+// import './index.less';
+import '../src/styles/index.less';
+// /src/styles/
 
 Vue.use(backstageUi);
 

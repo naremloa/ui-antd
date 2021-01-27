@@ -177,9 +177,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-  .note{
-    color:#999999;
-    font-size:12px;
-  }
-</style>
