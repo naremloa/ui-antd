@@ -1,0 +1,42 @@
+.upload-tip {
+  color: #999990;
+  font-size: 12px;
+}
+
+.file-list {
+  width: 50%;
+  ul {
+    padding: 0;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgba(121, 104, 255, 0.06);
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 10px;
+    margin-bottom: 5px;
+
+   .anticon-close-circle {
+      color: #bd1616;
+    }
+  }
+}
+
+.upload-input {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 16px;
+
+  input {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+  }
+}
+

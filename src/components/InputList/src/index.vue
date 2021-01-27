@@ -83,29 +83,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.fe-input-list {
-  color: #fff;
-  .ant-form-item {
-    &:last-child{
-      margin-bottom: 0;
-    }
-  }
-
-  .ant-form-item .ant-form-item-children {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-
-    .fe-input-list-icon-box {
-      flex: 0 0 40px;
-      display: inline-flex;
-      .anticon {
-        margin-left: 4px;
-      }
-    }
-  }
-}
-</style>

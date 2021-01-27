@@ -10,7 +10,3 @@ export default {
   name: 'Ly',
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -34,7 +34,6 @@ import Title from './components/Title';
 import Space from './components/Space';
 import AddButton from './components/AddButton';
 import format from './format';
-
 import './styles/index.less';
 
 const install = (Vue) => {
