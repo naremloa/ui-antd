@@ -45,22 +45,14 @@ export default {
   watch: {
     dataSource: {
       handler(newVal) {
-        this.localDataSource = cloneDeep(newVal);
+        if (this.form) this.localDataSource = cloneDeep(newVal);
       },
       immediate: true,
     },
   },
   methods: {
-    async submit() {
-      if (!this.form) return null;
-      try {
-        await this.$refs.tableForm.validate();
-        return this.localDataSource;
-      } catch (err) {
-        console.error(err?.message);
-      }
-      return null;
-    },
+    submit() { if (this.form) this.$refs.tableForm.submit(); },
+    outputData() { return cloneDeep(this.localDataSource); },
   },
   render(h) {
     function displayHeader(node) {
@@ -147,7 +139,11 @@ export default {
                 attrs: { data, idx },
                 on: {
                   'update:data-source': (value) => {
-                    this.localDataSource.splice(idx, 1, { ...this.localDataSource[idx], ...value });
+                    if (this.form) {
+                      this.localDataSource.splice(
+                        idx, 1, { ...this.localDataSource[idx], ...value },
+                      );
+                    }
                     // this.$emit('update:data-source', [
                     //   ...this.dataSource.slice(0, idx),
                     //   value,
@@ -180,6 +176,9 @@ export default {
             {
               props: {
                 model: { data: this.localDataSource },
+              },
+              on: {
+                submit: () => { this.submit(); },
               },
               ref: 'tableForm',
             },
