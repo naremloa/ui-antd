@@ -84,6 +84,7 @@ export default {
         })(ftSwitch({
           checkedChildren: 'OK',
           unCheckedChildren: 'NO',
+          disabled: () => false,
           beforeChange: (value, { data, rowData }) => {
             const idx = this.dataSource.indexOf(rowData);
             this.dataSource[idx].switch = !data;
@@ -119,7 +120,7 @@ export default {
   async mounted() {
     this.tableLoading = true;
     await new Promise((res) => setTimeout(() => res(), 500));
-    this.dataSource = dataSource;
+    this.dataSource = dataSource.splice(1, 30);
     this.tableLoading = false;
   },
   methods: {

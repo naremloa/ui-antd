@@ -44,7 +44,7 @@ export default {
             },
             attrs: rest,
             on: {
-              'update:date-source': (value) => {
+              'update:data-source': (value) => {
                 this.$emit('update:data-source', { [this.dataIndex]: value });
               },
             },

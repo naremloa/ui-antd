@@ -20,6 +20,7 @@ import { Switch as ASwitch } from 'ant-design-vue';
 export default {
   name: 'FeSwitch',
   components: { ASwitch },
+  inheritAttrs: false,
   model: { prop: 'value', event: 'change' },
   props: {
     disabled: {

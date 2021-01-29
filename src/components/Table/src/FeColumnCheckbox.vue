@@ -49,7 +49,7 @@ export default {
           on: {
             change: (value) => {
               this.value = value;
-              this.$emit('update:date-source', value);
+              this.$emit('update:data-source', value);
             },
           },
         },
