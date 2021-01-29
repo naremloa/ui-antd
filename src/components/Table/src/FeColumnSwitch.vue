@@ -3,15 +3,16 @@
     class="fe-column-switch"
     v-bind="$attrs"
     :value="value"
-    :disabled="disabled"
+    :disabled="isDisabled"
     :before-change="handleBeforeChange"
     @change="handleValue" />
 </template>
 <script>
-import { isFunction } from '@/utils/lodash';
+import { isFunction, isBoolean } from '@/utils/lodash';
 
 export default {
   name: 'FeColumnSwitch',
+  inheritAttrs: false,
   props: {
     data: {
       type: [Number, Boolean],
@@ -22,7 +23,7 @@ export default {
       default: () => ({}),
     },
     disabled: {
-      type: Boolean,
+      type: [Boolean, Function],
       default: false,
     },
     beforeChange: {
@@ -35,11 +36,22 @@ export default {
       value: !!this.data,
     };
   },
+  computed: {
+    isDisabled() {
+      const { disabled, rowData } = this;
+      if (isBoolean(disabled)) return disabled;
+      if (isFunction(disabled)) return disabled(rowData);
+      return false;
+    },
+  },
   watch: {
     data(newVal) { if (this.value !== newVal) this.value = !!newVal; },
   },
   methods: {
-    handleValue(value) { this.value = value; },
+    handleValue(value) {
+      this.$emit('update:data-source', value);
+      this.value = value;
+    },
     async handleBeforeChange(value) {
       const { data, rowData, beforeChange } = this;
       if (isFunction(beforeChange)) {

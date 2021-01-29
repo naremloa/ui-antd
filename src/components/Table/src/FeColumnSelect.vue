@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     async handleChange(value, rowData = {}) {
-      this.$emit('update:date-source', value);
+      this.$emit('update:data-source', value);
       if (isFunction(this.change)) {
         await this.change(rowData);
       }

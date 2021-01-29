@@ -51,7 +51,9 @@ export default {
     },
   },
   methods: {
-    submit() { if (this.form) this.$refs.tableForm.submit(); },
+    submit() {
+      if (this.form) this.$refs.tableForm.submit();
+    },
     outputData() { return cloneDeep(this.localDataSource); },
   },
   render(h) {
@@ -178,7 +180,8 @@ export default {
                 model: { data: this.localDataSource },
               },
               on: {
-                submit: () => { this.submit(); },
+                submit: () => { this.$emit('submit', this.localDataSource); },
+                'submit-error': () => this.$emit('submit-error'),
               },
               ref: 'tableForm',
             },

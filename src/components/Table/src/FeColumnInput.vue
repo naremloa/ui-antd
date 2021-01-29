@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     handleChange(value) {
-      this.$emit('update:date-source', value);
+      this.$emit('update:data-source', value);
       this.value = value;
       // 延遲驗證時機，保證值獲得更新
       this.$nextTick(() => {
