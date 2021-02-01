@@ -34,7 +34,6 @@
       :columns="columns"
       :data-source="dataSource"
       :pagination.sync="pagination"
-      :scroll="{ x: true }"
       @change="handleChange" />
 
     <fe-modal
@@ -108,7 +107,7 @@ export default {
         ftColumn({
           dataIndex: 'lastName',
           title: 'LastName',
-          // width: 100,
+          width: 130,
         })(
           ftInput({
             disabled: (rowData) => !rowData.switch,
@@ -119,20 +118,29 @@ export default {
         ftColumn({
           dataIndex: 'tags',
           title: 'Tags',
-          // width: 100,
+          width: 130,
         })({ columnType: 'fe-column-tag' }),
         ftColumn({
           dataIndex: 'action',
           title: 'Action',
-          // width: 200,
-          columnsStyle: { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' },
+          width: 280,
+          // columnsStyle: { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' },
         })(
           ftButton({
             text: '按鈕',
             disabled: (rowData) => !rowData.switch,
             click: this.openModal,
           }),
-          // ftButton({ text: '按鈕2' }),
+          ftButton({
+            text: '按鈕2',
+            disabled: (rowData) => !rowData.switch,
+            click: this.openModal,
+          }),
+          ftButton({
+            text: '按鈕3',
+            disabled: (rowData) => !rowData.switch,
+            click: this.openModal,
+          }),
         ),
         ftColumn({
           dataIndex: 'switch',
@@ -172,6 +180,7 @@ export default {
       ],
       formList: [
         fsInput({
+          hide: false,
           prop: 'inputValue',
           label: '測試',
           default: '22',
