@@ -3,7 +3,7 @@
     class="fe-column-button"
     :has-loading="hasLoading"
     :disabled="isDisabled"
-    v-bind="$attrs"
+    v-bind="filterAttrs"
     @click="handleClick(data, rowData, text)">
     {{ handleDisplay(data, rowData) }}
   </fe-button>
@@ -50,6 +50,10 @@ export default {
       if (isBoolean(disabled)) return disabled;
       if (isFunction(disabled)) return disabled(rowData);
       return false;
+    },
+    filterAttrs() {
+      const { click, ...rest } = this.$attrs;
+      return rest;
     },
   },
   methods: {
