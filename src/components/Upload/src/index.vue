@@ -23,12 +23,11 @@
       <span class="note"> {{ message }}</span>
     </Upload>
     <fe-modal
-      :visible="previewVisible"
+      v-model="previewVisible"
       :template="modalTemplate"
       :footer="null"
       :data="previewData"
-      width="middle"
-      @cancel="handleCancel" />
+      width="middle" />
   </div>
 </template>
 
@@ -125,9 +124,6 @@ export default {
     },
   },
   methods: {
-    handleCancel() {
-      this.previewVisible = false;
-    },
     async handlePreview(file) {
       if (!file.url && !file.preview) {
         file.preview = await getBase64(file.originFileObj);
