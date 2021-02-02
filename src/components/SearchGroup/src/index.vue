@@ -30,7 +30,7 @@
               <fe-row>
                 <fe-row
                   v-if="dateShortcutLabel"
-                  style="margin-bottom: 5px; color: rgba(0, 0, 0, 0.85)">
+                  style="color: rgba(0, 0, 0, 0.85)">
                   {{ dateShortcutLabel }}
                 </fe-row>
                 <fe-space class="date-radio-btn-wrapper">
@@ -54,11 +54,13 @@
                 </fe-space>
               </fe-row>
             </template>
-            <fe-form-item-setting
-              v-for="(item, iIdx) in localFormList"
-              :key="`${item.prop || 0} - ${iIdx}`"
-              v-model="form[item.prop]"
-              v-bind="item" />
+            <fe-row style="margin-top: 4px;">
+              <fe-form-item-setting
+                v-for="(item, iIdx) in localFormList"
+                :key="`${item.prop || 0} - ${iIdx}`"
+                v-model="form[item.prop]"
+                v-bind="item" />
+            </fe-row>
           </div>
 
           <div class="search-group__btn-wrapper search-group__btn-wrapper--pc">
