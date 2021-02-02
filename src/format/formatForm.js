@@ -159,3 +159,18 @@ export const ffRadio = ({
   },
   formTypeEvent: 'change',
 });
+
+export const ffButton = ({
+  prop = '',
+  label = '',
+  ...rest
+}) => ({
+  ...rest,
+  prop,
+  label,
+  formType: 'fe-button',
+  formTypeProps: {
+    ...rest.formTypeProps,
+  },
+  formTypeEvent: 'click',
+});

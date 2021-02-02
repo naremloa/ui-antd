@@ -75,7 +75,7 @@ export default {
           rowKey: this.rowKey,
           columns: undefined,
           dataSource: this.dataSource,
-          pagination: {
+          pagination: this.pagination === null ? false : {
             showSizeChanger: true,
             showQuickJumper: true,
             locale: {

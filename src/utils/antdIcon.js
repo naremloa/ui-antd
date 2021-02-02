@@ -22,6 +22,7 @@ export { default as InfoCircleOutline } from '@ant-design/icons/lib/outline/Info
 export { default as InfoCircleFill } from '@ant-design/icons/lib/fill/InfoCircleFill';
 export { default as ExclamationCircleOutline } from '@ant-design/icons/lib/outline/ExclamationCircleOutline';
 export { default as MenuOutline } from '@ant-design/icons/lib/outline/MenuOutline';
+export { default as SearchOutline } from '@ant-design/icons/lib/outline/SearchOutline';
 // menu
 export { default as UserOutline } from '@ant-design/icons/lib/outline/UserOutline';
 export { default as AliwangwangOutline } from '@ant-design/icons/lib/outline/AliwangwangOutline';
