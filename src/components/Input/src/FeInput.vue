@@ -5,11 +5,13 @@ import {
 } from 'ant-design-vue';
 import { isFunction, isRegExp } from '@/utils/lodash';
 
+const { Search: ASearch } = AInput;
 export default {
   name: 'FeInput',
   components: {
     AInput,
     AInputNumber,
+    ASearch,
   },
   model: { prop: 'value', event: 'change' },
   props: {
@@ -96,6 +98,37 @@ export default {
           //   },
           // },
         },
+      );
+    }
+    if (this.type === 'inputSearch') {
+      return h(
+        'a-input-search',
+        {
+          props: {
+            ...this.$attrs,
+            type: this.type,
+            value: this.value,
+          },
+          on: {
+            'change.value': (val) => this.$emit('change', val),
+            search: (val) => this.$emit('search', val),
+          },
+          nativeOn: {
+            keypress: (e) => {
+              if (this.regRule && !this.regRule.test(e.key)) e.preventDefault();
+              if (e.keyCode === 13 && isFunction(this.enterEvent)) {
+                this.enterEvent();
+              }
+            },
+          },
+        },
+        [
+          h('template', {
+            slot: 'enterButton',
+          }, [
+            this.$slots.enterButton,
+          ]),
+        ],
       );
     }
     return h(

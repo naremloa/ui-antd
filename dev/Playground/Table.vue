@@ -119,7 +119,7 @@ export default {
   },
   async mounted() {
     this.tableLoading = true;
-    await new Promise((res) => setTimeout(() => res(), 500));
+    await new Promise((res) => setTimeout(() => res(), 0));
     this.dataSource = dataSource.splice(1, 30);
     this.tableLoading = false;
   },

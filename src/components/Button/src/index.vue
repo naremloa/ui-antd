@@ -5,7 +5,12 @@
     :loading="loading"
     class="fe-button"
     @click="handleClick">
-    <slot />
+    <template v-if="text">
+      {{ text }}
+    </template>
+    <template v-else>
+      <slot />
+    </template>
   </a-button>
 </template>
 <script>
@@ -21,6 +26,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    click: {
+      type: Function,
+      default: null,
+    },
+    text: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -30,9 +43,10 @@ export default {
   methods: {
     async handleClick(...params) {
       const { hasLoading } = this;
-      if (!isFunction(this.$listeners.click)) return;
+      const clickHandle = this.click || this.$listeners.click;
+      if (!isFunction(clickHandle)) return;
       if (hasLoading) this.loading = true;
-      await Promise.resolve(this.$listeners.click(...params));
+      await Promise.resolve(clickHandle(...params));
       this.loading = false;
       this.$refs.Button?.$el.blur();
     },

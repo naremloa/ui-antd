@@ -17,6 +17,20 @@
           " />
       </fe-form-item>
       <fe-form-item
+        ref="search"
+        label="fe-input-search"
+        prop="search">
+        <fe-input
+          v-model="form.search"
+          type="inputSearch"
+          placeholder="input search text"
+          @search="handleSearch">
+          <a-button slot="enterButton">
+            Custom
+          </a-button>
+        </fe-input>
+      </fe-form-item>
+      <fe-form-item
         label="fe-input-password"
         prop="password">
         <fe-input-password
@@ -186,6 +200,7 @@ export default {
       ffTextarea,
       ffText,
       ffRadio,
+      ffButton,
     } = this.$format;
     return {
       other: '',
@@ -194,6 +209,7 @@ export default {
       },
       form: {
         name: '',
+        search: '',
         a1: '',
         age: 1,
         region: undefined,
@@ -242,6 +258,7 @@ export default {
           url: 'http://www.baidu.com/zzz.png',
         }],
         radio: 2,
+        button: '33445566',
       },
       rules: {
         name: [
@@ -396,6 +413,16 @@ export default {
             { label: '我是4', value: 4 },
           ],
         }),
+        ffButton({
+          prop: 'button',
+          label: 'fe-button',
+          formTypeProps: {
+            icon: 'home',
+            type: 'primary',
+            text: 'home',
+            click: () => { this.$modal({ type: 'info', title: 'Button Clicked', message: `value is ${this.form.button}` }); },
+          },
+        }),
       ],
     };
   },
@@ -405,6 +432,9 @@ export default {
     }, 2000);
   },
   methods: {
+    handleSearch(val) {
+      console.log('search: ', val);
+    },
     handleSubmit() {
       setTimeout(() => {
         this.asyncRuleStatus.password = false;
