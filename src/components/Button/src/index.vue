@@ -2,7 +2,7 @@
   <a-button
     ref="Button"
     v-bind="$attrs"
-    :loading="loading"
+    :loading="localLoading"
     class="fe-button"
     @click="handleClick">
     <template v-if="text">
@@ -14,7 +14,7 @@
   </a-button>
 </template>
 <script>
-import { isFunction } from '@/utils/lodash';
+import { isFunction, isBoolean } from '@/utils/lodash';
 import { Button as AButton } from 'ant-design-vue';
 
 export default {
@@ -22,6 +22,10 @@ export default {
   components: { AButton },
   inheritAttrs: false,
   props: {
+    loading: {
+      type: Boolean,
+      default: null,
+    },
     hasLoading: {
       type: Boolean,
       default: true,
@@ -37,18 +41,27 @@ export default {
   },
   data() {
     return {
-      loading: false,
+      localLoading: false,
     };
+  },
+  watch: {
+    loading: {
+      handler(newVal) { if (isBoolean(newVal)) this.localLoading = newVal; },
+      immediate: true,
+    },
   },
   methods: {
     async handleClick(...params) {
       const { hasLoading } = this;
       const clickHandle = this.click || this.$listeners.click;
       if (!isFunction(clickHandle)) return;
-      if (hasLoading) this.loading = true;
+      if (hasLoading) this.setLoading(true);
       await Promise.resolve(clickHandle(...params));
-      this.loading = false;
+      this.setLoading(false);
       this.$refs.Button?.$el.blur();
+    },
+    setLoading(status) {
+      if (!isBoolean(this.loading)) this.localLoading = status;
     },
   },
 };
