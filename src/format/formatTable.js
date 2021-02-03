@@ -142,3 +142,11 @@ export const ftCheckbox = ({
   ...rest,
   columnType: 'fe-column-checkbox',
 });
+
+export const ftTag = ({
+  ...rest
+} = {}) => ({
+  ...ftCommon(rest),
+  ...rest,
+  columnType: 'fe-column-tag',
+});
