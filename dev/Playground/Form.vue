@@ -185,6 +185,8 @@
   </div>
 </template>
 <script>
+import ffTextDemo from './ffTextDemo.vue';
+
 export default {
   name: 'Form',
   data() {
@@ -219,6 +221,7 @@ export default {
         delivery: true,
         type: [],
         text: 'text',
+        text2: 'text2',
         textarea: 'textarea',
         resource: '',
         desc: '',
@@ -319,9 +322,18 @@ export default {
           },
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
         }),
+        // ffText 可以自帶component
         ffText({
           prop: 'text',
-          label: 'fe-text',
+          label: 'fe-text with component',
+          formTypeProps: {
+            slotComponent: ffTextDemo,
+          },
+        }),
+        // ffText 一般接props用法 可以帶className style
+        ffText({
+          prop: 'text2',
+          label: 'fe-text2',
           format: () => `${this.form.text} / ${this.form.age}`,
           formTypeProps: {
             class: () => {
@@ -331,7 +343,7 @@ export default {
               return ['11', '22'];
             },
             style: () => {
-              if (this.form.text === '123123') {
+              if (this.form.text) {
                 return { color: 'blue' };
               }
               return '';
