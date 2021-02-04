@@ -8,19 +8,32 @@ export default {
   inheritAttrs: false,
   model: { prop: 'value', event: 'change' },
   props: {
+    // any type
+    /* eslint-disable vue/require-prop-types */
     value: {
-      type: [Number, String, Boolean],
       default: '',
     },
     format: {
       type: Function,
       default: null,
     },
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
+    slotComponent: {
+      type: [String, Object],
+      default: null,
+    },
+    class: {
+      type: [Function, Array, Object, String],
+      default: '',
+    },
   },
   computed: {
     className() {
       const defaultClass = 'fe-text';
-      const className = isFunction(this.$attrs.class) ? this.$attrs.class() : this.$attrs.class;
+      const className = this.class?.call?.(this) || '';
 
       if (isArray(className)) {
         return [defaultClass, ...className];
@@ -43,6 +56,16 @@ export default {
     },
   },
   render(h) {
+    if (this.multiple && this.slotComponent) {
+      return h(
+        'div',
+        {
+          class: this.className,
+          style: isFunction(this.$attrs.style) ? this.$attrs.style() : this.$attrs.style,
+        },
+        [h(this.slotComponent, { props: { value: this.value, format: this.format } })],
+      );
+    }
     return h(
       'span',
       {
