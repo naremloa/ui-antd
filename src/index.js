@@ -33,6 +33,7 @@ import Message from './components/Message';
 import Title from './components/Title';
 import Space from './components/Space';
 import AddButton from './components/AddButton';
+import ConfigProvider from './components/ConfigProvider';
 import format from './format';
 import './styles/index.less';
 
@@ -72,6 +73,7 @@ const install = (Vue) => {
   Vue.use(Radio);
   Vue.use(Notify);
   Vue.use(Message);
+  Vue.use(ConfigProvider);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

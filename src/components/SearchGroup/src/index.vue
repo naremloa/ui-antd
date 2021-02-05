@@ -47,7 +47,7 @@
                   <fe-range-picker
                     v-model="dateShortcutTime"
                     separator="到"
-                    :show-tiem="{ format: 'HH:mm:ss' }"
+                    :show-time="{ format: 'HH:mm:ss' }"
                     format="YYYY-MM-DD HH:mm:ss"
                     :placeholder="['開始時間', '結束時間']"
                     value-format="YYYY-MM-DD HH:mm:ss" />
