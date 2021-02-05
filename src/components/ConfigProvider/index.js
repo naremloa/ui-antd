@@ -1,7 +1,7 @@
-import FeLocaleProvider from './src/index.vue';
+import FeConfigProvider from './src/index.vue';
 
 const install = (Vue) => {
-  Vue.component('FeLocaleProvider', FeLocaleProvider);
+  Vue.component('FeConfigProvider', FeConfigProvider);
 };
 
 export default install;
