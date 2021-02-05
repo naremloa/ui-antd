@@ -25,15 +25,15 @@ export default {
       type: [String, Object],
       default: null,
     },
-    class: {
+    className: {
       type: [Function, Array, Object, String],
-      default: '',
+      default: undefined,
     },
   },
   computed: {
-    className() {
+    compClassName() {
       const defaultClass = 'fe-text';
-      const className = this.class?.call?.(this) || '';
+      const className = this.className?.call?.(this) || '';
 
       if (isArray(className)) {
         return [defaultClass, ...className];
@@ -60,7 +60,7 @@ export default {
       return h(
         'div',
         {
-          class: this.className,
+          class: this.compClassName,
           style: isFunction(this.$attrs.style) ? this.$attrs.style() : this.$attrs.style,
         },
         [h(this.slotComponent, { props: { value: this.value, format: this.format } })],
@@ -69,7 +69,7 @@ export default {
     return h(
       'span',
       {
-        class: this.className,
+        class: this.compClassName,
         style: isFunction(this.$attrs.style) ? this.$attrs.style() : this.$attrs.style,
       },
       this.handleDisplay(),

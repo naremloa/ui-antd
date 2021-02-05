@@ -336,7 +336,7 @@ export default {
           label: 'fe-text2',
           format: () => `${this.form.text} / ${this.form.age}`,
           formTypeProps: {
-            class: () => {
+            className: () => {
               if (this.form.text === '123123') {
                 return { 111: true, 222: true };
               }
