@@ -1,6 +1,5 @@
 // 移除必填星號
 .ant-form-item-required {
-
   &::before {
     content: ''
   }
@@ -13,3 +12,48 @@
     }
   }
 }
+
+
+.ant-form-item {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}
+
+
+.ant-form-item-label {
+  flex: none;
+  width: 170px;
+}
+
+.ant-form-item-control-wrapper {
+  flex: 1;
+
+  .ant-form-item-control {
+    
+    .ant-form-item-children {
+      width: 200px;
+
+      .ant-input-password {
+        width: auto;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+.ant-input-number-input-wrap {
+  width: 300px;
+  .ant-input-number {
+    width: 200px;
+  }
+
+  .ant-input-number-input {
+    width: 200px;
+  }
+}
+
