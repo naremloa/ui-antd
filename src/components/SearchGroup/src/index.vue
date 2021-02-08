@@ -30,7 +30,7 @@
               <fe-row>
                 <fe-row
                   v-if="dateShortcutLabel"
-                  style="color: rgba(0, 0, 0, 0.85)">
+                  style="color: rgba(0, 0, 0, 0.85); margin-bottom: 5px">
                   {{ dateShortcutLabel }}
                 </fe-row>
                 <fe-space class="date-radio-btn-wrapper">

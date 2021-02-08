@@ -4,6 +4,7 @@
       :form-list="formList"
       :form-init="{ selectValue: 1 }"
       :search="handleSearch"
+      :date-shortcut-label="'订单时间区间 (系统只保留近 2 个月记录)'"
       :date-shortcut="'date'" />
 
     <fe-tabs
