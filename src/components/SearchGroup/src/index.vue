@@ -1,6 +1,5 @@
 <template>
   <div class="fe-search-group">
-    <!-- v-if="localHideFormList.length" -->
     <fe-row
       type="flex"
       justify="end">
@@ -35,8 +34,7 @@
                 :collapse="collapse" />
             </template>
             <fe-row
-              v-if="localFormList && localFormList.length"
-              style="margin-top: 4px;">
+              v-if="localFormList && localFormList.length">
               <fe-form-item-setting
                 v-for="(item, iIdx) in localFormList"
                 :key="`${item.prop || 0} - ${iIdx}`"

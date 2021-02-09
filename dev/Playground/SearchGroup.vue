@@ -22,7 +22,7 @@ export default {
     return {
       formList: [
         fsInput({
-          hide: true,
+          hide: false,
           prop: 'inputValue',
           label: '測試',
           default: '22',
