@@ -5,6 +5,12 @@
       :form-init="{ selectValue: 1 }"
       :date-shortcut="'date'"
       date-shortcut-label="測試 日期選擇"
+      :date-shortcut-type-options="[
+        { label: '我是4', value: 4 },
+        { label: '我是1', value: 1 },
+        { label: '我是2', value: 2 },
+        { label: '我是3', value: 3 },
+      ]"
       @search="handleSearch" />
   </div>
 </template>

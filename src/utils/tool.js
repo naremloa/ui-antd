@@ -11,8 +11,8 @@ export const getLatestDayTimeByNow = (num) => {
   const endTime = dayjs().endOf('day');
   const startTime = dayjs().startOf('day').subtract(num, 'day');
   return [
-    startTime.format('YYYY-MM-DD HH:mm:ss'),
-    endTime.format('YYYY-MM-DD HH:mm:ss'),
+    { day: startTime.format('YYYY-MM-DD'), time: startTime.format('HH:mm:ss') },
+    { day: endTime.format('YYYY-MM-DD'), time: endTime.format('HH:mm:ss') },
   ];
 };
 

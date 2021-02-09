@@ -14,6 +14,7 @@ import SearchGroup from './components/SearchGroup';
 import Card from './components/Card';
 import Radio from './components/Radio';
 import DatePicker from './components/DatePicker';
+import TimePicker from './components/TimePicker';
 import Input from './components/Input';
 import InputList from './components/InputList';
 import Textarea from './components/Textarea';
@@ -56,6 +57,7 @@ const install = (Vue) => {
   Vue.use(Text);
   Vue.use(UploadButton);
   Vue.use(DatePicker);
+  Vue.use(TimePicker);
   Vue.use(AddButton);
   Vue.use(Space);
   Vue.use(Title);
