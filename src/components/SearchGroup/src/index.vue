@@ -27,34 +27,16 @@
         <div class="search-group">
           <div class="search-group__always-show">
             <template v-if="dateShortcut">
-              <fe-row>
-                <fe-row
-                  v-if="dateShortcutLabel"
-                  style="color: rgba(0, 0, 0, 0.85); margin-bottom: 5px">
-                  {{ dateShortcutLabel }}
-                </fe-row>
-                <fe-space class="date-radio-btn-wrapper">
-                  <fe-radio-group
-                    v-model="dateShortcutValue"
-                    button-style="solid">
-                    <fe-radio-button
-                      v-for="item in dateShortcutSetting.options"
-                      :key="item.value"
-                      :value="item.value">
-                      {{ item.label }}
-                    </fe-radio-button>
-                  </fe-radio-group>
-                  <fe-range-picker
-                    v-model="dateShortcutTime"
-                    separator="到"
-                    :show-time="{ format: 'HH:mm:ss' }"
-                    format="YYYY-MM-DD HH:mm:ss"
-                    :placeholder="['開始時間', '結束時間']"
-                    value-format="YYYY-MM-DD HH:mm:ss" />
-                </fe-space>
-              </fe-row>
+              <shortcut
+                ref="DateShortcut"
+                :shortcut-default="dateShortcutDefault"
+                :label="dateShortcutLabel"
+                :type-options="dateShortcutTypeOptions"
+                :collapse="collapse" />
             </template>
-            <fe-row style="margin-top: 4px;">
+            <fe-row
+              v-if="localFormList && localFormList.length"
+              style="margin-top: 4px;">
               <fe-form-item-setting
                 v-for="(item, iIdx) in localFormList"
                 :key="`${item.prop || 0} - ${iIdx}`"
@@ -65,8 +47,7 @@
 
           <div class="search-group__btn-wrapper search-group__btn-wrapper--pc">
             <div
-              class="search-btn-wrapper"
-              :class="dateShortcut === 'date' && 'search-btn-wrapper__date'">
+              class="search-btn-wrapper">
               <fe-space>
                 <fe-button @click="handleReset">
                   清除條件
@@ -121,15 +102,15 @@
 </template>
 <script>
 import {
-  isArray, cloneDeep, has, isNil, forOwn, isFunction,
+  isArray, cloneDeep, has, forOwn, isFunction,
 } from '@/utils/lodash';
-import { getLatestDayTimeByNow } from '@/utils/tool';
 import { notification } from 'ant-design-vue';
 import TransitionCollapse from './TransitionCollapse.vue';
+import Shortcut from './Shortcut.vue';
 
 export default {
   name: 'FeSearchGroup',
-  components: { TransitionCollapse },
+  components: { TransitionCollapse, Shortcut },
   props: {
     formList: {
       type: [Array, Promise],
@@ -154,6 +135,10 @@ export default {
         return [0, 6, 29].includes(val);
       },
     },
+    dateShortcutTypeOptions: {
+      type: Array,
+      default: () => [],
+    },
     formatOutput: {
       type: Function,
       default: null,
@@ -166,20 +151,6 @@ export default {
       localHideFormList: [],
       form: {},
       formDefault: {},
-      // checkboxOptions: [
-      //   { label: 'Apple', value: 'Apple' },
-      //   { label: 'Pear', value: 'Pear' },
-      //   { label: 'Orange', value: 'Orange' },
-      // ],
-      dateShortcutTime: getLatestDayTimeByNow(this.dateShortcutDefault),
-      dateShortcutValue: this.dateShortcutDefault,
-      dateShortcutSetting: {
-        options: [
-          { value: 0, label: '当日' },
-          { value: 6, label: '前 7 天' },
-          { value: 29, label: '前 30 天' },
-        ],
-      },
     };
   },
   computed: {
@@ -215,13 +186,6 @@ export default {
       },
       immediate: true,
     },
-    dateShortcutValue: {
-      handler(newVal) {
-        if (!isNil(newVal) && this.dateShortcut) {
-          this.dateShortcutTime = getLatestDayTimeByNow(newVal);
-        }
-      },
-    },
   },
   methods: {
     handleCollpase() {
@@ -240,9 +204,6 @@ export default {
           formDefault[prop] = defaultValue;
         }
       });
-      if (has(form, this.dateShortcut) && !has(this.formInitValue, this.dateShortcut)) {
-        this.dateShortcutTime = getLatestDayTimeByNow(this.dateShortcutValue);
-      }
       this.formDefault = formDefault;
       return form;
     },
@@ -256,10 +217,7 @@ export default {
       this.form = cloneDeep(this.formDefault);
       this.$refs.Form.clearValidate();
       // 处理 日期热键的初始化问题
-      if (this.dateShortcutDefault) {
-        this.dateShortcutValue = this.dateShortcutDefault;
-        this.dateShortcutTime = getLatestDayTimeByNow(this.dateShortcutDefault);
-      }
+      this.$refs.DateShortcut.reset();
       this.$emit('reset');
     },
     handleFormOutput(form) {
@@ -269,7 +227,7 @@ export default {
         if (value === '' || value === -1) outputForm[key] = null;
       });
       // 將日期混入搜索 params 中
-      if (this.dateShortcut) outputForm[this.dateShortcut] = this.dateShortcutTime;
+      if (this.dateShortcut) outputForm[this.dateShortcut] = this.$refs.DateShortcut.output();
       return outputForm;
     },
     async validate(params = {}) {

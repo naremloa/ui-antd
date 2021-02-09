@@ -30,3 +30,5 @@ export { default as PayCircleOutline } from '@ant-design/icons/lib/outline/PayCi
 export { default as TransactionOutline } from '@ant-design/icons/lib/outline/TransactionOutline';
 export { default as FileTextOutline } from '@ant-design/icons/lib/outline/FileTextOutline';
 export { default as SettingOutline } from '@ant-design/icons/lib/outline/SettingOutline';
+export { default as CalendarOutline } from '@ant-design/icons/lib/outline/CalendarOutline';
+export { default as ClockCircleOutline } from '@ant-design/icons/lib/outline/ClockCircleOutline';
