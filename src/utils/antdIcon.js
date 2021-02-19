@@ -1,8 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import closeCircleIcon from '@ant-design/icons/lib/outline/CloseCircleOutline';
+
+export const CloseCircleOutline = closeCircleIcon;
+// 垃圾桶icon應ui要求，改成delete
+export const DeleteOutline = {
+  ...closeCircleIcon,
+  name: 'delete',
+};
+
 export { default as CheckOutline } from '@ant-design/icons/lib/outline/CheckOutline';
 export { default as PaperClipOutline } from '@ant-design/icons/lib/outline/PaperClipOutline';
-export { default as DeleteOutline } from '@ant-design/icons/lib/outline/DeleteOutline';
+// export { default as DeleteOutline } from '@ant-design/icons/lib/outline/DeleteOutline';
+// export { default as DeleteOutline } from '@ant-design/icons/lib/outline/CloseCircleOutline';
 export { default as DownloadOutline } from '@ant-design/icons/lib/outline/DownloadOutline';
 export { default as UpOutlineOutline } from '@ant-design/icons/lib/outline/UpOutline';
 export { default as DownOutline } from '@ant-design/icons/lib/outline/DownOutline';
@@ -10,7 +20,7 @@ export { default as RightOutline } from '@ant-design/icons/lib/outline/RightOutl
 export { default as LeftOutline } from '@ant-design/icons/lib/outline/LeftOutline';
 export { default as HomeOutline } from '@ant-design/icons/lib/outline/HomeOutline';
 export { default as LoadingOutline } from '@ant-design/icons/lib/outline/LoadingOutline';
-export { default as CloseCircleOutline } from '@ant-design/icons/lib/outline/CloseCircleOutline';
+// export { default as CloseCircleOutline } from '@ant-design/icons/lib/outline/CloseCircleOutline';
 export { default as CloseCircleFill } from '@ant-design/icons/lib/fill/CloseCircleFill';
 export { default as PlusCircleOutline } from '@ant-design/icons/lib/outline/PlusCircleOutline';
 export { default as MinusCircleOutline } from '@ant-design/icons/lib/outline/MinusCircleOutline';
