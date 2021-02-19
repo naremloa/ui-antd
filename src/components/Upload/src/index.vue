@@ -20,7 +20,7 @@
           v-if="icon"
           :type="icon" /> {{ btnText }}
       </fe-button>
-      <span class="note"> {{ message }} </span>
+      <span class="note"> {{ message }}</span>
     </Upload>
     <fe-modal
       v-model="previewVisible"
@@ -34,7 +34,6 @@
 <script>
 import { Upload } from 'ant-design-vue';
 import ModalTemplate from './modalTemplate.vue';
-import svgPath from './circleCloseSvgPath';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -107,7 +106,6 @@ export default {
         alt: '',
       },
       fileList: [],
-      wtf: 'wtf?',
     };
   },
   computed: {
@@ -124,16 +122,6 @@ export default {
       } = this.$attrs || {};
       return rest;
     },
-  },
-  watch: {
-    value: {
-      handler() {
-        console.log('...');
-      },
-    },
-  },
-  mounted() {
-    console.log('~~');
   },
   methods: {
     async handlePreview(file) {
@@ -181,9 +169,6 @@ export default {
     },
     beforeUpload() {
       return false;
-    },
-    changeGarbageIcon() {
-      console.log('...changeGarbageIcon');
     },
   },
 };

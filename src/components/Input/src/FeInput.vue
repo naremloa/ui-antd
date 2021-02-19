@@ -137,7 +137,7 @@ export default {
         props: {
           ...this.$attrs,
           type: this.type,
-          value: `${this.value}`,
+          value: this.value,
         },
         on: {
           'change.value': (val) => this.$emit('change', val),
