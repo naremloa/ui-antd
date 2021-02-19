@@ -20,6 +20,7 @@
           v-for="(file, index) in fileList"
           :key="index">
           {{ file.name }}
+          1
           <fe-icon
             type="close-circle"
             @click="handleRemoveFile(index)" />
