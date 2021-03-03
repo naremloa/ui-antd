@@ -33,6 +33,7 @@ export { default as InfoCircleFill } from '@ant-design/icons/lib/fill/InfoCircle
 export { default as ExclamationCircleOutline } from '@ant-design/icons/lib/outline/ExclamationCircleOutline';
 export { default as MenuOutline } from '@ant-design/icons/lib/outline/MenuOutline';
 export { default as SearchOutline } from '@ant-design/icons/lib/outline/SearchOutline';
+export { default as EditOutline } from '@ant-design/icons/lib/outline/EditOutline';
 // menu
 export { default as UserOutline } from '@ant-design/icons/lib/outline/UserOutline';
 export { default as AliwangwangOutline } from '@ant-design/icons/lib/outline/AliwangwangOutline';
@@ -42,3 +43,4 @@ export { default as FileTextOutline } from '@ant-design/icons/lib/outline/FileTe
 export { default as SettingOutline } from '@ant-design/icons/lib/outline/SettingOutline';
 export { default as CalendarOutline } from '@ant-design/icons/lib/outline/CalendarOutline';
 export { default as ClockCircleOutline } from '@ant-design/icons/lib/outline/ClockCircleOutline';
+export { default as MoneyCollectOutline } from '@ant-design/icons/lib/outline/MoneyCollectOutline';
