@@ -8,6 +8,7 @@ import FeColumnSwitch from './FeColumnSwitch.vue';
 import FeColumnTextarea from './FeColumnTextarea.vue';
 import FeColumnInput from './FeColumnInput.vue';
 import FeColumnCheckbox from './FeColumnCheckbox.vue';
+import FeColumnPopover from './FeColumnPopover.vue';
 
 export {
   FeTable,
@@ -20,4 +21,5 @@ export {
   FeColumnTextarea,
   FeColumnInput,
   FeColumnCheckbox,
+  FeColumnPopover,
 };

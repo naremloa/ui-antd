@@ -24,7 +24,7 @@ export default {
   data() {
     const {
       ftColumn, ftText, ftTextarea, ftButton, ftSwitch, ftSelect,
-      ftPagination, ftInput, ftCheckbox,
+      ftPagination, ftInput, ftCheckbox, ftPopover,
     } = this.$format;
     return {
       tableLoading: false,
@@ -36,7 +36,7 @@ export default {
           title: 'Age',
           header: (h) => h('div', 'Age Header'),
           // width: 80,
-        })(ftText({ text: ['asdfasdf', 'asdfasdf', 'asdfas'] })),
+        })(ftPopover({ trigger: 'hover', text: 'aaa', btnType: 'link' })),
         // ftColumn({
         //   dataIndex: 'address',
         //   title: 'Address',

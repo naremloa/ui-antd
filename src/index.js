@@ -35,6 +35,7 @@ import Title from './components/Title';
 import Space from './components/Space';
 import AddButton from './components/AddButton';
 import ConfigProvider from './components/ConfigProvider';
+import Popover from './components/Popover';
 import format from './format';
 import './styles/index.less';
 
@@ -76,6 +77,7 @@ const install = (Vue) => {
   Vue.use(Notify);
   Vue.use(Message);
   Vue.use(ConfigProvider);
+  Vue.use(Popover);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

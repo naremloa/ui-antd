@@ -103,6 +103,15 @@
     <fe-button @click="handleSimpleMessage">
       simple messsage
     </fe-button>
+    <fe-row />
+    <fe-popover trigger="click">
+      <template #content>
+        <div>sdafsdf</div>
+      </template>
+      <fe-button type="link">
+        check popover
+      </fe-button>
+    </fe-popover>
   </div>
 </template>
 <script>
@@ -123,6 +132,7 @@ export default {
     } = this.$format;
 
     return {
+      popover: true,
       errMessage: null,
       inputNumber: 1,
       dataSource2,

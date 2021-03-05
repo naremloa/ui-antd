@@ -150,3 +150,21 @@ export const ftTag = ({
   ...rest,
   columnType: 'fe-column-tag',
 });
+
+export const ftPopover = ({
+  trigger,
+  content,
+  text,
+  format,
+  btnType,
+  ...rest
+} = {}) => ({
+  ...rest,
+  trigger,
+  content,
+  text,
+  format,
+  btnType,
+  ...ftCommon(rest),
+  columnType: 'fe-column-popover',
+});
