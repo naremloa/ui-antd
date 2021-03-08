@@ -6,9 +6,24 @@
 }
 
 .ant-form-item.form-item-input-number {
-  .has-error {
-    .ant-form-explain {
-      line-height: 0;
+  height: 40px;
+  margin-bottom: 24px;
+  .ant-form-item-control {
+    line-height: 30px;
+  }
+  .ant-form-item-control.has-error {
+    line-height: 27px;
+  }
+
+  .ant-form-item-children {
+    height: 34px;
+    display: inline-block;
+    margin-top: 2px;
+    line-height: 20px;
+
+    .ant-input-number {
+      position: relative;
+      top: 3px;
     }
   }
 }
