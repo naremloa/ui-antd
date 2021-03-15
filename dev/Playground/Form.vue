@@ -304,6 +304,7 @@ export default {
             },
           },
           rules: [{ required: true, message: 'Please input XXXXX', trigger: 'change' }],
+          description: '千萬不要填，填了會爆炸。',
         }),
         ffInputNumber({
           prop: 'age',
@@ -312,6 +313,7 @@ export default {
           formTypeProps: {
             precision: 8,
           },
+          description: ffTextDemo,
         }),
         ffInputPassword({
           prop: 'password',

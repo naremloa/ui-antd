@@ -50,6 +50,10 @@ export default {
       type: [String, Object],
       default: '',
     },
+    description: {
+      type: [String, Object],
+      default: '',
+    },
   },
   watch: {
     asyncRuleStatus(newVal) {
@@ -58,19 +62,26 @@ export default {
     },
   },
   render(h) {
-    const renderInner = () => h(
-      this.formType,
-      {
-        props: {
-          ...this.formTypeProps,
-          [this.formTypeProp]: this.value,
-        },
-        attrs: this.formTypeProps,
-        on: {
-          [this.formTypeEvent]: (value) => this.$emit('input', value),
-        },
+    const renderInner = () => h(this.formType, {
+      props: {
+        ...this.formTypeProps,
+        [this.formTypeProp]: this.value,
       },
-    );
+      attrs: this.formTypeProps,
+      on: {
+        [this.formTypeEvent]: (value) => this.$emit('input', value),
+      },
+    });
+    const renderFromItemDescriptions = () => {
+      const className = 'form-item-description';
+      if (this.description) {
+        if (isObject(this.description)) {
+          return h(this.description, { class: className });
+        }
+        return h('div', { class: className }, this.description);
+      }
+      return null;
+    };
     const renderFormItem = () => h(
       'fe-form-item',
       {
@@ -95,9 +106,10 @@ export default {
         on: this.$listeners,
         ref: 'FormItem',
       },
-      [isFunction(this.formType)
-        ? this.formType(h, { value: this.value })
-        : renderInner()],
+      [
+        isFunction(this.formType) ? this.formType(h, { value: this.value }) : renderInner(),
+        renderFromItemDescriptions(),
+      ],
     );
     if (!this.nested) return renderFormItem();
     const handleNested = (val) => {
