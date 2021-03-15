@@ -215,7 +215,7 @@ export default {
       this.form = cloneDeep(this.formDefault);
       this.$refs.Form.clearValidate();
       // 处理 日期热键的初始化问题
-      this.$refs.DateShortcut.reset();
+      this.$refs.DateShortcut?.reset?.();
       this.$emit('reset');
     },
     handleFormOutput(form) {
