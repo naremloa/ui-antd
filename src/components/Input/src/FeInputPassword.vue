@@ -23,11 +23,16 @@ export default {
       validator(val) { return isRegExp(val); },
       default: null,
     },
+    inlineStyle: {
+      type: Object,
+      default: () => {},
+    },
   },
   render(h) {
     return h(
       'a-input-password',
       {
+        style: this.inlineStyle,
         props: {
           ...this.$attrs,
           value: this.value,

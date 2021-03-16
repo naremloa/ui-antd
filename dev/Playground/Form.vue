@@ -314,6 +314,7 @@ export default {
             precision: 8,
           },
           description: ffTextDemo,
+          descriptionHeight: '40',
         }),
         ffInputPassword({
           prop: 'password',
@@ -363,6 +364,11 @@ export default {
         ffSelect({
           prop: 'regions',
           label: 'fe-select',
+          formTypeProps: {
+            inlineStyle: {
+              width: '300px',
+            },
+          },
           options: () => new Promise((res) => {
             setTimeout(() => {
               res([{ value: 1, label: 'A1' }, { value: 2, label: 'A2' }]);

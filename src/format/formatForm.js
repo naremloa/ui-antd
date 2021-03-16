@@ -1,22 +1,26 @@
-export const ffInput = ({
+const ffCommon = ({
   prop = '',
   label = '',
   ...rest
-}) => ({
+} = {}) => ({
   ...rest,
   prop,
   label,
+});
+
+export const ffInput = ({
+  ...rest
+}) => ({
+  ...ffCommon(rest),
   formType: 'fe-input',
   formTypeEvent: 'change',
 });
 export const ffInputNumber = ({
-  prop = '',
-  label = '',
+  descriptionHeight = 0,
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
+  descriptionHeight,
   formTypeProps: {
     type: 'inputNumber',
     ...(rest.formTypeProps || {}),
@@ -26,14 +30,10 @@ export const ffInputNumber = ({
 });
 
 export const ffText = ({
-  prop = '',
-  label = '',
   format = null,
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-text',
   formTypeProps: {
     format,
@@ -41,13 +41,9 @@ export const ffText = ({
   },
 });
 export const ffTextarea = ({
-  prop = '',
-  label = '',
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-textarea',
   formTypeProps: {
     ...rest.formTypeProps,
@@ -55,25 +51,17 @@ export const ffTextarea = ({
   formTypeEvent: 'change',
 });
 export const ffInputPassword = ({
-  prop = '',
-  label = '',
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-input-password',
   formTypeEvent: 'change',
 });
 export const ffSelect = ({
-  prop = '',
-  label = '',
   options = [],
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-select',
   formTypeProps: {
     ...rest.formTypeProps,
@@ -82,14 +70,10 @@ export const ffSelect = ({
   formTypeEvent: 'change',
 });
 export const ffCheckbox = ({
-  prop = '',
-  label = '',
   options = [],
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-checkbox-group',
   formTypeProps: {
     ...rest.formTypeProps,
@@ -98,14 +82,10 @@ export const ffCheckbox = ({
   formTypeEvent: 'change',
 });
 export const ffSwitch = ({
-  prop = '',
-  label = '',
   beforeChange,
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formTypeProps: {
     ...rest.formTypeProps,
     beforeChange,
@@ -115,26 +95,17 @@ export const ffSwitch = ({
 });
 
 export const ffDatePicker = ({
-  prop = '',
-  label = '',
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-date-picker',
   formTypeEvent: 'change',
 });
 
 export const ffUpload = ({
-  prop = '',
-  label = '',
-  // beforeChange,
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formTypeProps: {
     ...rest.formTypeProps,
     // beforeChange,
@@ -144,14 +115,10 @@ export const ffUpload = ({
 });
 
 export const ffRadio = ({
-  prop = '',
-  label = '',
   options = [],
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-radio-group',
   formTypeProps: {
     ...rest.formTypeProps,
@@ -161,13 +128,9 @@ export const ffRadio = ({
 });
 
 export const ffButton = ({
-  prop = '',
-  label = '',
   ...rest
 }) => ({
-  ...rest,
-  prop,
-  label,
+  ...ffCommon(rest),
   formType: 'fe-button',
   formTypeProps: {
     ...rest.formTypeProps,

@@ -29,6 +29,10 @@ export default {
       type: String,
       default: '暂无资料',
     },
+    inlineStyle: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -61,6 +65,7 @@ export default {
       'a-select',
       {
         class: 'fe-select',
+        style: this.inlineStyle,
         props: {
           filterOption: this.baseFilterOption,
           ...restAttrs,

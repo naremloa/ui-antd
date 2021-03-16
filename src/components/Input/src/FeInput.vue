@@ -39,6 +39,10 @@ export default {
       validator(val) { return isRegExp(val); },
       default: null,
     },
+    inlineStyle: {
+      type: Object,
+      default: () => {},
+    },
   },
   methods: {
     // updateValue(val) { this.$emit('change', +`${this.parser(val)}`); },
@@ -48,6 +52,7 @@ export default {
       return h(
         'a-input-number',
         {
+          style: this.inlineStyle,
           props: {
             ...this.$attrs,
             value: this.value,
@@ -104,6 +109,7 @@ export default {
       return h(
         'a-input-search',
         {
+          style: this.inlineStyle,
           props: {
             ...this.$attrs,
             type: this.type,
@@ -134,6 +140,7 @@ export default {
     return h(
       'a-input',
       {
+        style: this.inlineStyle,
         props: {
           ...this.$attrs,
           type: this.type,

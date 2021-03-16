@@ -54,6 +54,10 @@ export default {
       type: [String, Object],
       default: '',
     },
+    descriptionHeight: {
+      type: Number,
+      default: 0,
+    },
   },
   watch: {
     asyncRuleStatus(newVal) {
@@ -62,6 +66,7 @@ export default {
     },
   },
   render(h) {
+    const isInputNumber = this.formType === 'fe-input' && this.formTypeProps?.type === 'inputNumber';
     const renderInner = () => h(this.formType, {
       props: {
         ...this.formTypeProps,
@@ -86,7 +91,8 @@ export default {
       'fe-form-item',
       {
         // NOTE: 為了 inputNumber 在 formItem 下高度丟失，新增 class 以修復
-        class: { 'form-item-input-number': this.formType === 'fe-input' && this.formTypeProps?.type === 'inputNumber' },
+        style: { ...(isInputNumber ? { height: `${40 + +(this.descriptionHeight || 0)}px` } : {}) },
+        class: { 'form-item-input-number': isInputNumber },
         props: {
           ...this.$attrs,
           prop: this.prop,
