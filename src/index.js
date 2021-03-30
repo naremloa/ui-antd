@@ -37,6 +37,7 @@ import AddButton from './components/AddButton';
 import ConfigProvider from './components/ConfigProvider';
 import Popover from './components/Popover';
 import Qrcode from './components/Qrcode';
+import Spin from './components/Spin';
 import format from './format';
 import './styles/index.less';
 
@@ -80,6 +81,7 @@ const install = (Vue) => {
   Vue.use(ConfigProvider);
   Vue.use(Popover);
   Vue.use(Qrcode);
+  Vue.use(Spin);
   Vue.prototype.$format = format;
 };
 const backstageUiAntd = () => {};

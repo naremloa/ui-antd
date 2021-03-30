@@ -1,5 +1,7 @@
 <template>
   <div class="form">
+    <fe-spin />
+    <div>asdfsdf</div>
     <fe-form
       ref="ruleForm"
       :model="form"
