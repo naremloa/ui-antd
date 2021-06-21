@@ -11,6 +11,10 @@ export default {
       type: [String, Number, Object],
       default: undefined,
     },
+    valueFormat: {
+      type: String,
+      default: 'x',
+    },
   },
   computed: {
     localValue() {
@@ -26,7 +30,7 @@ export default {
       {
         props: {
           ...this.$attrs,
-          value: this.value,
+          value: this.localValue,
         },
         on: {
           ...this.$listeners,
