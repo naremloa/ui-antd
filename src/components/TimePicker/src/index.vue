@@ -1,5 +1,6 @@
 <script>
 import { TimePicker } from 'ant-design-vue';
+import dayjs from '@/utils/dayjs';
 
 export default {
   name: 'FeTimePicker',
@@ -7,8 +8,16 @@ export default {
   model: { prop: 'value', event: 'change' },
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Object],
       default: undefined,
+    },
+  },
+  computed: {
+    localValue() {
+      if (!this.value) return undefined;
+      if (this.valueFormat === 'X') return dayjs.unix(Number(this.value));
+      if (this.valueFormat === 'x') return dayjs(Number(this.value));
+      return dayjs(this.value);
     },
   },
   render(h) {
@@ -22,7 +31,7 @@ export default {
         on: {
           ...this.$listeners,
           change: (val) => {
-            this.$emit('change', val);
+            this.$emit('change', val?.format?.(this.valueFormat));
           },
         },
       },

@@ -1,7 +1,7 @@
 {
   "name": "@fe-backstage/ui-antd",
   "version": "0.0.74",
-  "description": "> TODO: description",
+  "description": "fe-backstage ui library based on ant-design-vue",
   "author": "naremloa <narem.lu@silkrode.com.tw>",
   "homepage": "",
   "license": "ISC",

@@ -34,3 +34,8 @@ Playground 的位置跑在 `/dev` 底下。
 ```
 yarn build:prod
 ```
+
+
+## 需求
+### Button
+1. 內部可以接 TimerStorage 做定時的 disabled
