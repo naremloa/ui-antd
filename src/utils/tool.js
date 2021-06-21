@@ -1,7 +1,5 @@
 import { isNil, isArray, isString } from '@/utils/lodash';
-import dayjs, { utc } from '@/utils/dayjs';
-
-dayjs.extend(utc);
+import dayjs from '@/utils/dayjs';
 
 export const formatDate = (date) => (isNil(date)
   ? '-'

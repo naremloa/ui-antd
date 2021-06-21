@@ -1,6 +1,11 @@
 <template>
   <div class="page">
     <fe-row>
+      <fe-time-picker
+        v-model="timePicker"
+        value-format="X" />
+    </fe-row>
+    <fe-row>
       <fe-input
         v-model="inputNumber"
         type="inputNumber"
@@ -119,7 +124,6 @@ import { Table as ATable } from 'ant-design-vue';
 // import {
 //   ftColumn, ftText, ftButton, fPagination, ftSelect, ftSwitch, ftTextarea,
 // } from './format';
-import dayjs from '@/utils/dayjs';
 import { dataSource2 } from './data';
 import ModalTemplate from './ModalTemplate.vue';
 
@@ -132,6 +136,7 @@ export default {
     } = this.$format;
 
     return {
+      timePicker: 1200,
       popover: true,
       errMessage: null,
       inputNumber: 1,
