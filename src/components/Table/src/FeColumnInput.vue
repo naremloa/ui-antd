@@ -3,6 +3,7 @@ import { isBoolean, isFunction } from '@/utils/lodash';
 
 export default {
   name: 'FeColumnInput',
+  inheritAttrs: false,
   props: {
     data: {
       type: [Number, String],
@@ -17,10 +18,14 @@ export default {
       required: true,
     },
     rules: {
-      type: Array,
+      type: [Array, Function],
       default: () => [],
     },
     rowData: {
+      type: Object,
+      default: () => ({}),
+    },
+    localRowData: {
       type: Object,
       default: () => ({}),
     },
@@ -68,7 +73,9 @@ export default {
         style: { marginBottom: 0 },
         props: {
           prop: `data.${this.idx}.${this.dataIndex}`,
-          rules: this.rules,
+          rules: typeof this.rules === 'function'
+            ? this.rules(this.localRowData)
+            : this.rules,
           wrapperCol: { span: 24 },
           // 由於更新鏈過長，需要手動延遲驗證時機，來保證值獲得更新
           autoLink: false,

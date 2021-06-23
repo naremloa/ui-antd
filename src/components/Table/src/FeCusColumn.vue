@@ -21,6 +21,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    localRowData: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   render(h) {
     const displayCusColumns = () => (this.cusColumns.length > 0
@@ -40,7 +44,11 @@ export default {
               ? columnStyle(this.rowData[this.dataIndex], this.rowData, rest)
               : columnStyle,
             props: {
-              ...this.$attrs, ...rest, dataIndex: this.dataIndex, rowData: this.rowData,
+              ...this.$attrs,
+              ...rest,
+              dataIndex: this.dataIndex,
+              rowData: this.rowData,
+              localRowData: this.localRowData,
             },
             attrs: rest,
             on: {

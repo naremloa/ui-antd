@@ -137,6 +137,7 @@ export default {
                   columnsStyle,
                   dataIndex,
                   rowData,
+                  localRowData: this.localDataSource[idx],
                 },
                 attrs: { data, idx },
                 on: {
