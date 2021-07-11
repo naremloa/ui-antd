@@ -9,6 +9,8 @@ export const DeleteOutline = {
   name: 'delete',
 };
 
+export { default as CaretUpFill } from '@ant-design/icons/lib/fill/CaretUpFill';
+export { default as CaretDownFill } from '@ant-design/icons/lib/fill/CaretDownFill';
 export { default as CheckOutline } from '@ant-design/icons/lib/outline/CheckOutline';
 export { default as PaperClipOutline } from '@ant-design/icons/lib/outline/PaperClipOutline';
 // export { default as DeleteOutline } from '@ant-design/icons/lib/outline/DeleteOutline';
