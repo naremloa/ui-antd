@@ -96,13 +96,13 @@ export default {
           ...this.$listeners,
           change: ({
             current, pageSize, total,
-          }) => {
+          }, filters, sorter) => {
             const pagination = {
               ...this.pagination, current, pageSize, total,
             };
 
             this.$el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-            this.$emit('change', pagination);
+            this.$emit('change', pagination, filters, sorter);
           },
         },
         scopedSlots: this.$scopedSlots,
