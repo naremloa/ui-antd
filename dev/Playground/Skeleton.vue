@@ -34,6 +34,7 @@
       :table-error="true"
       :columns="columns"
       :data-source="dataSource"
+      :loading-data-source="loadingDataSource"
       :pagination.sync="pagination"
       @change="handleChange" />
 
@@ -46,6 +47,9 @@
 
     <fe-button @click="formSubmit">
       表單表格提交
+    </fe-button>
+    <fe-button @click="cancelLoading">
+      按鈕
     </fe-button>
   </div>
 </template>
@@ -73,6 +77,7 @@ export default {
       template: testModal,
       pagination: ftPagination({ total: 500 }),
       dataSource: [],
+      loadingDataSource: [0, 3, 5],
       visible: false,
       columns: [
         // ftColumn({
@@ -92,7 +97,7 @@ export default {
         //   title: 'FirstName',
         //   // width: 100,
         // })(),
-        ftColumn({ dataIndex: 'id', title: '用户编号' })(),
+        ftColumn({ dataIndex: 'key', title: '用户编号' })(),
         ftColumn({ dataIndex: 'username', title: '账号', width: 160 })(),
         ftColumn({ dataIndex: 'nickname', title: '名称', width: 160 })(),
         ftColumn({ dataIndex: 'platform', title: '平台' })(),
@@ -157,7 +162,7 @@ export default {
         ftColumn({
           dataIndex: 'select',
           title: 'Select',
-          width: 200,
+          width: 220,
         })(ftSelect({
           defaultValue: { value: 1, label: 'A1' }.label,
           options: () => new Promise((res) => {
@@ -270,6 +275,10 @@ export default {
     async formSubmit() {
       const res = await this.$refs.formTable.submit();
       console.log('check submit', res);
+    },
+    cancelLoading() {
+      if (this.loadingDataSource.length) this.loadingDataSource = [];
+      else this.loadingDataSource = [0, 3, 5];
     },
   },
 

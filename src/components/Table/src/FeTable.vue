@@ -1,6 +1,7 @@
 <script>
 import { Table as ATable } from 'ant-design-vue';
 import { isObject, isFunction, cloneDeep } from '@/utils/lodash';
+import FeColumnLoading from './FeColumnLoading.vue';
 
 const { Column: ATableColumn } = ATable;
 
@@ -21,6 +22,10 @@ export default {
       required: true,
     },
     dataSource: {
+      type: Array,
+      default: () => [],
+    },
+    loadingDataSource: {
       type: Array,
       default: () => [],
     },
@@ -114,7 +119,7 @@ export default {
         cusColumns = [],
         columnsStyle = {},
         ...rest
-      } = {}) => h(
+      } = {}, columnsIndex) => h(
         'a-table-column',
         {
           props: {
@@ -128,34 +133,42 @@ export default {
               data,
               rowData,
               idx,
-              // column,
-            ) => h(
-              'fe-cus-column',
-              {
-                props: {
-                  cusColumns,
-                  columnsStyle,
-                  dataIndex,
-                  rowData,
-                  localRowData: this.localDataSource[idx],
-                },
-                attrs: { data, idx },
-                on: {
-                  'update:data-source': (value) => {
-                    if (this.form) {
-                      this.localDataSource.splice(
-                        idx, 1, { ...this.localDataSource[idx], ...value },
-                      );
-                    }
-                    // this.$emit('update:data-source', [
-                    //   ...this.dataSource.slice(0, idx),
-                    //   value,
-                    //   ...this.dataSource.slice(idx - (this.dataSource.length - 1)),
-                    // ]);
-                  },
-                },
-              },
-            ),
+            ) => {
+              const loadingStatus = this.loadingDataSource.includes(idx);
+              const checkColSpan = (status) => {
+                if (!status) return 1;
+                // 處於 loading 狀態
+                if (columnsIndex === 0) return this.columns.length;
+                return 0;
+              };
+              return {
+                attrs: { colSpan: checkColSpan(loadingStatus) },
+                children: loadingStatus && columnsIndex === 0
+                  ? h(FeColumnLoading)
+                  : h(
+                    'fe-cus-column',
+                    {
+                      props: {
+                        cusColumns,
+                        columnsStyle,
+                        dataIndex,
+                        rowData,
+                        localRowData: this.localDataSource[idx],
+                      },
+                      attrs: { data, idx },
+                      on: {
+                        'update:data-source': (value) => {
+                          if (this.form) {
+                            this.localDataSource.splice(
+                              idx, 1, { ...this.localDataSource[idx], ...value },
+                            );
+                          }
+                        },
+                      },
+                    },
+                  ),
+              };
+            },
           },
         },
         [header && h(

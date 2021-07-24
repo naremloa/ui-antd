@@ -2,6 +2,7 @@
   <div class="table">
     <fe-table
       ref="formTable"
+      :row-selection="rowSelection"
       :loading="tableLoading"
       :form="true"
       :table-error="true"
@@ -75,7 +76,14 @@ export default {
           // width: 200,
           columnsStyle: { display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' },
         })(
-          ftButton({ text: '按鈕', disabled: (rowData) => !rowData.switch }),
+          ftButton({
+            text: '按鈕',
+            disabled: (rowData) => !rowData.switch,
+            click: (data, rowData) => {
+              const { id } = rowData;
+              console.log(data, rowData);
+            },
+          }),
           // ftButton({ text: '按鈕2' }),
         ),
         ftColumn({
@@ -115,7 +123,20 @@ export default {
           },
         })),
       ],
+      selectedRowKeys: [],
     };
+  },
+  computed: {
+    rowSelection() {
+      return {
+        type: 'radio',
+        selectedRowKeys: this.selectedRowKeys,
+        onChange: (keys, rows) => {
+          console.log('keys', keys, rows);
+          this.selectedRowKeys = keys;
+        },
+      };
+    },
   },
   async mounted() {
     this.tableLoading = true;
