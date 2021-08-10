@@ -47,6 +47,7 @@ yarn dev
 ```
 
 ## 部分組件使用說明
+大部分的組件使用上，可以直接查看 [antdv](https://antdv.com/docs/vue/introduce-cn/)
 
 ## FeTable
 
@@ -152,3 +153,48 @@ export default {
 決定我們列表項渲染的項目，最終是通過 `columnType` 字段來決定的，以 `ftInput` 為例子，實際上它是產出 `{ columnType: 'fe-column-input' }` 來決定渲染的是 `Input` 。 `columnType` 除了接受 `String` 以外，還接受組件。另外，上述的 `updateFunc` 和 `reSearchFunc` 會作為 `props` 傳入你放在 `columnType` 位置上的組件。
 
 ## FeSearchGroup
+### 客製化的選項
+```js
+import VerifySearchItem from './VerifySearchItem.vue';
+export default {
+  data() {
+    const { fsSelect } = this.$format;
+    return {
+      formList: [
+        fsSelect({
+          prop: 'mode',
+          label: '订单类型',
+          options: [
+            { value: 'Unknown', label: '全部' },
+            { value: 'Sell', label: '购买' },
+            { value: 'Buy', label: '出售' },
+          ],
+          default: 'Unknown',
+        }),
+        {
+          prop: 'totalAssets',
+          label: '总资产',
+          hide: false,
+          formType: VerifySearchItem,
+          formTypeEvent: 'change',
+          formTypeProps: {
+            width: 380,
+            selectWidth: 25,
+            options: [{ value: 1, label: '>=' }, { value: 2, label: '<=' }],
+            isInputDisabled: (selectVal) => !selectVal,
+            selectPlaceholder: '请选择',
+            placeholder: '可输入最多16位数（小数点后最多8位）',
+            maxNumberLength: 16,
+            maxDecimalLength: 8,
+            inputProps: {
+              regRule: /[0-9.]/,
+            },
+          },
+          default: [undefined, ''],
+        },
+      ],
+    };
+  }
+}
+```
+決定 `FeSearchGroup` 上渲染的項目，最終是通過 `formType` 和 `formTypeEvent` 這兩個。前者是告訴 `FeSearchGroup` 要渲染什麼，後者是告訴 `FeSearchGroup` 渲染的項目的更新事件是什麼，以支持值的更新和表單驗證。 `formTypeProps` 這個字段裡面的值最終會作為 `formType` 指向的組件的 `props` 。 `prop` 字段是提供給 `FeSearchGroup` 作為存儲該項的 `key` 值。在最終搜索出來的結果裡面，會得到一個以該值為 `key` 的物件，以作搜索用途。
