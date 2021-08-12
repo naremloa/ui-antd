@@ -9,10 +9,11 @@ export default {
   inheritAttrs: false,
   model: { prop: 'value', event: 'input' },
   props: {
+    /* eslint-disable vue/require-prop-types */
     value: {
-      type: [Array, String, Number, Boolean],
       default: undefined,
     },
+    /* eslint-enable vue/require-prop-types */
     prop: {
       type: String,
       default: '',
