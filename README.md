@@ -198,3 +198,49 @@ export default {
 }
 ```
 決定 `FeSearchGroup` 上渲染的項目，最終是通過 `formType` 和 `formTypeEvent` 這兩個。前者是告訴 `FeSearchGroup` 要渲染什麼，後者是告訴 `FeSearchGroup` 渲染的項目的更新事件是什麼，以支持值的更新和表單驗證。 `formTypeProps` 這個字段裡面的值最終會作為 `formType` 指向的組件的 `props` 。 `prop` 字段是提供給 `FeSearchGroup` 作為存儲該項的 `key` 值。在最終搜索出來的結果裡面，會得到一個以該值為 `key` 的物件，以作搜索用途。
+
+## FeFormItemSetting
+### 客製化的選項
+```html
+<template>
+  <div>
+    <fe-form-item-setting
+      v-for="setting in formSetting"
+      :key="setting.prop"
+      v-model="form[setting.prop]"
+      v-bind="setting" />
+  </div>
+</template>
+<script>
+import InputNumberWithSwitch from './InputNumberWithSwitch.vue';
+export default {
+  data() {
+    const { ffText } = this.$format;
+    return {
+      form: {},
+      formSetting: [
+        {
+          prop: 'orderCompletion',
+          label: '已完成C2C訂單數≧',
+          formTypeProps: {
+            min: 0,
+            max: 100,
+            precision: 0,
+            formatter: (value) => (value ? `${value}单` : value),
+            parser: (value) => `${value}`.replace('单', ''),
+          },
+          rules: [{ validator: requiredRule('请输入已完成C2C訂單數') }],
+          formType: InputNumberWithSwitch,
+          formTypeEvent: 'change',
+        }
+        ffText({
+          prop: 'status',
+          label: '狀態 ',
+        }),
+      ],
+    };
+  }
+}
+</script>
+```
+可以看到，這邊處理客製化內容，跟 `FeSearchGroup` 的部分，幾乎是一樣的。因為 `FeSearchGroup` 實際也是透過 `FeFormItemSetting` 在處理這部分內容。
